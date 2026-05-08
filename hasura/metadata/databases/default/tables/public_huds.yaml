@@ -1,0 +1,107 @@
+table:
+  name: huds
+  schema: public
+select_permissions:
+  - role: administrator
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - description
+        - version
+        - uploader_steam_id
+        - is_default
+        - is_public
+        - size_bytes
+        - extracted_dir
+        - created_at
+        - updated_at
+      filter: {}
+      allow_aggregations: true
+    comment: ""
+  - role: match_organizer
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - description
+        - version
+        - uploader_steam_id
+        - is_default
+        - is_public
+        - size_bytes
+        - extracted_dir
+        - created_at
+        - updated_at
+      filter:
+        is_public:
+          _eq: true
+    comment: ""
+  - role: tournament_organizer
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - description
+        - version
+        - uploader_steam_id
+        - is_default
+        - is_public
+        - size_bytes
+        - extracted_dir
+        - created_at
+        - updated_at
+      filter:
+        is_public:
+          _eq: true
+    comment: ""
+  - role: streamer
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - description
+        - version
+        - is_default
+        - is_public
+        - size_bytes
+        - extracted_dir
+        - created_at
+      filter:
+        is_public:
+          _eq: true
+    comment: ""
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - description
+        - version
+        - is_default
+        - is_public
+        - created_at
+      filter:
+        is_public:
+          _eq: true
+    comment: ""
+  - role: guest
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - description
+        - version
+        - is_default
+        - is_public
+        - created_at
+      filter:
+        is_public:
+          _eq: true
+    comment: ""

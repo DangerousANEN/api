@@ -43,6 +43,7 @@ import { K8sModule } from "./k8s/k8s.module";
 import { FileManagerModule } from "./file-manager/file-manager.module";
 import { BrandingModule } from "./branding/branding.module";
 import { AvatarsModule } from "./avatars/avatars.module";
+import { HudsModule } from "./huds/huds.module";
 import { TrophiesModule } from "./trophies/trophies.module";
 import { FixturesModule } from "./fixtures/fixtures.module";
 import { TournamentsModule } from "./tournaments/tournaments.module";
@@ -129,6 +130,7 @@ import { TournamentsModule } from "./tournaments/tournaments.module";
     FileManagerModule,
     BrandingModule,
     AvatarsModule,
+    HudsModule,
     TrophiesModule,
     FixturesModule,
     TournamentsModule,

@@ -627,6 +627,7 @@ update_permissions:
   - role: administrator
     permission:
       columns:
+        - hud_id
         - label
         - organizer_steam_id
         - region
@@ -639,6 +640,7 @@ update_permissions:
   - role: match_organizer
     permission:
       columns:
+        - hud_id
         - label
         - organizer_steam_id
         - region
@@ -655,6 +657,7 @@ update_permissions:
   - role: tournament_organizer
     permission:
       columns:
+        - hud_id
         - label
         - organizer_steam_id
         - scheduled_at
