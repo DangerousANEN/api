@@ -1392,6 +1392,24 @@ export class GameStreamerService {
     usePlaycast: boolean,
     mode: "live" | "tv",
   ): Promise<V1EnvVar[]> {
+    // The streamer pod runs in the cluster pod network; the match-server is
+    // started with hostNetwork=true and binds on the node's host network
+    // namespace. Pods on most CNIs (flannel/k3s, weave, etc.) cannot reach
+    // their own node via its external LAN IP (asymmetric routing / hairpin
+    // NAT) — the packet leaves cni0 to the LAN interface and the reply path
+    // never returns through the bridge. The host's pod-network gateway IP
+    // (cni0 on flannel/k3s, e.g. `10.42.0.1`) is reachable from any pod on
+    // that node and is bound by cs2 (which listens on `*:port`).
+    //
+    // Operators can set STREAMER_GAME_SERVER_HOST to override server.host
+    // for the streamer pod's CONNECT_ADDR / CONNECT_TV_ADDR. Leave unset to
+    // keep the existing behavior (use the value reported by the
+    // game-server-node connector — typically the node's LAN IP), which is
+    // correct in setups where the streamer pod can route directly to the
+    // node's external interface.
+    const streamerConnectHost =
+      process.env.STREAMER_GAME_SERVER_HOST?.trim() || server.host;
+
     // tv mode: respect the GOTV/Playcast path so the broadcast carries the
     // configured tv_delay. Playcast (when enabled) wins over the server's
     // tv_port — same precedence as get_match_tv_connection_string().
@@ -1412,7 +1430,7 @@ export class GameStreamerService {
       return [
         {
           name: "CONNECT_TV_ADDR",
-          value: `${server.host}:${server.tv_port}`,
+          value: `${streamerConnectHost}:${server.tv_port}`,
         },
         { name: "CONNECT_TV_PASSWORD", value: matchPassword },
       ];
@@ -1429,7 +1447,10 @@ export class GameStreamerService {
     // `max_players_per_lineup * 2 + 3`), so the streamer ends up observing
     // rather than occupying a roster slot.
     return [
-      { name: "CONNECT_ADDR", value: `${server.host}:${server.port}` },
+      {
+        name: "CONNECT_ADDR",
+        value: `${streamerConnectHost}:${server.port}`,
+      },
       { name: "CONNECT_PASSWORD", value: matchPassword },
     ];
   }
