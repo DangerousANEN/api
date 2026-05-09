@@ -1821,6 +1821,18 @@ export class GameStreamerService {
                   { name: "DISPLAY_SIZEW", value: "1920" },
                   { name: "DISPLAY_SIZEH", value: "1080" },
                   { name: "OPENHUD_AUTO_OVERLAY", value: "1" },
+                  // STREAMER_OPENHUD_DISABLED=1 on the api pod (set in
+                  // api-config.env) flips the streamer pod into "raw"
+                  // mode: no OpenHud Electron overlay is spawned, no
+                  // HUD pack is downloaded, and cs2 renders without an
+                  // overlay. Used when the operator pipes the cs2 video
+                  // through OBS and renders the HUD as a separate
+                  // Browser Source layer (https://cs2.zxc1x1.ru/overlay/
+                  // hud/<matchId>?layout=...). Default off — existing
+                  // OpenHud-baked-in flow stays the default.
+                  ...(process.env.STREAMER_OPENHUD_DISABLED === "1"
+                    ? [{ name: "OPENHUD_DISABLED", value: "1" }]
+                    : []),
                   // F1/F4: streamer uses STATUS_API_BASE for HUD manifest
                   // mirroring (lib/match-hud.sh) and current-map lookup
                   // (lib/flythrough.sh). Already injected for batch mode at
