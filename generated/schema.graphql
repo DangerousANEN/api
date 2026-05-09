@@ -25698,6 +25698,7 @@ type my_friends {
   avatar_url: String
   country: String
   created_at: timestamptz
+  custom_avatar_url: String
   discord_id: String
   elo(
     """JSON select path"""
@@ -25714,6 +25715,7 @@ type my_friends {
   player: players
   profile_url: String
   role: String
+  roster_image_url: String
   status: String
   steam_id: bigint
 }
@@ -25825,6 +25827,7 @@ input my_friends_bool_exp {
   avatar_url: String_comparison_exp
   country: String_comparison_exp
   created_at: timestamptz_comparison_exp
+  custom_avatar_url: String_comparison_exp
   discord_id: String_comparison_exp
   elo: jsonb_comparison_exp
   friend_steam_id: bigint_comparison_exp
@@ -25836,6 +25839,7 @@ input my_friends_bool_exp {
   player: players_bool_exp
   profile_url: String_comparison_exp
   role: String_comparison_exp
+  roster_image_url: String_comparison_exp
   status: String_comparison_exp
   steam_id: bigint_comparison_exp
 }
@@ -25877,6 +25881,7 @@ input my_friends_insert_input {
   avatar_url: String
   country: String
   created_at: timestamptz
+  custom_avatar_url: String
   discord_id: String
   elo: jsonb
   friend_steam_id: bigint
@@ -25888,6 +25893,7 @@ input my_friends_insert_input {
   player: players_obj_rel_insert_input
   profile_url: String
   role: String
+  roster_image_url: String
   status: String
   steam_id: bigint
 }
@@ -25897,6 +25903,7 @@ type my_friends_max_fields {
   avatar_url: String
   country: String
   created_at: timestamptz
+  custom_avatar_url: String
   discord_id: String
   friend_steam_id: bigint
   invited_by_steam_id: bigint
@@ -25905,6 +25912,7 @@ type my_friends_max_fields {
   name: String
   profile_url: String
   role: String
+  roster_image_url: String
   status: String
   steam_id: bigint
 }
@@ -25916,6 +25924,7 @@ input my_friends_max_order_by {
   avatar_url: order_by
   country: order_by
   created_at: order_by
+  custom_avatar_url: order_by
   discord_id: order_by
   friend_steam_id: order_by
   invited_by_steam_id: order_by
@@ -25924,6 +25933,7 @@ input my_friends_max_order_by {
   name: order_by
   profile_url: order_by
   role: order_by
+  roster_image_url: order_by
   status: order_by
   steam_id: order_by
 }
@@ -25933,6 +25943,7 @@ type my_friends_min_fields {
   avatar_url: String
   country: String
   created_at: timestamptz
+  custom_avatar_url: String
   discord_id: String
   friend_steam_id: bigint
   invited_by_steam_id: bigint
@@ -25941,6 +25952,7 @@ type my_friends_min_fields {
   name: String
   profile_url: String
   role: String
+  roster_image_url: String
   status: String
   steam_id: bigint
 }
@@ -25952,6 +25964,7 @@ input my_friends_min_order_by {
   avatar_url: order_by
   country: order_by
   created_at: order_by
+  custom_avatar_url: order_by
   discord_id: order_by
   friend_steam_id: order_by
   invited_by_steam_id: order_by
@@ -25960,6 +25973,7 @@ input my_friends_min_order_by {
   name: order_by
   profile_url: order_by
   role: order_by
+  roster_image_url: order_by
   status: order_by
   steam_id: order_by
 }
@@ -25980,6 +25994,7 @@ input my_friends_order_by {
   avatar_url: order_by
   country: order_by
   created_at: order_by
+  custom_avatar_url: order_by
   discord_id: order_by
   elo: order_by
   friend_steam_id: order_by
@@ -25991,6 +26006,7 @@ input my_friends_order_by {
   player: players_order_by
   profile_url: order_by
   role: order_by
+  roster_image_url: order_by
   status: order_by
   steam_id: order_by
 }
@@ -26012,6 +26028,9 @@ enum my_friends_select_column {
 
   """column name"""
   created_at
+
+  """column name"""
+  custom_avatar_url
 
   """column name"""
   discord_id
@@ -26044,6 +26063,9 @@ enum my_friends_select_column {
   role
 
   """column name"""
+  roster_image_url
+
+  """column name"""
   status
 
   """column name"""
@@ -26073,6 +26095,7 @@ input my_friends_set_input {
   avatar_url: String
   country: String
   created_at: timestamptz
+  custom_avatar_url: String
   discord_id: String
   elo: jsonb
   friend_steam_id: bigint
@@ -26083,6 +26106,7 @@ input my_friends_set_input {
   name_registered: Boolean
   profile_url: String
   role: String
+  roster_image_url: String
   status: String
   steam_id: bigint
 }
@@ -26151,6 +26175,7 @@ input my_friends_stream_cursor_value_input {
   avatar_url: String
   country: String
   created_at: timestamptz
+  custom_avatar_url: String
   discord_id: String
   elo: jsonb
   friend_steam_id: bigint
@@ -26161,6 +26186,7 @@ input my_friends_stream_cursor_value_input {
   name_registered: Boolean
   profile_url: String
   role: String
+  roster_image_url: String
   status: String
   steam_id: bigint
 }
@@ -32789,6 +32815,21 @@ type players {
   losses: Int
 
   """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
+
+  """
   A computed field, executes function "get_player_matches"
   """
   matches(
@@ -32958,6 +32999,14 @@ type players {
     """filter the rows returned"""
     where: teams_bool_exp
   ): teams_aggregate!
+
+  """
+  A computed field, executes function "get_player_peak_elo"
+  """
+  peak_elo(
+    """JSON select path"""
+    path: String
+  ): jsonb
 
   """An array relationship"""
   player_lineup(
@@ -33355,6 +33404,21 @@ type players {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """
@@ -33388,6 +33452,21 @@ type players_avg_fields {
   A computed field, executes function "get_total_player_losses"
   """
   losses: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
   steam_id: Float
 
   """
@@ -33399,6 +33478,21 @@ type players_avg_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """
@@ -33453,6 +33547,9 @@ input players_bool_exp {
   lobby_players: lobby_players_bool_exp
   lobby_players_aggregate: lobby_players_aggregate_bool_exp
   losses: Int_comparison_exp
+  losses_competitive: Int_comparison_exp
+  losses_duel: Int_comparison_exp
+  losses_wingman: Int_comparison_exp
   matches: matches_bool_exp
   matchmaking_cooldown: timestamptz_comparison_exp
   multi_kills: v_player_multi_kills_bool_exp
@@ -33465,6 +33562,7 @@ input players_bool_exp {
   objectives_aggregate: player_objectives_aggregate_bool_exp
   owned_teams: teams_bool_exp
   owned_teams_aggregate: teams_aggregate_bool_exp
+  peak_elo: jsonb_comparison_exp
   player_lineup: match_lineup_players_bool_exp
   player_lineup_aggregate: match_lineup_players_aggregate_bool_exp
   player_unused_utilities: player_unused_utility_bool_exp
@@ -33493,6 +33591,9 @@ input players_bool_exp {
   utility_thrown: player_utility_bool_exp
   utility_thrown_aggregate: player_utility_aggregate_bool_exp
   wins: Int_comparison_exp
+  wins_competitive: Int_comparison_exp
+  wins_duel: Int_comparison_exp
+  wins_wingman: Int_comparison_exp
 }
 
 """
@@ -33592,6 +33693,21 @@ type players_max_fields {
   losses: Int
 
   """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
+
+  """
   A computed field, executes function "get_player_matchmaking_cooldown"
   """
   matchmaking_cooldown: timestamptz
@@ -33609,6 +33725,21 @@ type players_max_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """aggregate min on columns"""
@@ -33632,6 +33763,21 @@ type players_min_fields {
   losses: Int
 
   """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
+
+  """
   A computed field, executes function "get_player_matchmaking_cooldown"
   """
   matchmaking_cooldown: timestamptz
@@ -33649,6 +33795,21 @@ type players_min_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """
@@ -33713,6 +33874,9 @@ input players_order_by {
   last_sign_in_at: order_by
   lobby_players_aggregate: lobby_players_aggregate_order_by
   losses: order_by
+  losses_competitive: order_by
+  losses_duel: order_by
+  losses_wingman: order_by
   matches_aggregate: matches_aggregate_order_by
   matchmaking_cooldown: order_by
   multi_kills_aggregate: v_player_multi_kills_aggregate_order_by
@@ -33721,6 +33885,7 @@ input players_order_by {
   notifications_aggregate: notifications_aggregate_order_by
   objectives_aggregate: player_objectives_aggregate_order_by
   owned_teams_aggregate: teams_aggregate_order_by
+  peak_elo: order_by
   player_lineup_aggregate: match_lineup_players_aggregate_order_by
   player_unused_utilities_aggregate: player_unused_utility_aggregate_order_by
   profile_url: order_by
@@ -33739,6 +33904,9 @@ input players_order_by {
   tournaments_aggregate: tournaments_aggregate_order_by
   utility_thrown_aggregate: player_utility_aggregate_order_by
   wins: order_by
+  wins_competitive: order_by
+  wins_duel: order_by
+  wins_wingman: order_by
 }
 
 """primary key columns input for table: players"""
@@ -33815,6 +33983,21 @@ type players_stddev_fields {
   A computed field, executes function "get_total_player_losses"
   """
   losses: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
   steam_id: Float
 
   """
@@ -33826,6 +34009,21 @@ type players_stddev_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """aggregate stddev_pop on columns"""
@@ -33834,6 +34032,21 @@ type players_stddev_pop_fields {
   A computed field, executes function "get_total_player_losses"
   """
   losses: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
   steam_id: Float
 
   """
@@ -33845,6 +34058,21 @@ type players_stddev_pop_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """aggregate stddev_samp on columns"""
@@ -33853,6 +34081,21 @@ type players_stddev_samp_fields {
   A computed field, executes function "get_total_player_losses"
   """
   losses: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
   steam_id: Float
 
   """
@@ -33864,6 +34107,21 @@ type players_stddev_samp_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """
@@ -33900,6 +34158,21 @@ type players_sum_fields {
   A computed field, executes function "get_total_player_losses"
   """
   losses: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
   steam_id: bigint
 
   """
@@ -33911,6 +34184,21 @@ type players_sum_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """
@@ -33974,6 +34262,21 @@ type players_var_pop_fields {
   A computed field, executes function "get_total_player_losses"
   """
   losses: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
   steam_id: Float
 
   """
@@ -33985,6 +34288,21 @@ type players_var_pop_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """aggregate var_samp on columns"""
@@ -33993,6 +34311,21 @@ type players_var_samp_fields {
   A computed field, executes function "get_total_player_losses"
   """
   losses: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
   steam_id: Float
 
   """
@@ -34004,6 +34337,21 @@ type players_var_samp_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """aggregate variance on columns"""
@@ -34012,6 +34360,21 @@ type players_variance_fields {
   A computed field, executes function "get_total_player_losses"
   """
   losses: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_competitive"
+  """
+  losses_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_duel"
+  """
+  losses_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_losses_wingman"
+  """
+  losses_wingman: Int
   steam_id: Float
 
   """
@@ -34023,6 +34386,21 @@ type players_variance_fields {
   A computed field, executes function "get_total_player_wins"
   """
   wins: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_competitive"
+  """
+  wins_competitive: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_duel"
+  """
+  wins_duel: Int
+
+  """
+  A computed field, executes function "get_total_player_wins_wingman"
+  """
+  wins_wingman: Int
 }
 
 """
