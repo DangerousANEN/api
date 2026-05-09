@@ -32,15 +32,14 @@ export class OverlayController {
           __args: { id: matchId },
           id: true,
           status: true,
+          // get_current_match_map() computed column → uuid of the live
+          // map row. The Hasura model doesn't expose a relationship
+          // named `current_match_map`, so consumers resolve it client
+          // -side from match_maps[].id.
+          current_match_map_id: true,
           options: { type: true, best_of: true },
           lineup_1: { id: true, name: true },
           lineup_2: { id: true, name: true },
-          current_match_map: {
-            id: true,
-            map: { name: true },
-            order: true,
-            status: true,
-          },
           match_maps: {
             __args: {
               order_by: [{ order: "asc" }],
