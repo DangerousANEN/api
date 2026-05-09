@@ -1777,7 +1777,14 @@ export class GameStreamerService {
             containers: [
               {
                 name: containerName,
-                image: "ghcr.io/5stackgg/game-streamer:latest",
+                // The streamer image is referenced from API runtime (we
+                // synthesize the Job spec at request time, the image is
+                // not part of the apiserver-managed Deployment), so a
+                // kustomize `images:` mapping cannot rewrite it. Allow
+                // operators to point this at their fork via env var.
+                image:
+                  process.env.GAME_STREAMER_IMAGE ||
+                  "ghcr.io/5stackgg/game-streamer:latest",
                 // Mutable tag; force each pod start to resolve the latest digest.
                 imagePullPolicy: "Always",
                 securityContext: { privileged: true },
