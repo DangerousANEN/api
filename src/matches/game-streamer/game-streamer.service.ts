@@ -103,7 +103,7 @@ export class GameStreamerService {
         __args: { id: matchId },
         current_match_map_id: true,
         match_maps: {
-          __args: { order_by: [{ order: () => "asc" }] },
+          __args: { order_by: [{ order: "asc" }] },
           id: true,
           status: true,
           map: { name: true },

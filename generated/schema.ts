@@ -3442,6 +3442,315 @@ export interface game_versions_variance_fields {
 }
 
 
+/** columns and relationships of "huds" */
+export interface huds {
+    created_at: Scalars['timestamptz']
+    description: (Scalars['String'] | null)
+    extracted_dir: Scalars['String']
+    id: Scalars['uuid']
+    is_default: Scalars['Boolean']
+    is_public: Scalars['Boolean']
+    name: Scalars['String']
+    size_bytes: Scalars['bigint']
+    slug: Scalars['String']
+    updated_at: Scalars['timestamptz']
+    uploader_steam_id: (Scalars['String'] | null)
+    version: (Scalars['String'] | null)
+    __typename: 'huds'
+}
+
+
+/** aggregated selection of "huds" */
+export interface huds_aggregate {
+    aggregate: (huds_aggregate_fields | null)
+    nodes: huds[]
+    __typename: 'huds_aggregate'
+}
+
+
+/** aggregate fields of "huds" */
+export interface huds_aggregate_fields {
+    avg: (huds_avg_fields | null)
+    count: Scalars['Int']
+    max: (huds_max_fields | null)
+    min: (huds_min_fields | null)
+    stddev: (huds_stddev_fields | null)
+    stddev_pop: (huds_stddev_pop_fields | null)
+    stddev_samp: (huds_stddev_samp_fields | null)
+    sum: (huds_sum_fields | null)
+    var_pop: (huds_var_pop_fields | null)
+    var_samp: (huds_var_samp_fields | null)
+    variance: (huds_variance_fields | null)
+    __typename: 'huds_aggregate_fields'
+}
+
+
+/** aggregate avg on columns */
+export interface huds_avg_fields {
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'huds_avg_fields'
+}
+
+
+/** unique or primary key constraints on table "huds" */
+export type huds_constraint = 'huds_only_one_default' | 'huds_pkey' | 'huds_slug_key'
+
+
+/** aggregate max on columns */
+export interface huds_max_fields {
+    created_at: (Scalars['timestamptz'] | null)
+    description: (Scalars['String'] | null)
+    extracted_dir: (Scalars['String'] | null)
+    id: (Scalars['uuid'] | null)
+    name: (Scalars['String'] | null)
+    size_bytes: (Scalars['bigint'] | null)
+    slug: (Scalars['String'] | null)
+    updated_at: (Scalars['timestamptz'] | null)
+    uploader_steam_id: (Scalars['String'] | null)
+    version: (Scalars['String'] | null)
+    __typename: 'huds_max_fields'
+}
+
+
+/** aggregate min on columns */
+export interface huds_min_fields {
+    created_at: (Scalars['timestamptz'] | null)
+    description: (Scalars['String'] | null)
+    extracted_dir: (Scalars['String'] | null)
+    id: (Scalars['uuid'] | null)
+    name: (Scalars['String'] | null)
+    size_bytes: (Scalars['bigint'] | null)
+    slug: (Scalars['String'] | null)
+    updated_at: (Scalars['timestamptz'] | null)
+    uploader_steam_id: (Scalars['String'] | null)
+    version: (Scalars['String'] | null)
+    __typename: 'huds_min_fields'
+}
+
+
+/** response of any mutation on the table "huds" */
+export interface huds_mutation_response {
+    /** number of rows affected by the mutation */
+    affected_rows: Scalars['Int']
+    /** data from the rows affected by the mutation */
+    returning: huds[]
+    __typename: 'huds_mutation_response'
+}
+
+
+/** select columns of table "huds" */
+export type huds_select_column = 'created_at' | 'description' | 'extracted_dir' | 'id' | 'is_default' | 'is_public' | 'name' | 'size_bytes' | 'slug' | 'updated_at' | 'uploader_steam_id' | 'version'
+
+
+/** aggregate stddev on columns */
+export interface huds_stddev_fields {
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'huds_stddev_fields'
+}
+
+
+/** aggregate stddev_pop on columns */
+export interface huds_stddev_pop_fields {
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'huds_stddev_pop_fields'
+}
+
+
+/** aggregate stddev_samp on columns */
+export interface huds_stddev_samp_fields {
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'huds_stddev_samp_fields'
+}
+
+
+/** aggregate sum on columns */
+export interface huds_sum_fields {
+    size_bytes: (Scalars['bigint'] | null)
+    __typename: 'huds_sum_fields'
+}
+
+
+/** update columns of table "huds" */
+export type huds_update_column = 'created_at' | 'description' | 'extracted_dir' | 'id' | 'is_default' | 'is_public' | 'name' | 'size_bytes' | 'slug' | 'updated_at' | 'uploader_steam_id' | 'version'
+
+
+/** aggregate var_pop on columns */
+export interface huds_var_pop_fields {
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'huds_var_pop_fields'
+}
+
+
+/** aggregate var_samp on columns */
+export interface huds_var_samp_fields {
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'huds_var_samp_fields'
+}
+
+
+/** aggregate variance on columns */
+export interface huds_variance_fields {
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'huds_variance_fields'
+}
+
+
+/** columns and relationships of "intros" */
+export interface intros {
+    created_at: Scalars['timestamptz']
+    display_name: (Scalars['String'] | null)
+    duration_seconds: (Scalars['Int'] | null)
+    id: Scalars['uuid']
+    map_name: Scalars['String']
+    s3_key: Scalars['String']
+    size_bytes: Scalars['bigint']
+    updated_at: Scalars['timestamptz']
+    uploader_steam_id: (Scalars['String'] | null)
+    __typename: 'intros'
+}
+
+
+/** aggregated selection of "intros" */
+export interface intros_aggregate {
+    aggregate: (intros_aggregate_fields | null)
+    nodes: intros[]
+    __typename: 'intros_aggregate'
+}
+
+
+/** aggregate fields of "intros" */
+export interface intros_aggregate_fields {
+    avg: (intros_avg_fields | null)
+    count: Scalars['Int']
+    max: (intros_max_fields | null)
+    min: (intros_min_fields | null)
+    stddev: (intros_stddev_fields | null)
+    stddev_pop: (intros_stddev_pop_fields | null)
+    stddev_samp: (intros_stddev_samp_fields | null)
+    sum: (intros_sum_fields | null)
+    var_pop: (intros_var_pop_fields | null)
+    var_samp: (intros_var_samp_fields | null)
+    variance: (intros_variance_fields | null)
+    __typename: 'intros_aggregate_fields'
+}
+
+
+/** aggregate avg on columns */
+export interface intros_avg_fields {
+    duration_seconds: (Scalars['Float'] | null)
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'intros_avg_fields'
+}
+
+
+/** unique or primary key constraints on table "intros" */
+export type intros_constraint = 'intros_map_name_key' | 'intros_pkey'
+
+
+/** aggregate max on columns */
+export interface intros_max_fields {
+    created_at: (Scalars['timestamptz'] | null)
+    display_name: (Scalars['String'] | null)
+    duration_seconds: (Scalars['Int'] | null)
+    id: (Scalars['uuid'] | null)
+    map_name: (Scalars['String'] | null)
+    s3_key: (Scalars['String'] | null)
+    size_bytes: (Scalars['bigint'] | null)
+    updated_at: (Scalars['timestamptz'] | null)
+    uploader_steam_id: (Scalars['String'] | null)
+    __typename: 'intros_max_fields'
+}
+
+
+/** aggregate min on columns */
+export interface intros_min_fields {
+    created_at: (Scalars['timestamptz'] | null)
+    display_name: (Scalars['String'] | null)
+    duration_seconds: (Scalars['Int'] | null)
+    id: (Scalars['uuid'] | null)
+    map_name: (Scalars['String'] | null)
+    s3_key: (Scalars['String'] | null)
+    size_bytes: (Scalars['bigint'] | null)
+    updated_at: (Scalars['timestamptz'] | null)
+    uploader_steam_id: (Scalars['String'] | null)
+    __typename: 'intros_min_fields'
+}
+
+
+/** response of any mutation on the table "intros" */
+export interface intros_mutation_response {
+    /** number of rows affected by the mutation */
+    affected_rows: Scalars['Int']
+    /** data from the rows affected by the mutation */
+    returning: intros[]
+    __typename: 'intros_mutation_response'
+}
+
+
+/** select columns of table "intros" */
+export type intros_select_column = 'created_at' | 'display_name' | 'duration_seconds' | 'id' | 'map_name' | 's3_key' | 'size_bytes' | 'updated_at' | 'uploader_steam_id'
+
+
+/** aggregate stddev on columns */
+export interface intros_stddev_fields {
+    duration_seconds: (Scalars['Float'] | null)
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'intros_stddev_fields'
+}
+
+
+/** aggregate stddev_pop on columns */
+export interface intros_stddev_pop_fields {
+    duration_seconds: (Scalars['Float'] | null)
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'intros_stddev_pop_fields'
+}
+
+
+/** aggregate stddev_samp on columns */
+export interface intros_stddev_samp_fields {
+    duration_seconds: (Scalars['Float'] | null)
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'intros_stddev_samp_fields'
+}
+
+
+/** aggregate sum on columns */
+export interface intros_sum_fields {
+    duration_seconds: (Scalars['Int'] | null)
+    size_bytes: (Scalars['bigint'] | null)
+    __typename: 'intros_sum_fields'
+}
+
+
+/** update columns of table "intros" */
+export type intros_update_column = 'created_at' | 'display_name' | 'duration_seconds' | 'id' | 'map_name' | 's3_key' | 'size_bytes' | 'updated_at' | 'uploader_steam_id'
+
+
+/** aggregate var_pop on columns */
+export interface intros_var_pop_fields {
+    duration_seconds: (Scalars['Float'] | null)
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'intros_var_pop_fields'
+}
+
+
+/** aggregate var_samp on columns */
+export interface intros_var_samp_fields {
+    duration_seconds: (Scalars['Float'] | null)
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'intros_var_samp_fields'
+}
+
+
+/** aggregate variance on columns */
+export interface intros_variance_fields {
+    duration_seconds: (Scalars['Float'] | null)
+    size_bytes: (Scalars['Float'] | null)
+    __typename: 'intros_variance_fields'
+}
+
+
 /** columns and relationships of "leaderboard_entries" */
 export interface leaderboard_entries {
     matches_played: (Scalars['Int'] | null)
@@ -6193,6 +6502,7 @@ export interface matches {
     /** An aggregate relationship */
     elo_changes_aggregate: v_player_elo_aggregate
     ended_at: (Scalars['timestamptz'] | null)
+    hud_id: (Scalars['uuid'] | null)
     id: Scalars['uuid']
     /** A computed field, executes function "match_invite_code" */
     invite_code: (Scalars['String'] | null)
@@ -6366,6 +6676,7 @@ export interface matches_max_fields {
     /** A computed field, executes function "get_current_match_map" */
     current_match_map_id: (Scalars['uuid'] | null)
     ended_at: (Scalars['timestamptz'] | null)
+    hud_id: (Scalars['uuid'] | null)
     id: (Scalars['uuid'] | null)
     /** A computed field, executes function "match_invite_code" */
     invite_code: (Scalars['String'] | null)
@@ -6412,6 +6723,7 @@ export interface matches_min_fields {
     /** A computed field, executes function "get_current_match_map" */
     current_match_map_id: (Scalars['uuid'] | null)
     ended_at: (Scalars['timestamptz'] | null)
+    hud_id: (Scalars['uuid'] | null)
     id: (Scalars['uuid'] | null)
     /** A computed field, executes function "match_invite_code" */
     invite_code: (Scalars['String'] | null)
@@ -6458,7 +6770,7 @@ export interface matches_mutation_response {
 
 
 /** select columns of table "matches" */
-export type matches_select_column = 'cancels_at' | 'created_at' | 'ended_at' | 'id' | 'label' | 'lineup_1_id' | 'lineup_2_id' | 'match_options_id' | 'organizer_steam_id' | 'password' | 'region' | 'scheduled_at' | 'server_error' | 'server_id' | 'started_at' | 'status' | 'winning_lineup_id'
+export type matches_select_column = 'cancels_at' | 'created_at' | 'ended_at' | 'hud_id' | 'id' | 'label' | 'lineup_1_id' | 'lineup_2_id' | 'match_options_id' | 'organizer_steam_id' | 'password' | 'region' | 'scheduled_at' | 'server_error' | 'server_id' | 'started_at' | 'status' | 'winning_lineup_id'
 
 
 /** aggregate stddev on columns */
@@ -6506,7 +6818,7 @@ export interface matches_sum_fields {
 
 
 /** update columns of table "matches" */
-export type matches_update_column = 'cancels_at' | 'created_at' | 'ended_at' | 'id' | 'label' | 'lineup_1_id' | 'lineup_2_id' | 'match_options_id' | 'organizer_steam_id' | 'password' | 'region' | 'scheduled_at' | 'server_error' | 'server_id' | 'started_at' | 'status' | 'winning_lineup_id'
+export type matches_update_column = 'cancels_at' | 'created_at' | 'ended_at' | 'hud_id' | 'id' | 'label' | 'lineup_1_id' | 'lineup_2_id' | 'match_options_id' | 'organizer_steam_id' | 'password' | 'region' | 'scheduled_at' | 'server_error' | 'server_id' | 'started_at' | 'status' | 'winning_lineup_id'
 
 
 /** aggregate var_pop on columns */
@@ -6773,6 +7085,14 @@ export interface mutation_root {
     delete_game_versions: (game_versions_mutation_response | null)
     /** delete single row from the table: "game_versions" */
     delete_game_versions_by_pk: (game_versions | null)
+    /** delete data from the table: "huds" */
+    delete_huds: (huds_mutation_response | null)
+    /** delete single row from the table: "huds" */
+    delete_huds_by_pk: (huds | null)
+    /** delete data from the table: "intros" */
+    delete_intros: (intros_mutation_response | null)
+    /** delete single row from the table: "intros" */
+    delete_intros_by_pk: (intros | null)
     /** delete data from the table: "leaderboard_entries" */
     delete_leaderboard_entries: (leaderboard_entries_mutation_response | null)
     /** delete data from the table: "lobbies" */
@@ -6909,6 +7229,10 @@ export interface mutation_root {
     delete_plugin_versions: (plugin_versions_mutation_response | null)
     /** delete single row from the table: "plugin_versions" */
     delete_plugin_versions_by_pk: (plugin_versions | null)
+    /** delete data from the table: "round_highlights" */
+    delete_round_highlights: (round_highlights_mutation_response | null)
+    /** delete single row from the table: "round_highlights" */
+    delete_round_highlights_by_pk: (round_highlights | null)
     /** delete data from the table: "server_regions" */
     delete_server_regions: (server_regions_mutation_response | null)
     /** delete single row from the table: "server_regions" */
@@ -7114,6 +7438,14 @@ export interface mutation_root {
     insert_game_versions: (game_versions_mutation_response | null)
     /** insert a single row into the table: "game_versions" */
     insert_game_versions_one: (game_versions | null)
+    /** insert data into the table: "huds" */
+    insert_huds: (huds_mutation_response | null)
+    /** insert a single row into the table: "huds" */
+    insert_huds_one: (huds | null)
+    /** insert data into the table: "intros" */
+    insert_intros: (intros_mutation_response | null)
+    /** insert a single row into the table: "intros" */
+    insert_intros_one: (intros | null)
     /** insert data into the table: "leaderboard_entries" */
     insert_leaderboard_entries: (leaderboard_entries_mutation_response | null)
     /** insert a single row into the table: "leaderboard_entries" */
@@ -7254,6 +7586,10 @@ export interface mutation_root {
     insert_plugin_versions: (plugin_versions_mutation_response | null)
     /** insert a single row into the table: "plugin_versions" */
     insert_plugin_versions_one: (plugin_versions | null)
+    /** insert data into the table: "round_highlights" */
+    insert_round_highlights: (round_highlights_mutation_response | null)
+    /** insert a single row into the table: "round_highlights" */
+    insert_round_highlights_one: (round_highlights | null)
     /** insert data into the table: "server_regions" */
     insert_server_regions: (server_regions_mutation_response | null)
     /** insert a single row into the table: "server_regions" */
@@ -7574,6 +7910,18 @@ export interface mutation_root {
     update_game_versions_by_pk: (game_versions | null)
     /** update multiples rows of table: "game_versions" */
     update_game_versions_many: ((game_versions_mutation_response | null)[] | null)
+    /** update data of the table: "huds" */
+    update_huds: (huds_mutation_response | null)
+    /** update single row of the table: "huds" */
+    update_huds_by_pk: (huds | null)
+    /** update multiples rows of table: "huds" */
+    update_huds_many: ((huds_mutation_response | null)[] | null)
+    /** update data of the table: "intros" */
+    update_intros: (intros_mutation_response | null)
+    /** update single row of the table: "intros" */
+    update_intros_by_pk: (intros | null)
+    /** update multiples rows of table: "intros" */
+    update_intros_many: ((intros_mutation_response | null)[] | null)
     /** update data of the table: "leaderboard_entries" */
     update_leaderboard_entries: (leaderboard_entries_mutation_response | null)
     /** update multiples rows of table: "leaderboard_entries" */
@@ -7780,6 +8128,12 @@ export interface mutation_root {
     update_plugin_versions_by_pk: (plugin_versions | null)
     /** update multiples rows of table: "plugin_versions" */
     update_plugin_versions_many: ((plugin_versions_mutation_response | null)[] | null)
+    /** update data of the table: "round_highlights" */
+    update_round_highlights: (round_highlights_mutation_response | null)
+    /** update single row of the table: "round_highlights" */
+    update_round_highlights_by_pk: (round_highlights | null)
+    /** update multiples rows of table: "round_highlights" */
+    update_round_highlights_many: ((round_highlights_mutation_response | null)[] | null)
     /** update data of the table: "server_regions" */
     update_server_regions: (server_regions_mutation_response | null)
     /** update single row of the table: "server_regions" */
@@ -11037,6 +11391,18 @@ export interface query_root {
     get_leaderboard: leaderboard_entries[]
     /** execute function "get_leaderboard" and query aggregates on result of table type "leaderboard_entries" */
     get_leaderboard_aggregate: leaderboard_entries_aggregate
+    /** fetch data from the table: "huds" */
+    huds: huds[]
+    /** fetch aggregated fields from the table: "huds" */
+    huds_aggregate: huds_aggregate
+    /** fetch data from the table: "huds" using primary key columns */
+    huds_by_pk: (huds | null)
+    /** fetch data from the table: "intros" */
+    intros: intros[]
+    /** fetch aggregated fields from the table: "intros" */
+    intros_aggregate: intros_aggregate
+    /** fetch data from the table: "intros" using primary key columns */
+    intros_by_pk: (intros | null)
     /** fetch data from the table: "leaderboard_entries" */
     leaderboard_entries: leaderboard_entries[]
     /** fetch aggregated fields from the table: "leaderboard_entries" */
@@ -11249,6 +11615,12 @@ export interface query_root {
     plugin_versions_by_pk: (plugin_versions | null)
     /** Read file content from game server */
     readServerFile: FileContentResponse
+    /** fetch data from the table: "round_highlights" */
+    round_highlights: round_highlights[]
+    /** fetch aggregated fields from the table: "round_highlights" */
+    round_highlights_aggregate: round_highlights_aggregate
+    /** fetch data from the table: "round_highlights" using primary key columns */
+    round_highlights_by_pk: (round_highlights | null)
     /** fetch data from the table: "server_regions" */
     server_regions: server_regions[]
     /** fetch aggregated fields from the table: "server_regions" */
@@ -11393,6 +11765,173 @@ export interface query_root {
     /** fetch aggregated fields from the table: "v_tournament_player_stats" */
     v_tournament_player_stats_aggregate: v_tournament_player_stats_aggregate
     __typename: 'query_root'
+}
+
+
+/** columns and relationships of "round_highlights" */
+export interface round_highlights {
+    created_at: Scalars['timestamptz']
+    id: Scalars['uuid']
+    kills: Scalars['Int']
+    label: Scalars['String']
+    /** An object relationship */
+    match: matches
+    match_id: Scalars['uuid']
+    /** An object relationship */
+    match_map: (match_maps | null)
+    match_map_id: (Scalars['uuid'] | null)
+    metadata: (Scalars['jsonb'] | null)
+    player_name: (Scalars['String'] | null)
+    round_number: Scalars['Int']
+    steam_id: Scalars['String']
+    team: (Scalars['String'] | null)
+    weapon: (Scalars['String'] | null)
+    __typename: 'round_highlights'
+}
+
+
+/** aggregated selection of "round_highlights" */
+export interface round_highlights_aggregate {
+    aggregate: (round_highlights_aggregate_fields | null)
+    nodes: round_highlights[]
+    __typename: 'round_highlights_aggregate'
+}
+
+
+/** aggregate fields of "round_highlights" */
+export interface round_highlights_aggregate_fields {
+    avg: (round_highlights_avg_fields | null)
+    count: Scalars['Int']
+    max: (round_highlights_max_fields | null)
+    min: (round_highlights_min_fields | null)
+    stddev: (round_highlights_stddev_fields | null)
+    stddev_pop: (round_highlights_stddev_pop_fields | null)
+    stddev_samp: (round_highlights_stddev_samp_fields | null)
+    sum: (round_highlights_sum_fields | null)
+    var_pop: (round_highlights_var_pop_fields | null)
+    var_samp: (round_highlights_var_samp_fields | null)
+    variance: (round_highlights_variance_fields | null)
+    __typename: 'round_highlights_aggregate_fields'
+}
+
+
+/** aggregate avg on columns */
+export interface round_highlights_avg_fields {
+    kills: (Scalars['Float'] | null)
+    round_number: (Scalars['Float'] | null)
+    __typename: 'round_highlights_avg_fields'
+}
+
+
+/** unique or primary key constraints on table "round_highlights" */
+export type round_highlights_constraint = 'round_highlights_pkey'
+
+
+/** aggregate max on columns */
+export interface round_highlights_max_fields {
+    created_at: (Scalars['timestamptz'] | null)
+    id: (Scalars['uuid'] | null)
+    kills: (Scalars['Int'] | null)
+    label: (Scalars['String'] | null)
+    match_id: (Scalars['uuid'] | null)
+    match_map_id: (Scalars['uuid'] | null)
+    player_name: (Scalars['String'] | null)
+    round_number: (Scalars['Int'] | null)
+    steam_id: (Scalars['String'] | null)
+    team: (Scalars['String'] | null)
+    weapon: (Scalars['String'] | null)
+    __typename: 'round_highlights_max_fields'
+}
+
+
+/** aggregate min on columns */
+export interface round_highlights_min_fields {
+    created_at: (Scalars['timestamptz'] | null)
+    id: (Scalars['uuid'] | null)
+    kills: (Scalars['Int'] | null)
+    label: (Scalars['String'] | null)
+    match_id: (Scalars['uuid'] | null)
+    match_map_id: (Scalars['uuid'] | null)
+    player_name: (Scalars['String'] | null)
+    round_number: (Scalars['Int'] | null)
+    steam_id: (Scalars['String'] | null)
+    team: (Scalars['String'] | null)
+    weapon: (Scalars['String'] | null)
+    __typename: 'round_highlights_min_fields'
+}
+
+
+/** response of any mutation on the table "round_highlights" */
+export interface round_highlights_mutation_response {
+    /** number of rows affected by the mutation */
+    affected_rows: Scalars['Int']
+    /** data from the rows affected by the mutation */
+    returning: round_highlights[]
+    __typename: 'round_highlights_mutation_response'
+}
+
+
+/** select columns of table "round_highlights" */
+export type round_highlights_select_column = 'created_at' | 'id' | 'kills' | 'label' | 'match_id' | 'match_map_id' | 'metadata' | 'player_name' | 'round_number' | 'steam_id' | 'team' | 'weapon'
+
+
+/** aggregate stddev on columns */
+export interface round_highlights_stddev_fields {
+    kills: (Scalars['Float'] | null)
+    round_number: (Scalars['Float'] | null)
+    __typename: 'round_highlights_stddev_fields'
+}
+
+
+/** aggregate stddev_pop on columns */
+export interface round_highlights_stddev_pop_fields {
+    kills: (Scalars['Float'] | null)
+    round_number: (Scalars['Float'] | null)
+    __typename: 'round_highlights_stddev_pop_fields'
+}
+
+
+/** aggregate stddev_samp on columns */
+export interface round_highlights_stddev_samp_fields {
+    kills: (Scalars['Float'] | null)
+    round_number: (Scalars['Float'] | null)
+    __typename: 'round_highlights_stddev_samp_fields'
+}
+
+
+/** aggregate sum on columns */
+export interface round_highlights_sum_fields {
+    kills: (Scalars['Int'] | null)
+    round_number: (Scalars['Int'] | null)
+    __typename: 'round_highlights_sum_fields'
+}
+
+
+/** update columns of table "round_highlights" */
+export type round_highlights_update_column = 'created_at' | 'id' | 'kills' | 'label' | 'match_id' | 'match_map_id' | 'metadata' | 'player_name' | 'round_number' | 'steam_id' | 'team' | 'weapon'
+
+
+/** aggregate var_pop on columns */
+export interface round_highlights_var_pop_fields {
+    kills: (Scalars['Float'] | null)
+    round_number: (Scalars['Float'] | null)
+    __typename: 'round_highlights_var_pop_fields'
+}
+
+
+/** aggregate var_samp on columns */
+export interface round_highlights_var_samp_fields {
+    kills: (Scalars['Float'] | null)
+    round_number: (Scalars['Float'] | null)
+    __typename: 'round_highlights_var_samp_fields'
+}
+
+
+/** aggregate variance on columns */
+export interface round_highlights_variance_fields {
+    kills: (Scalars['Float'] | null)
+    round_number: (Scalars['Float'] | null)
+    __typename: 'round_highlights_variance_fields'
 }
 
 
@@ -12139,6 +12678,22 @@ export interface subscription_root {
     get_leaderboard: leaderboard_entries[]
     /** execute function "get_leaderboard" and query aggregates on result of table type "leaderboard_entries" */
     get_leaderboard_aggregate: leaderboard_entries_aggregate
+    /** fetch data from the table: "huds" */
+    huds: huds[]
+    /** fetch aggregated fields from the table: "huds" */
+    huds_aggregate: huds_aggregate
+    /** fetch data from the table: "huds" using primary key columns */
+    huds_by_pk: (huds | null)
+    /** fetch data from the table in a streaming manner: "huds" */
+    huds_stream: huds[]
+    /** fetch data from the table: "intros" */
+    intros: intros[]
+    /** fetch aggregated fields from the table: "intros" */
+    intros_aggregate: intros_aggregate
+    /** fetch data from the table: "intros" using primary key columns */
+    intros_by_pk: (intros | null)
+    /** fetch data from the table in a streaming manner: "intros" */
+    intros_stream: intros[]
     /** fetch data from the table: "leaderboard_entries" */
     leaderboard_entries: leaderboard_entries[]
     /** fetch aggregated fields from the table: "leaderboard_entries" */
@@ -12415,6 +12970,14 @@ export interface subscription_root {
     plugin_versions_by_pk: (plugin_versions | null)
     /** fetch data from the table in a streaming manner: "plugin_versions" */
     plugin_versions_stream: plugin_versions[]
+    /** fetch data from the table: "round_highlights" */
+    round_highlights: round_highlights[]
+    /** fetch aggregated fields from the table: "round_highlights" */
+    round_highlights_aggregate: round_highlights_aggregate
+    /** fetch data from the table: "round_highlights" using primary key columns */
+    round_highlights_by_pk: (round_highlights | null)
+    /** fetch data from the table in a streaming manner: "round_highlights" */
+    round_highlights_stream: round_highlights[]
     /** fetch data from the table: "server_regions" */
     server_regions: server_regions[]
     /** fetch aggregated fields from the table: "server_regions" */
@@ -22544,8 +23107,417 @@ export interface game_versions_variance_fieldsGenqlSelection{
 export interface get_leaderboard_args {_category?: (Scalars['String'] | null),_exclude_tournaments?: (Scalars['Boolean'] | null),_match_type?: (Scalars['String'] | null),_window_days?: (Scalars['Int'] | null)}
 
 
+/** columns and relationships of "huds" */
+export interface hudsGenqlSelection{
+    created_at?: boolean | number
+    description?: boolean | number
+    extracted_dir?: boolean | number
+    id?: boolean | number
+    is_default?: boolean | number
+    is_public?: boolean | number
+    name?: boolean | number
+    size_bytes?: boolean | number
+    slug?: boolean | number
+    updated_at?: boolean | number
+    uploader_steam_id?: boolean | number
+    version?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregated selection of "huds" */
+export interface huds_aggregateGenqlSelection{
+    aggregate?: huds_aggregate_fieldsGenqlSelection
+    nodes?: hudsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate fields of "huds" */
+export interface huds_aggregate_fieldsGenqlSelection{
+    avg?: huds_avg_fieldsGenqlSelection
+    count?: { __args: {columns?: (huds_select_column[] | null), distinct?: (Scalars['Boolean'] | null)} } | boolean | number
+    max?: huds_max_fieldsGenqlSelection
+    min?: huds_min_fieldsGenqlSelection
+    stddev?: huds_stddev_fieldsGenqlSelection
+    stddev_pop?: huds_stddev_pop_fieldsGenqlSelection
+    stddev_samp?: huds_stddev_samp_fieldsGenqlSelection
+    sum?: huds_sum_fieldsGenqlSelection
+    var_pop?: huds_var_pop_fieldsGenqlSelection
+    var_samp?: huds_var_samp_fieldsGenqlSelection
+    variance?: huds_variance_fieldsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate avg on columns */
+export interface huds_avg_fieldsGenqlSelection{
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** Boolean expression to filter rows from the table "huds". All fields are combined with a logical 'AND'. */
+export interface huds_bool_exp {_and?: (huds_bool_exp[] | null),_not?: (huds_bool_exp | null),_or?: (huds_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),description?: (String_comparison_exp | null),extracted_dir?: (String_comparison_exp | null),id?: (uuid_comparison_exp | null),is_default?: (Boolean_comparison_exp | null),is_public?: (Boolean_comparison_exp | null),name?: (String_comparison_exp | null),size_bytes?: (bigint_comparison_exp | null),slug?: (String_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null),uploader_steam_id?: (String_comparison_exp | null),version?: (String_comparison_exp | null)}
+
+
+/** input type for incrementing numeric columns in table "huds" */
+export interface huds_inc_input {size_bytes?: (Scalars['bigint'] | null)}
+
+
+/** input type for inserting data into table "huds" */
+export interface huds_insert_input {created_at?: (Scalars['timestamptz'] | null),description?: (Scalars['String'] | null),extracted_dir?: (Scalars['String'] | null),id?: (Scalars['uuid'] | null),is_default?: (Scalars['Boolean'] | null),is_public?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),slug?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null),version?: (Scalars['String'] | null)}
+
+
+/** aggregate max on columns */
+export interface huds_max_fieldsGenqlSelection{
+    created_at?: boolean | number
+    description?: boolean | number
+    extracted_dir?: boolean | number
+    id?: boolean | number
+    name?: boolean | number
+    size_bytes?: boolean | number
+    slug?: boolean | number
+    updated_at?: boolean | number
+    uploader_steam_id?: boolean | number
+    version?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate min on columns */
+export interface huds_min_fieldsGenqlSelection{
+    created_at?: boolean | number
+    description?: boolean | number
+    extracted_dir?: boolean | number
+    id?: boolean | number
+    name?: boolean | number
+    size_bytes?: boolean | number
+    slug?: boolean | number
+    updated_at?: boolean | number
+    uploader_steam_id?: boolean | number
+    version?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** response of any mutation on the table "huds" */
+export interface huds_mutation_responseGenqlSelection{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | number
+    /** data from the rows affected by the mutation */
+    returning?: hudsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** on_conflict condition type for table "huds" */
+export interface huds_on_conflict {constraint: huds_constraint,update_columns?: huds_update_column[],where?: (huds_bool_exp | null)}
+
+
+/** Ordering options when selecting data from "huds". */
+export interface huds_order_by {created_at?: (order_by | null),description?: (order_by | null),extracted_dir?: (order_by | null),id?: (order_by | null),is_default?: (order_by | null),is_public?: (order_by | null),name?: (order_by | null),size_bytes?: (order_by | null),slug?: (order_by | null),updated_at?: (order_by | null),uploader_steam_id?: (order_by | null),version?: (order_by | null)}
+
+
+/** primary key columns input for table: huds */
+export interface huds_pk_columns_input {id: Scalars['uuid']}
+
+
+/** input type for updating data in table "huds" */
+export interface huds_set_input {created_at?: (Scalars['timestamptz'] | null),description?: (Scalars['String'] | null),extracted_dir?: (Scalars['String'] | null),id?: (Scalars['uuid'] | null),is_default?: (Scalars['Boolean'] | null),is_public?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),slug?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null),version?: (Scalars['String'] | null)}
+
+
+/** aggregate stddev on columns */
+export interface huds_stddev_fieldsGenqlSelection{
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate stddev_pop on columns */
+export interface huds_stddev_pop_fieldsGenqlSelection{
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate stddev_samp on columns */
+export interface huds_stddev_samp_fieldsGenqlSelection{
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** Streaming cursor of the table "huds" */
+export interface huds_stream_cursor_input {
+/** Stream column input with initial value */
+initial_value: huds_stream_cursor_value_input,
+/** cursor ordering */
+ordering?: (cursor_ordering | null)}
+
+
+/** Initial value of the column from where the streaming should start */
+export interface huds_stream_cursor_value_input {created_at?: (Scalars['timestamptz'] | null),description?: (Scalars['String'] | null),extracted_dir?: (Scalars['String'] | null),id?: (Scalars['uuid'] | null),is_default?: (Scalars['Boolean'] | null),is_public?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),slug?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null),version?: (Scalars['String'] | null)}
+
+
+/** aggregate sum on columns */
+export interface huds_sum_fieldsGenqlSelection{
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface huds_updates {
+/** increments the numeric columns with given value of the filtered values */
+_inc?: (huds_inc_input | null),
+/** sets the columns of the filtered rows to the given values */
+_set?: (huds_set_input | null),
+/** filter the rows which have to be updated */
+where: huds_bool_exp}
+
+
+/** aggregate var_pop on columns */
+export interface huds_var_pop_fieldsGenqlSelection{
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate var_samp on columns */
+export interface huds_var_samp_fieldsGenqlSelection{
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate variance on columns */
+export interface huds_variance_fieldsGenqlSelection{
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
 /** Boolean expression to compare columns of type "inet". All fields are combined with logical 'AND'. */
 export interface inet_comparison_exp {_eq?: (Scalars['inet'] | null),_gt?: (Scalars['inet'] | null),_gte?: (Scalars['inet'] | null),_in?: (Scalars['inet'][] | null),_is_null?: (Scalars['Boolean'] | null),_lt?: (Scalars['inet'] | null),_lte?: (Scalars['inet'] | null),_neq?: (Scalars['inet'] | null),_nin?: (Scalars['inet'][] | null)}
+
+
+/** columns and relationships of "intros" */
+export interface introsGenqlSelection{
+    created_at?: boolean | number
+    display_name?: boolean | number
+    duration_seconds?: boolean | number
+    id?: boolean | number
+    map_name?: boolean | number
+    s3_key?: boolean | number
+    size_bytes?: boolean | number
+    updated_at?: boolean | number
+    uploader_steam_id?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregated selection of "intros" */
+export interface intros_aggregateGenqlSelection{
+    aggregate?: intros_aggregate_fieldsGenqlSelection
+    nodes?: introsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate fields of "intros" */
+export interface intros_aggregate_fieldsGenqlSelection{
+    avg?: intros_avg_fieldsGenqlSelection
+    count?: { __args: {columns?: (intros_select_column[] | null), distinct?: (Scalars['Boolean'] | null)} } | boolean | number
+    max?: intros_max_fieldsGenqlSelection
+    min?: intros_min_fieldsGenqlSelection
+    stddev?: intros_stddev_fieldsGenqlSelection
+    stddev_pop?: intros_stddev_pop_fieldsGenqlSelection
+    stddev_samp?: intros_stddev_samp_fieldsGenqlSelection
+    sum?: intros_sum_fieldsGenqlSelection
+    var_pop?: intros_var_pop_fieldsGenqlSelection
+    var_samp?: intros_var_samp_fieldsGenqlSelection
+    variance?: intros_variance_fieldsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate avg on columns */
+export interface intros_avg_fieldsGenqlSelection{
+    duration_seconds?: boolean | number
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** Boolean expression to filter rows from the table "intros". All fields are combined with a logical 'AND'. */
+export interface intros_bool_exp {_and?: (intros_bool_exp[] | null),_not?: (intros_bool_exp | null),_or?: (intros_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),display_name?: (String_comparison_exp | null),duration_seconds?: (Int_comparison_exp | null),id?: (uuid_comparison_exp | null),map_name?: (String_comparison_exp | null),s3_key?: (String_comparison_exp | null),size_bytes?: (bigint_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null),uploader_steam_id?: (String_comparison_exp | null)}
+
+
+/** input type for incrementing numeric columns in table "intros" */
+export interface intros_inc_input {duration_seconds?: (Scalars['Int'] | null),size_bytes?: (Scalars['bigint'] | null)}
+
+
+/** input type for inserting data into table "intros" */
+export interface intros_insert_input {created_at?: (Scalars['timestamptz'] | null),display_name?: (Scalars['String'] | null),duration_seconds?: (Scalars['Int'] | null),id?: (Scalars['uuid'] | null),map_name?: (Scalars['String'] | null),s3_key?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null)}
+
+
+/** aggregate max on columns */
+export interface intros_max_fieldsGenqlSelection{
+    created_at?: boolean | number
+    display_name?: boolean | number
+    duration_seconds?: boolean | number
+    id?: boolean | number
+    map_name?: boolean | number
+    s3_key?: boolean | number
+    size_bytes?: boolean | number
+    updated_at?: boolean | number
+    uploader_steam_id?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate min on columns */
+export interface intros_min_fieldsGenqlSelection{
+    created_at?: boolean | number
+    display_name?: boolean | number
+    duration_seconds?: boolean | number
+    id?: boolean | number
+    map_name?: boolean | number
+    s3_key?: boolean | number
+    size_bytes?: boolean | number
+    updated_at?: boolean | number
+    uploader_steam_id?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** response of any mutation on the table "intros" */
+export interface intros_mutation_responseGenqlSelection{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | number
+    /** data from the rows affected by the mutation */
+    returning?: introsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** on_conflict condition type for table "intros" */
+export interface intros_on_conflict {constraint: intros_constraint,update_columns?: intros_update_column[],where?: (intros_bool_exp | null)}
+
+
+/** Ordering options when selecting data from "intros". */
+export interface intros_order_by {created_at?: (order_by | null),display_name?: (order_by | null),duration_seconds?: (order_by | null),id?: (order_by | null),map_name?: (order_by | null),s3_key?: (order_by | null),size_bytes?: (order_by | null),updated_at?: (order_by | null),uploader_steam_id?: (order_by | null)}
+
+
+/** primary key columns input for table: intros */
+export interface intros_pk_columns_input {id: Scalars['uuid']}
+
+
+/** input type for updating data in table "intros" */
+export interface intros_set_input {created_at?: (Scalars['timestamptz'] | null),display_name?: (Scalars['String'] | null),duration_seconds?: (Scalars['Int'] | null),id?: (Scalars['uuid'] | null),map_name?: (Scalars['String'] | null),s3_key?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null)}
+
+
+/** aggregate stddev on columns */
+export interface intros_stddev_fieldsGenqlSelection{
+    duration_seconds?: boolean | number
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate stddev_pop on columns */
+export interface intros_stddev_pop_fieldsGenqlSelection{
+    duration_seconds?: boolean | number
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate stddev_samp on columns */
+export interface intros_stddev_samp_fieldsGenqlSelection{
+    duration_seconds?: boolean | number
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** Streaming cursor of the table "intros" */
+export interface intros_stream_cursor_input {
+/** Stream column input with initial value */
+initial_value: intros_stream_cursor_value_input,
+/** cursor ordering */
+ordering?: (cursor_ordering | null)}
+
+
+/** Initial value of the column from where the streaming should start */
+export interface intros_stream_cursor_value_input {created_at?: (Scalars['timestamptz'] | null),display_name?: (Scalars['String'] | null),duration_seconds?: (Scalars['Int'] | null),id?: (Scalars['uuid'] | null),map_name?: (Scalars['String'] | null),s3_key?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null)}
+
+
+/** aggregate sum on columns */
+export interface intros_sum_fieldsGenqlSelection{
+    duration_seconds?: boolean | number
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface intros_updates {
+/** increments the numeric columns with given value of the filtered values */
+_inc?: (intros_inc_input | null),
+/** sets the columns of the filtered rows to the given values */
+_set?: (intros_set_input | null),
+/** filter the rows which have to be updated */
+where: intros_bool_exp}
+
+
+/** aggregate var_pop on columns */
+export interface intros_var_pop_fieldsGenqlSelection{
+    duration_seconds?: boolean | number
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate var_samp on columns */
+export interface intros_var_samp_fieldsGenqlSelection{
+    duration_seconds?: boolean | number
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate variance on columns */
+export interface intros_variance_fieldsGenqlSelection{
+    duration_seconds?: boolean | number
+    size_bytes?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
 
 
 /** Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'. */
@@ -27181,6 +28153,7 @@ export interface matchesGenqlSelection{
     /** filter the rows returned */
     where?: (v_player_elo_bool_exp | null)} })
     ended_at?: boolean | number
+    hud_id?: boolean | number
     id?: boolean | number
     /** A computed field, executes function "match_invite_code" */
     invite_code?: boolean | number
@@ -27634,7 +28607,7 @@ export interface matches_avg_order_by {organizer_steam_id?: (order_by | null)}
 
 
 /** Boolean expression to filter rows from the table "matches". All fields are combined with a logical 'AND'. */
-export interface matches_bool_exp {_and?: (matches_bool_exp[] | null),_not?: (matches_bool_exp | null),_or?: (matches_bool_exp[] | null),can_assign_server?: (Boolean_comparison_exp | null),can_cancel?: (Boolean_comparison_exp | null),can_check_in?: (Boolean_comparison_exp | null),can_reassign_winner?: (Boolean_comparison_exp | null),can_schedule?: (Boolean_comparison_exp | null),can_start?: (Boolean_comparison_exp | null),can_stream_live?: (Boolean_comparison_exp | null),can_stream_tv?: (Boolean_comparison_exp | null),cancels_at?: (timestamptz_comparison_exp | null),connection_link?: (String_comparison_exp | null),connection_string?: (String_comparison_exp | null),created_at?: (timestamptz_comparison_exp | null),current_match_map_id?: (uuid_comparison_exp | null),demos?: (match_map_demos_bool_exp | null),demos_aggregate?: (match_map_demos_aggregate_bool_exp | null),e_match_status?: (e_match_status_bool_exp | null),e_region?: (server_regions_bool_exp | null),elo_changes?: (v_player_elo_bool_exp | null),elo_changes_aggregate?: (v_player_elo_aggregate_bool_exp | null),ended_at?: (timestamptz_comparison_exp | null),id?: (uuid_comparison_exp | null),invite_code?: (String_comparison_exp | null),invites?: (match_invites_bool_exp | null),invites_aggregate?: (match_invites_aggregate_bool_exp | null),is_captain?: (Boolean_comparison_exp | null),is_coach?: (Boolean_comparison_exp | null),is_friend_in_match_lineup?: (Boolean_comparison_exp | null),is_in_lineup?: (Boolean_comparison_exp | null),is_match_server_available?: (Boolean_comparison_exp | null),is_organizer?: (Boolean_comparison_exp | null),is_server_online?: (Boolean_comparison_exp | null),is_tournament_match?: (Boolean_comparison_exp | null),label?: (String_comparison_exp | null),lineup_1?: (match_lineups_bool_exp | null),lineup_1_id?: (uuid_comparison_exp | null),lineup_2?: (match_lineups_bool_exp | null),lineup_2_id?: (uuid_comparison_exp | null),lineup_counts?: (json_comparison_exp | null),map_veto_picking_lineup_id?: (uuid_comparison_exp | null),map_veto_picks?: (match_map_veto_picks_bool_exp | null),map_veto_picks_aggregate?: (match_map_veto_picks_aggregate_bool_exp | null),map_veto_type?: (String_comparison_exp | null),match_maps?: (match_maps_bool_exp | null),match_maps_aggregate?: (match_maps_aggregate_bool_exp | null),match_options_id?: (uuid_comparison_exp | null),max_players_per_lineup?: (Int_comparison_exp | null),min_players_per_lineup?: (Int_comparison_exp | null),options?: (match_options_bool_exp | null),organizer?: (players_bool_exp | null),organizer_steam_id?: (bigint_comparison_exp | null),password?: (String_comparison_exp | null),player_assists?: (player_assists_bool_exp | null),player_assists_aggregate?: (player_assists_aggregate_bool_exp | null),player_damages?: (player_damages_bool_exp | null),player_damages_aggregate?: (player_damages_aggregate_bool_exp | null),player_flashes?: (player_flashes_bool_exp | null),player_flashes_aggregate?: (player_flashes_aggregate_bool_exp | null),player_kills?: (player_kills_bool_exp | null),player_kills_aggregate?: (player_kills_aggregate_bool_exp | null),player_objectives?: (player_objectives_bool_exp | null),player_objectives_aggregate?: (player_objectives_aggregate_bool_exp | null),player_unused_utilities?: (player_unused_utility_bool_exp | null),player_unused_utilities_aggregate?: (player_unused_utility_aggregate_bool_exp | null),player_utility?: (player_utility_bool_exp | null),player_utility_aggregate?: (player_utility_aggregate_bool_exp | null),region?: (String_comparison_exp | null),region_veto_picking_lineup_id?: (uuid_comparison_exp | null),region_veto_picks?: (match_region_veto_picks_bool_exp | null),region_veto_picks_aggregate?: (match_region_veto_picks_aggregate_bool_exp | null),requested_organizer?: (Boolean_comparison_exp | null),scheduled_at?: (timestamptz_comparison_exp | null),server?: (servers_bool_exp | null),server_error?: (String_comparison_exp | null),server_id?: (uuid_comparison_exp | null),server_region?: (String_comparison_exp | null),server_type?: (String_comparison_exp | null),started_at?: (timestamptz_comparison_exp | null),status?: (e_match_status_enum_comparison_exp | null),streams?: (match_streams_bool_exp | null),streams_aggregate?: (match_streams_aggregate_bool_exp | null),teams?: (teams_bool_exp | null),tournament_brackets?: (tournament_brackets_bool_exp | null),tournament_brackets_aggregate?: (tournament_brackets_aggregate_bool_exp | null),tv_connection_string?: (String_comparison_exp | null),winner?: (match_lineups_bool_exp | null),winning_lineup_id?: (uuid_comparison_exp | null)}
+export interface matches_bool_exp {_and?: (matches_bool_exp[] | null),_not?: (matches_bool_exp | null),_or?: (matches_bool_exp[] | null),can_assign_server?: (Boolean_comparison_exp | null),can_cancel?: (Boolean_comparison_exp | null),can_check_in?: (Boolean_comparison_exp | null),can_reassign_winner?: (Boolean_comparison_exp | null),can_schedule?: (Boolean_comparison_exp | null),can_start?: (Boolean_comparison_exp | null),can_stream_live?: (Boolean_comparison_exp | null),can_stream_tv?: (Boolean_comparison_exp | null),cancels_at?: (timestamptz_comparison_exp | null),connection_link?: (String_comparison_exp | null),connection_string?: (String_comparison_exp | null),created_at?: (timestamptz_comparison_exp | null),current_match_map_id?: (uuid_comparison_exp | null),demos?: (match_map_demos_bool_exp | null),demos_aggregate?: (match_map_demos_aggregate_bool_exp | null),e_match_status?: (e_match_status_bool_exp | null),e_region?: (server_regions_bool_exp | null),elo_changes?: (v_player_elo_bool_exp | null),elo_changes_aggregate?: (v_player_elo_aggregate_bool_exp | null),ended_at?: (timestamptz_comparison_exp | null),hud_id?: (uuid_comparison_exp | null),id?: (uuid_comparison_exp | null),invite_code?: (String_comparison_exp | null),invites?: (match_invites_bool_exp | null),invites_aggregate?: (match_invites_aggregate_bool_exp | null),is_captain?: (Boolean_comparison_exp | null),is_coach?: (Boolean_comparison_exp | null),is_friend_in_match_lineup?: (Boolean_comparison_exp | null),is_in_lineup?: (Boolean_comparison_exp | null),is_match_server_available?: (Boolean_comparison_exp | null),is_organizer?: (Boolean_comparison_exp | null),is_server_online?: (Boolean_comparison_exp | null),is_tournament_match?: (Boolean_comparison_exp | null),label?: (String_comparison_exp | null),lineup_1?: (match_lineups_bool_exp | null),lineup_1_id?: (uuid_comparison_exp | null),lineup_2?: (match_lineups_bool_exp | null),lineup_2_id?: (uuid_comparison_exp | null),lineup_counts?: (json_comparison_exp | null),map_veto_picking_lineup_id?: (uuid_comparison_exp | null),map_veto_picks?: (match_map_veto_picks_bool_exp | null),map_veto_picks_aggregate?: (match_map_veto_picks_aggregate_bool_exp | null),map_veto_type?: (String_comparison_exp | null),match_maps?: (match_maps_bool_exp | null),match_maps_aggregate?: (match_maps_aggregate_bool_exp | null),match_options_id?: (uuid_comparison_exp | null),max_players_per_lineup?: (Int_comparison_exp | null),min_players_per_lineup?: (Int_comparison_exp | null),options?: (match_options_bool_exp | null),organizer?: (players_bool_exp | null),organizer_steam_id?: (bigint_comparison_exp | null),password?: (String_comparison_exp | null),player_assists?: (player_assists_bool_exp | null),player_assists_aggregate?: (player_assists_aggregate_bool_exp | null),player_damages?: (player_damages_bool_exp | null),player_damages_aggregate?: (player_damages_aggregate_bool_exp | null),player_flashes?: (player_flashes_bool_exp | null),player_flashes_aggregate?: (player_flashes_aggregate_bool_exp | null),player_kills?: (player_kills_bool_exp | null),player_kills_aggregate?: (player_kills_aggregate_bool_exp | null),player_objectives?: (player_objectives_bool_exp | null),player_objectives_aggregate?: (player_objectives_aggregate_bool_exp | null),player_unused_utilities?: (player_unused_utility_bool_exp | null),player_unused_utilities_aggregate?: (player_unused_utility_aggregate_bool_exp | null),player_utility?: (player_utility_bool_exp | null),player_utility_aggregate?: (player_utility_aggregate_bool_exp | null),region?: (String_comparison_exp | null),region_veto_picking_lineup_id?: (uuid_comparison_exp | null),region_veto_picks?: (match_region_veto_picks_bool_exp | null),region_veto_picks_aggregate?: (match_region_veto_picks_aggregate_bool_exp | null),requested_organizer?: (Boolean_comparison_exp | null),scheduled_at?: (timestamptz_comparison_exp | null),server?: (servers_bool_exp | null),server_error?: (String_comparison_exp | null),server_id?: (uuid_comparison_exp | null),server_region?: (String_comparison_exp | null),server_type?: (String_comparison_exp | null),started_at?: (timestamptz_comparison_exp | null),status?: (e_match_status_enum_comparison_exp | null),streams?: (match_streams_bool_exp | null),streams_aggregate?: (match_streams_aggregate_bool_exp | null),teams?: (teams_bool_exp | null),tournament_brackets?: (tournament_brackets_bool_exp | null),tournament_brackets_aggregate?: (tournament_brackets_aggregate_bool_exp | null),tv_connection_string?: (String_comparison_exp | null),winner?: (match_lineups_bool_exp | null),winning_lineup_id?: (uuid_comparison_exp | null)}
 
 
 /** input type for incrementing numeric columns in table "matches" */
@@ -27642,7 +28615,7 @@ export interface matches_inc_input {organizer_steam_id?: (Scalars['bigint'] | nu
 
 
 /** input type for inserting data into table "matches" */
-export interface matches_insert_input {cancels_at?: (Scalars['timestamptz'] | null),created_at?: (Scalars['timestamptz'] | null),demos?: (match_map_demos_arr_rel_insert_input | null),e_match_status?: (e_match_status_obj_rel_insert_input | null),e_region?: (server_regions_obj_rel_insert_input | null),elo_changes?: (v_player_elo_arr_rel_insert_input | null),ended_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),invites?: (match_invites_arr_rel_insert_input | null),label?: (Scalars['String'] | null),lineup_1?: (match_lineups_obj_rel_insert_input | null),lineup_1_id?: (Scalars['uuid'] | null),lineup_2?: (match_lineups_obj_rel_insert_input | null),lineup_2_id?: (Scalars['uuid'] | null),map_veto_picks?: (match_map_veto_picks_arr_rel_insert_input | null),match_maps?: (match_maps_arr_rel_insert_input | null),match_options_id?: (Scalars['uuid'] | null),options?: (match_options_obj_rel_insert_input | null),organizer?: (players_obj_rel_insert_input | null),organizer_steam_id?: (Scalars['bigint'] | null),password?: (Scalars['String'] | null),player_assists?: (player_assists_arr_rel_insert_input | null),player_damages?: (player_damages_arr_rel_insert_input | null),player_flashes?: (player_flashes_arr_rel_insert_input | null),player_kills?: (player_kills_arr_rel_insert_input | null),player_objectives?: (player_objectives_arr_rel_insert_input | null),player_unused_utilities?: (player_unused_utility_arr_rel_insert_input | null),player_utility?: (player_utility_arr_rel_insert_input | null),region?: (Scalars['String'] | null),region_veto_picks?: (match_region_veto_picks_arr_rel_insert_input | null),scheduled_at?: (Scalars['timestamptz'] | null),server?: (servers_obj_rel_insert_input | null),server_error?: (Scalars['String'] | null),server_id?: (Scalars['uuid'] | null),started_at?: (Scalars['timestamptz'] | null),status?: (e_match_status_enum | null),streams?: (match_streams_arr_rel_insert_input | null),tournament_brackets?: (tournament_brackets_arr_rel_insert_input | null),winner?: (match_lineups_obj_rel_insert_input | null),winning_lineup_id?: (Scalars['uuid'] | null)}
+export interface matches_insert_input {cancels_at?: (Scalars['timestamptz'] | null),created_at?: (Scalars['timestamptz'] | null),demos?: (match_map_demos_arr_rel_insert_input | null),e_match_status?: (e_match_status_obj_rel_insert_input | null),e_region?: (server_regions_obj_rel_insert_input | null),elo_changes?: (v_player_elo_arr_rel_insert_input | null),ended_at?: (Scalars['timestamptz'] | null),hud_id?: (Scalars['uuid'] | null),id?: (Scalars['uuid'] | null),invites?: (match_invites_arr_rel_insert_input | null),label?: (Scalars['String'] | null),lineup_1?: (match_lineups_obj_rel_insert_input | null),lineup_1_id?: (Scalars['uuid'] | null),lineup_2?: (match_lineups_obj_rel_insert_input | null),lineup_2_id?: (Scalars['uuid'] | null),map_veto_picks?: (match_map_veto_picks_arr_rel_insert_input | null),match_maps?: (match_maps_arr_rel_insert_input | null),match_options_id?: (Scalars['uuid'] | null),options?: (match_options_obj_rel_insert_input | null),organizer?: (players_obj_rel_insert_input | null),organizer_steam_id?: (Scalars['bigint'] | null),password?: (Scalars['String'] | null),player_assists?: (player_assists_arr_rel_insert_input | null),player_damages?: (player_damages_arr_rel_insert_input | null),player_flashes?: (player_flashes_arr_rel_insert_input | null),player_kills?: (player_kills_arr_rel_insert_input | null),player_objectives?: (player_objectives_arr_rel_insert_input | null),player_unused_utilities?: (player_unused_utility_arr_rel_insert_input | null),player_utility?: (player_utility_arr_rel_insert_input | null),region?: (Scalars['String'] | null),region_veto_picks?: (match_region_veto_picks_arr_rel_insert_input | null),scheduled_at?: (Scalars['timestamptz'] | null),server?: (servers_obj_rel_insert_input | null),server_error?: (Scalars['String'] | null),server_id?: (Scalars['uuid'] | null),started_at?: (Scalars['timestamptz'] | null),status?: (e_match_status_enum | null),streams?: (match_streams_arr_rel_insert_input | null),tournament_brackets?: (tournament_brackets_arr_rel_insert_input | null),winner?: (match_lineups_obj_rel_insert_input | null),winning_lineup_id?: (Scalars['uuid'] | null)}
 
 
 /** aggregate max on columns */
@@ -27656,6 +28629,7 @@ export interface matches_max_fieldsGenqlSelection{
     /** A computed field, executes function "get_current_match_map" */
     current_match_map_id?: boolean | number
     ended_at?: boolean | number
+    hud_id?: boolean | number
     id?: boolean | number
     /** A computed field, executes function "match_invite_code" */
     invite_code?: boolean | number
@@ -27693,7 +28667,7 @@ export interface matches_max_fieldsGenqlSelection{
 
 
 /** order by max() on columns of table "matches" */
-export interface matches_max_order_by {cancels_at?: (order_by | null),created_at?: (order_by | null),ended_at?: (order_by | null),id?: (order_by | null),label?: (order_by | null),lineup_1_id?: (order_by | null),lineup_2_id?: (order_by | null),match_options_id?: (order_by | null),organizer_steam_id?: (order_by | null),password?: (order_by | null),region?: (order_by | null),scheduled_at?: (order_by | null),server_error?: (order_by | null),server_id?: (order_by | null),started_at?: (order_by | null),winning_lineup_id?: (order_by | null)}
+export interface matches_max_order_by {cancels_at?: (order_by | null),created_at?: (order_by | null),ended_at?: (order_by | null),hud_id?: (order_by | null),id?: (order_by | null),label?: (order_by | null),lineup_1_id?: (order_by | null),lineup_2_id?: (order_by | null),match_options_id?: (order_by | null),organizer_steam_id?: (order_by | null),password?: (order_by | null),region?: (order_by | null),scheduled_at?: (order_by | null),server_error?: (order_by | null),server_id?: (order_by | null),started_at?: (order_by | null),winning_lineup_id?: (order_by | null)}
 
 
 /** aggregate min on columns */
@@ -27707,6 +28681,7 @@ export interface matches_min_fieldsGenqlSelection{
     /** A computed field, executes function "get_current_match_map" */
     current_match_map_id?: boolean | number
     ended_at?: boolean | number
+    hud_id?: boolean | number
     id?: boolean | number
     /** A computed field, executes function "match_invite_code" */
     invite_code?: boolean | number
@@ -27744,7 +28719,7 @@ export interface matches_min_fieldsGenqlSelection{
 
 
 /** order by min() on columns of table "matches" */
-export interface matches_min_order_by {cancels_at?: (order_by | null),created_at?: (order_by | null),ended_at?: (order_by | null),id?: (order_by | null),label?: (order_by | null),lineup_1_id?: (order_by | null),lineup_2_id?: (order_by | null),match_options_id?: (order_by | null),organizer_steam_id?: (order_by | null),password?: (order_by | null),region?: (order_by | null),scheduled_at?: (order_by | null),server_error?: (order_by | null),server_id?: (order_by | null),started_at?: (order_by | null),winning_lineup_id?: (order_by | null)}
+export interface matches_min_order_by {cancels_at?: (order_by | null),created_at?: (order_by | null),ended_at?: (order_by | null),hud_id?: (order_by | null),id?: (order_by | null),label?: (order_by | null),lineup_1_id?: (order_by | null),lineup_2_id?: (order_by | null),match_options_id?: (order_by | null),organizer_steam_id?: (order_by | null),password?: (order_by | null),region?: (order_by | null),scheduled_at?: (order_by | null),server_error?: (order_by | null),server_id?: (order_by | null),started_at?: (order_by | null),winning_lineup_id?: (order_by | null)}
 
 
 /** response of any mutation on the table "matches" */
@@ -27769,7 +28744,7 @@ export interface matches_on_conflict {constraint: matches_constraint,update_colu
 
 
 /** Ordering options when selecting data from "matches". */
-export interface matches_order_by {can_assign_server?: (order_by | null),can_cancel?: (order_by | null),can_check_in?: (order_by | null),can_reassign_winner?: (order_by | null),can_schedule?: (order_by | null),can_start?: (order_by | null),can_stream_live?: (order_by | null),can_stream_tv?: (order_by | null),cancels_at?: (order_by | null),connection_link?: (order_by | null),connection_string?: (order_by | null),created_at?: (order_by | null),current_match_map_id?: (order_by | null),demos_aggregate?: (match_map_demos_aggregate_order_by | null),e_match_status?: (e_match_status_order_by | null),e_region?: (server_regions_order_by | null),elo_changes_aggregate?: (v_player_elo_aggregate_order_by | null),ended_at?: (order_by | null),id?: (order_by | null),invite_code?: (order_by | null),invites_aggregate?: (match_invites_aggregate_order_by | null),is_captain?: (order_by | null),is_coach?: (order_by | null),is_friend_in_match_lineup?: (order_by | null),is_in_lineup?: (order_by | null),is_match_server_available?: (order_by | null),is_organizer?: (order_by | null),is_server_online?: (order_by | null),is_tournament_match?: (order_by | null),label?: (order_by | null),lineup_1?: (match_lineups_order_by | null),lineup_1_id?: (order_by | null),lineup_2?: (match_lineups_order_by | null),lineup_2_id?: (order_by | null),lineup_counts?: (order_by | null),map_veto_picking_lineup_id?: (order_by | null),map_veto_picks_aggregate?: (match_map_veto_picks_aggregate_order_by | null),map_veto_type?: (order_by | null),match_maps_aggregate?: (match_maps_aggregate_order_by | null),match_options_id?: (order_by | null),max_players_per_lineup?: (order_by | null),min_players_per_lineup?: (order_by | null),options?: (match_options_order_by | null),organizer?: (players_order_by | null),organizer_steam_id?: (order_by | null),password?: (order_by | null),player_assists_aggregate?: (player_assists_aggregate_order_by | null),player_damages_aggregate?: (player_damages_aggregate_order_by | null),player_flashes_aggregate?: (player_flashes_aggregate_order_by | null),player_kills_aggregate?: (player_kills_aggregate_order_by | null),player_objectives_aggregate?: (player_objectives_aggregate_order_by | null),player_unused_utilities_aggregate?: (player_unused_utility_aggregate_order_by | null),player_utility_aggregate?: (player_utility_aggregate_order_by | null),region?: (order_by | null),region_veto_picking_lineup_id?: (order_by | null),region_veto_picks_aggregate?: (match_region_veto_picks_aggregate_order_by | null),requested_organizer?: (order_by | null),scheduled_at?: (order_by | null),server?: (servers_order_by | null),server_error?: (order_by | null),server_id?: (order_by | null),server_region?: (order_by | null),server_type?: (order_by | null),started_at?: (order_by | null),status?: (order_by | null),streams_aggregate?: (match_streams_aggregate_order_by | null),teams_aggregate?: (teams_aggregate_order_by | null),tournament_brackets_aggregate?: (tournament_brackets_aggregate_order_by | null),tv_connection_string?: (order_by | null),winner?: (match_lineups_order_by | null),winning_lineup_id?: (order_by | null)}
+export interface matches_order_by {can_assign_server?: (order_by | null),can_cancel?: (order_by | null),can_check_in?: (order_by | null),can_reassign_winner?: (order_by | null),can_schedule?: (order_by | null),can_start?: (order_by | null),can_stream_live?: (order_by | null),can_stream_tv?: (order_by | null),cancels_at?: (order_by | null),connection_link?: (order_by | null),connection_string?: (order_by | null),created_at?: (order_by | null),current_match_map_id?: (order_by | null),demos_aggregate?: (match_map_demos_aggregate_order_by | null),e_match_status?: (e_match_status_order_by | null),e_region?: (server_regions_order_by | null),elo_changes_aggregate?: (v_player_elo_aggregate_order_by | null),ended_at?: (order_by | null),hud_id?: (order_by | null),id?: (order_by | null),invite_code?: (order_by | null),invites_aggregate?: (match_invites_aggregate_order_by | null),is_captain?: (order_by | null),is_coach?: (order_by | null),is_friend_in_match_lineup?: (order_by | null),is_in_lineup?: (order_by | null),is_match_server_available?: (order_by | null),is_organizer?: (order_by | null),is_server_online?: (order_by | null),is_tournament_match?: (order_by | null),label?: (order_by | null),lineup_1?: (match_lineups_order_by | null),lineup_1_id?: (order_by | null),lineup_2?: (match_lineups_order_by | null),lineup_2_id?: (order_by | null),lineup_counts?: (order_by | null),map_veto_picking_lineup_id?: (order_by | null),map_veto_picks_aggregate?: (match_map_veto_picks_aggregate_order_by | null),map_veto_type?: (order_by | null),match_maps_aggregate?: (match_maps_aggregate_order_by | null),match_options_id?: (order_by | null),max_players_per_lineup?: (order_by | null),min_players_per_lineup?: (order_by | null),options?: (match_options_order_by | null),organizer?: (players_order_by | null),organizer_steam_id?: (order_by | null),password?: (order_by | null),player_assists_aggregate?: (player_assists_aggregate_order_by | null),player_damages_aggregate?: (player_damages_aggregate_order_by | null),player_flashes_aggregate?: (player_flashes_aggregate_order_by | null),player_kills_aggregate?: (player_kills_aggregate_order_by | null),player_objectives_aggregate?: (player_objectives_aggregate_order_by | null),player_unused_utilities_aggregate?: (player_unused_utility_aggregate_order_by | null),player_utility_aggregate?: (player_utility_aggregate_order_by | null),region?: (order_by | null),region_veto_picking_lineup_id?: (order_by | null),region_veto_picks_aggregate?: (match_region_veto_picks_aggregate_order_by | null),requested_organizer?: (order_by | null),scheduled_at?: (order_by | null),server?: (servers_order_by | null),server_error?: (order_by | null),server_id?: (order_by | null),server_region?: (order_by | null),server_type?: (order_by | null),started_at?: (order_by | null),status?: (order_by | null),streams_aggregate?: (match_streams_aggregate_order_by | null),teams_aggregate?: (teams_aggregate_order_by | null),tournament_brackets_aggregate?: (tournament_brackets_aggregate_order_by | null),tv_connection_string?: (order_by | null),winner?: (match_lineups_order_by | null),winning_lineup_id?: (order_by | null)}
 
 
 /** primary key columns input for table: matches */
@@ -27777,7 +28752,7 @@ export interface matches_pk_columns_input {id: Scalars['uuid']}
 
 
 /** input type for updating data in table "matches" */
-export interface matches_set_input {cancels_at?: (Scalars['timestamptz'] | null),created_at?: (Scalars['timestamptz'] | null),ended_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),label?: (Scalars['String'] | null),lineup_1_id?: (Scalars['uuid'] | null),lineup_2_id?: (Scalars['uuid'] | null),match_options_id?: (Scalars['uuid'] | null),organizer_steam_id?: (Scalars['bigint'] | null),password?: (Scalars['String'] | null),region?: (Scalars['String'] | null),scheduled_at?: (Scalars['timestamptz'] | null),server_error?: (Scalars['String'] | null),server_id?: (Scalars['uuid'] | null),started_at?: (Scalars['timestamptz'] | null),status?: (e_match_status_enum | null),winning_lineup_id?: (Scalars['uuid'] | null)}
+export interface matches_set_input {cancels_at?: (Scalars['timestamptz'] | null),created_at?: (Scalars['timestamptz'] | null),ended_at?: (Scalars['timestamptz'] | null),hud_id?: (Scalars['uuid'] | null),id?: (Scalars['uuid'] | null),label?: (Scalars['String'] | null),lineup_1_id?: (Scalars['uuid'] | null),lineup_2_id?: (Scalars['uuid'] | null),match_options_id?: (Scalars['uuid'] | null),organizer_steam_id?: (Scalars['bigint'] | null),password?: (Scalars['String'] | null),region?: (Scalars['String'] | null),scheduled_at?: (Scalars['timestamptz'] | null),server_error?: (Scalars['String'] | null),server_id?: (Scalars['uuid'] | null),started_at?: (Scalars['timestamptz'] | null),status?: (e_match_status_enum | null),winning_lineup_id?: (Scalars['uuid'] | null)}
 
 
 /** aggregate stddev on columns */
@@ -27837,7 +28812,7 @@ ordering?: (cursor_ordering | null)}
 
 
 /** Initial value of the column from where the streaming should start */
-export interface matches_stream_cursor_value_input {cancels_at?: (Scalars['timestamptz'] | null),created_at?: (Scalars['timestamptz'] | null),ended_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),label?: (Scalars['String'] | null),lineup_1_id?: (Scalars['uuid'] | null),lineup_2_id?: (Scalars['uuid'] | null),match_options_id?: (Scalars['uuid'] | null),organizer_steam_id?: (Scalars['bigint'] | null),password?: (Scalars['String'] | null),region?: (Scalars['String'] | null),scheduled_at?: (Scalars['timestamptz'] | null),server_error?: (Scalars['String'] | null),server_id?: (Scalars['uuid'] | null),started_at?: (Scalars['timestamptz'] | null),status?: (e_match_status_enum | null),winning_lineup_id?: (Scalars['uuid'] | null)}
+export interface matches_stream_cursor_value_input {cancels_at?: (Scalars['timestamptz'] | null),created_at?: (Scalars['timestamptz'] | null),ended_at?: (Scalars['timestamptz'] | null),hud_id?: (Scalars['uuid'] | null),id?: (Scalars['uuid'] | null),label?: (Scalars['String'] | null),lineup_1_id?: (Scalars['uuid'] | null),lineup_2_id?: (Scalars['uuid'] | null),match_options_id?: (Scalars['uuid'] | null),organizer_steam_id?: (Scalars['bigint'] | null),password?: (Scalars['String'] | null),region?: (Scalars['String'] | null),scheduled_at?: (Scalars['timestamptz'] | null),server_error?: (Scalars['String'] | null),server_id?: (Scalars['uuid'] | null),started_at?: (Scalars['timestamptz'] | null),status?: (e_match_status_enum | null),winning_lineup_id?: (Scalars['uuid'] | null)}
 
 
 /** aggregate sum on columns */
@@ -28247,6 +29222,18 @@ export interface mutation_rootGenqlSelection{
     where: game_versions_bool_exp} })
     /** delete single row from the table: "game_versions" */
     delete_game_versions_by_pk?: (game_versionsGenqlSelection & { __args: {build_id: Scalars['Int']} })
+    /** delete data from the table: "huds" */
+    delete_huds?: (huds_mutation_responseGenqlSelection & { __args: {
+    /** filter the rows which have to be deleted */
+    where: huds_bool_exp} })
+    /** delete single row from the table: "huds" */
+    delete_huds_by_pk?: (hudsGenqlSelection & { __args: {id: Scalars['uuid']} })
+    /** delete data from the table: "intros" */
+    delete_intros?: (intros_mutation_responseGenqlSelection & { __args: {
+    /** filter the rows which have to be deleted */
+    where: intros_bool_exp} })
+    /** delete single row from the table: "intros" */
+    delete_intros_by_pk?: (introsGenqlSelection & { __args: {id: Scalars['uuid']} })
     /** delete data from the table: "leaderboard_entries" */
     delete_leaderboard_entries?: (leaderboard_entries_mutation_responseGenqlSelection & { __args: {
     /** filter the rows which have to be deleted */
@@ -28453,6 +29440,12 @@ export interface mutation_rootGenqlSelection{
     where: plugin_versions_bool_exp} })
     /** delete single row from the table: "plugin_versions" */
     delete_plugin_versions_by_pk?: (plugin_versionsGenqlSelection & { __args: {version: Scalars['String']} })
+    /** delete data from the table: "round_highlights" */
+    delete_round_highlights?: (round_highlights_mutation_responseGenqlSelection & { __args: {
+    /** filter the rows which have to be deleted */
+    where: round_highlights_bool_exp} })
+    /** delete single row from the table: "round_highlights" */
+    delete_round_highlights_by_pk?: (round_highlightsGenqlSelection & { __args: {id: Scalars['uuid']} })
     /** delete data from the table: "server_regions" */
     delete_server_regions?: (server_regions_mutation_responseGenqlSelection & { __args: {
     /** filter the rows which have to be deleted */
@@ -28964,6 +29957,30 @@ export interface mutation_rootGenqlSelection{
     object: game_versions_insert_input, 
     /** upsert condition */
     on_conflict?: (game_versions_on_conflict | null)} })
+    /** insert data into the table: "huds" */
+    insert_huds?: (huds_mutation_responseGenqlSelection & { __args: {
+    /** the rows to be inserted */
+    objects: huds_insert_input[], 
+    /** upsert condition */
+    on_conflict?: (huds_on_conflict | null)} })
+    /** insert a single row into the table: "huds" */
+    insert_huds_one?: (hudsGenqlSelection & { __args: {
+    /** the row to be inserted */
+    object: huds_insert_input, 
+    /** upsert condition */
+    on_conflict?: (huds_on_conflict | null)} })
+    /** insert data into the table: "intros" */
+    insert_intros?: (intros_mutation_responseGenqlSelection & { __args: {
+    /** the rows to be inserted */
+    objects: intros_insert_input[], 
+    /** upsert condition */
+    on_conflict?: (intros_on_conflict | null)} })
+    /** insert a single row into the table: "intros" */
+    insert_intros_one?: (introsGenqlSelection & { __args: {
+    /** the row to be inserted */
+    object: intros_insert_input, 
+    /** upsert condition */
+    on_conflict?: (intros_on_conflict | null)} })
     /** insert data into the table: "leaderboard_entries" */
     insert_leaderboard_entries?: (leaderboard_entries_mutation_responseGenqlSelection & { __args: {
     /** the rows to be inserted */
@@ -29376,6 +30393,18 @@ export interface mutation_rootGenqlSelection{
     object: plugin_versions_insert_input, 
     /** upsert condition */
     on_conflict?: (plugin_versions_on_conflict | null)} })
+    /** insert data into the table: "round_highlights" */
+    insert_round_highlights?: (round_highlights_mutation_responseGenqlSelection & { __args: {
+    /** the rows to be inserted */
+    objects: round_highlights_insert_input[], 
+    /** upsert condition */
+    on_conflict?: (round_highlights_on_conflict | null)} })
+    /** insert a single row into the table: "round_highlights" */
+    insert_round_highlights_one?: (round_highlightsGenqlSelection & { __args: {
+    /** the row to be inserted */
+    object: round_highlights_insert_input, 
+    /** upsert condition */
+    on_conflict?: (round_highlights_on_conflict | null)} })
     /** insert data into the table: "server_regions" */
     insert_server_regions?: (server_regions_mutation_responseGenqlSelection & { __args: {
     /** the rows to be inserted */
@@ -30196,6 +31225,42 @@ export interface mutation_rootGenqlSelection{
     update_game_versions_many?: (game_versions_mutation_responseGenqlSelection & { __args: {
     /** updates to execute, in order */
     updates: game_versions_updates[]} })
+    /** update data of the table: "huds" */
+    update_huds?: (huds_mutation_responseGenqlSelection & { __args: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: (huds_inc_input | null), 
+    /** sets the columns of the filtered rows to the given values */
+    _set?: (huds_set_input | null), 
+    /** filter the rows which have to be updated */
+    where: huds_bool_exp} })
+    /** update single row of the table: "huds" */
+    update_huds_by_pk?: (hudsGenqlSelection & { __args: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: (huds_inc_input | null), 
+    /** sets the columns of the filtered rows to the given values */
+    _set?: (huds_set_input | null), pk_columns: huds_pk_columns_input} })
+    /** update multiples rows of table: "huds" */
+    update_huds_many?: (huds_mutation_responseGenqlSelection & { __args: {
+    /** updates to execute, in order */
+    updates: huds_updates[]} })
+    /** update data of the table: "intros" */
+    update_intros?: (intros_mutation_responseGenqlSelection & { __args: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: (intros_inc_input | null), 
+    /** sets the columns of the filtered rows to the given values */
+    _set?: (intros_set_input | null), 
+    /** filter the rows which have to be updated */
+    where: intros_bool_exp} })
+    /** update single row of the table: "intros" */
+    update_intros_by_pk?: (introsGenqlSelection & { __args: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: (intros_inc_input | null), 
+    /** sets the columns of the filtered rows to the given values */
+    _set?: (intros_set_input | null), pk_columns: intros_pk_columns_input} })
+    /** update multiples rows of table: "intros" */
+    update_intros_many?: (intros_mutation_responseGenqlSelection & { __args: {
+    /** updates to execute, in order */
+    updates: intros_updates[]} })
     /** update data of the table: "leaderboard_entries" */
     update_leaderboard_entries?: (leaderboard_entries_mutation_responseGenqlSelection & { __args: {
     /** increments the numeric columns with given value of the filtered values */
@@ -30876,6 +31941,44 @@ export interface mutation_rootGenqlSelection{
     update_plugin_versions_many?: (plugin_versions_mutation_responseGenqlSelection & { __args: {
     /** updates to execute, in order */
     updates: plugin_versions_updates[]} })
+    /** update data of the table: "round_highlights" */
+    update_round_highlights?: (round_highlights_mutation_responseGenqlSelection & { __args: {
+    /** append existing jsonb value of filtered columns with new jsonb value */
+    _append?: (round_highlights_append_input | null), 
+    /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+    _delete_at_path?: (round_highlights_delete_at_path_input | null), 
+    /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+    _delete_elem?: (round_highlights_delete_elem_input | null), 
+    /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+    _delete_key?: (round_highlights_delete_key_input | null), 
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: (round_highlights_inc_input | null), 
+    /** prepend existing jsonb value of filtered columns with new jsonb value */
+    _prepend?: (round_highlights_prepend_input | null), 
+    /** sets the columns of the filtered rows to the given values */
+    _set?: (round_highlights_set_input | null), 
+    /** filter the rows which have to be updated */
+    where: round_highlights_bool_exp} })
+    /** update single row of the table: "round_highlights" */
+    update_round_highlights_by_pk?: (round_highlightsGenqlSelection & { __args: {
+    /** append existing jsonb value of filtered columns with new jsonb value */
+    _append?: (round_highlights_append_input | null), 
+    /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+    _delete_at_path?: (round_highlights_delete_at_path_input | null), 
+    /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+    _delete_elem?: (round_highlights_delete_elem_input | null), 
+    /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+    _delete_key?: (round_highlights_delete_key_input | null), 
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: (round_highlights_inc_input | null), 
+    /** prepend existing jsonb value of filtered columns with new jsonb value */
+    _prepend?: (round_highlights_prepend_input | null), 
+    /** sets the columns of the filtered rows to the given values */
+    _set?: (round_highlights_set_input | null), pk_columns: round_highlights_pk_columns_input} })
+    /** update multiples rows of table: "round_highlights" */
+    update_round_highlights_many?: (round_highlights_mutation_responseGenqlSelection & { __args: {
+    /** updates to execute, in order */
+    updates: round_highlights_updates[]} })
     /** update data of the table: "server_regions" */
     update_server_regions?: (server_regions_mutation_responseGenqlSelection & { __args: {
     /** sets the columns of the filtered rows to the given values */
@@ -37046,6 +38149,58 @@ export interface query_rootGenqlSelection{
     order_by?: (leaderboard_entries_order_by[] | null), 
     /** filter the rows returned */
     where?: (leaderboard_entries_bool_exp | null)} })
+    /** fetch data from the table: "huds" */
+    huds?: (hudsGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (huds_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (huds_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (huds_bool_exp | null)} })
+    /** fetch aggregated fields from the table: "huds" */
+    huds_aggregate?: (huds_aggregateGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (huds_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (huds_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (huds_bool_exp | null)} })
+    /** fetch data from the table: "huds" using primary key columns */
+    huds_by_pk?: (hudsGenqlSelection & { __args: {id: Scalars['uuid']} })
+    /** fetch data from the table: "intros" */
+    intros?: (introsGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (intros_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (intros_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (intros_bool_exp | null)} })
+    /** fetch aggregated fields from the table: "intros" */
+    intros_aggregate?: (intros_aggregateGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (intros_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (intros_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (intros_bool_exp | null)} })
+    /** fetch data from the table: "intros" using primary key columns */
+    intros_by_pk?: (introsGenqlSelection & { __args: {id: Scalars['uuid']} })
     /** fetch data from the table: "leaderboard_entries" */
     leaderboard_entries?: (leaderboard_entriesGenqlSelection & { __args?: {
     /** distinct select on columns */
@@ -37958,6 +39113,32 @@ export interface query_rootGenqlSelection{
     plugin_versions_by_pk?: (plugin_versionsGenqlSelection & { __args: {version: Scalars['String']} })
     /** Read file content from game server */
     readServerFile?: (FileContentResponseGenqlSelection & { __args: {file_path: Scalars['String'], node_id: Scalars['String'], server_id?: (Scalars['String'] | null)} })
+    /** fetch data from the table: "round_highlights" */
+    round_highlights?: (round_highlightsGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (round_highlights_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (round_highlights_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (round_highlights_bool_exp | null)} })
+    /** fetch aggregated fields from the table: "round_highlights" */
+    round_highlights_aggregate?: (round_highlights_aggregateGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (round_highlights_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (round_highlights_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (round_highlights_bool_exp | null)} })
+    /** fetch data from the table: "round_highlights" using primary key columns */
+    round_highlights_by_pk?: (round_highlightsGenqlSelection & { __args: {id: Scalars['uuid']} })
     /** fetch data from the table: "server_regions" */
     server_regions?: (server_regionsGenqlSelection & { __args?: {
     /** distinct select on columns */
@@ -38666,6 +39847,255 @@ export interface query_rootGenqlSelection{
 }
 
 export interface recalculate_tournament_trophies_args {_tournament_id?: (Scalars['uuid'] | null)}
+
+
+/** columns and relationships of "round_highlights" */
+export interface round_highlightsGenqlSelection{
+    created_at?: boolean | number
+    id?: boolean | number
+    kills?: boolean | number
+    label?: boolean | number
+    /** An object relationship */
+    match?: matchesGenqlSelection
+    match_id?: boolean | number
+    /** An object relationship */
+    match_map?: match_mapsGenqlSelection
+    match_map_id?: boolean | number
+    metadata?: { __args: {
+    /** JSON select path */
+    path?: (Scalars['String'] | null)} } | boolean | number
+    player_name?: boolean | number
+    round_number?: boolean | number
+    steam_id?: boolean | number
+    team?: boolean | number
+    weapon?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregated selection of "round_highlights" */
+export interface round_highlights_aggregateGenqlSelection{
+    aggregate?: round_highlights_aggregate_fieldsGenqlSelection
+    nodes?: round_highlightsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate fields of "round_highlights" */
+export interface round_highlights_aggregate_fieldsGenqlSelection{
+    avg?: round_highlights_avg_fieldsGenqlSelection
+    count?: { __args: {columns?: (round_highlights_select_column[] | null), distinct?: (Scalars['Boolean'] | null)} } | boolean | number
+    max?: round_highlights_max_fieldsGenqlSelection
+    min?: round_highlights_min_fieldsGenqlSelection
+    stddev?: round_highlights_stddev_fieldsGenqlSelection
+    stddev_pop?: round_highlights_stddev_pop_fieldsGenqlSelection
+    stddev_samp?: round_highlights_stddev_samp_fieldsGenqlSelection
+    sum?: round_highlights_sum_fieldsGenqlSelection
+    var_pop?: round_highlights_var_pop_fieldsGenqlSelection
+    var_samp?: round_highlights_var_samp_fieldsGenqlSelection
+    variance?: round_highlights_variance_fieldsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export interface round_highlights_append_input {metadata?: (Scalars['jsonb'] | null)}
+
+
+/** aggregate avg on columns */
+export interface round_highlights_avg_fieldsGenqlSelection{
+    kills?: boolean | number
+    round_number?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** Boolean expression to filter rows from the table "round_highlights". All fields are combined with a logical 'AND'. */
+export interface round_highlights_bool_exp {_and?: (round_highlights_bool_exp[] | null),_not?: (round_highlights_bool_exp | null),_or?: (round_highlights_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),id?: (uuid_comparison_exp | null),kills?: (Int_comparison_exp | null),label?: (String_comparison_exp | null),match?: (matches_bool_exp | null),match_id?: (uuid_comparison_exp | null),match_map?: (match_maps_bool_exp | null),match_map_id?: (uuid_comparison_exp | null),metadata?: (jsonb_comparison_exp | null),player_name?: (String_comparison_exp | null),round_number?: (Int_comparison_exp | null),steam_id?: (String_comparison_exp | null),team?: (String_comparison_exp | null),weapon?: (String_comparison_exp | null)}
+
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export interface round_highlights_delete_at_path_input {metadata?: (Scalars['String'][] | null)}
+
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export interface round_highlights_delete_elem_input {metadata?: (Scalars['Int'] | null)}
+
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export interface round_highlights_delete_key_input {metadata?: (Scalars['String'] | null)}
+
+
+/** input type for incrementing numeric columns in table "round_highlights" */
+export interface round_highlights_inc_input {kills?: (Scalars['Int'] | null),round_number?: (Scalars['Int'] | null)}
+
+
+/** input type for inserting data into table "round_highlights" */
+export interface round_highlights_insert_input {created_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),kills?: (Scalars['Int'] | null),label?: (Scalars['String'] | null),match?: (matches_obj_rel_insert_input | null),match_id?: (Scalars['uuid'] | null),match_map?: (match_maps_obj_rel_insert_input | null),match_map_id?: (Scalars['uuid'] | null),metadata?: (Scalars['jsonb'] | null),player_name?: (Scalars['String'] | null),round_number?: (Scalars['Int'] | null),steam_id?: (Scalars['String'] | null),team?: (Scalars['String'] | null),weapon?: (Scalars['String'] | null)}
+
+
+/** aggregate max on columns */
+export interface round_highlights_max_fieldsGenqlSelection{
+    created_at?: boolean | number
+    id?: boolean | number
+    kills?: boolean | number
+    label?: boolean | number
+    match_id?: boolean | number
+    match_map_id?: boolean | number
+    player_name?: boolean | number
+    round_number?: boolean | number
+    steam_id?: boolean | number
+    team?: boolean | number
+    weapon?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate min on columns */
+export interface round_highlights_min_fieldsGenqlSelection{
+    created_at?: boolean | number
+    id?: boolean | number
+    kills?: boolean | number
+    label?: boolean | number
+    match_id?: boolean | number
+    match_map_id?: boolean | number
+    player_name?: boolean | number
+    round_number?: boolean | number
+    steam_id?: boolean | number
+    team?: boolean | number
+    weapon?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** response of any mutation on the table "round_highlights" */
+export interface round_highlights_mutation_responseGenqlSelection{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | number
+    /** data from the rows affected by the mutation */
+    returning?: round_highlightsGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** on_conflict condition type for table "round_highlights" */
+export interface round_highlights_on_conflict {constraint: round_highlights_constraint,update_columns?: round_highlights_update_column[],where?: (round_highlights_bool_exp | null)}
+
+
+/** Ordering options when selecting data from "round_highlights". */
+export interface round_highlights_order_by {created_at?: (order_by | null),id?: (order_by | null),kills?: (order_by | null),label?: (order_by | null),match?: (matches_order_by | null),match_id?: (order_by | null),match_map?: (match_maps_order_by | null),match_map_id?: (order_by | null),metadata?: (order_by | null),player_name?: (order_by | null),round_number?: (order_by | null),steam_id?: (order_by | null),team?: (order_by | null),weapon?: (order_by | null)}
+
+
+/** primary key columns input for table: round_highlights */
+export interface round_highlights_pk_columns_input {id: Scalars['uuid']}
+
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export interface round_highlights_prepend_input {metadata?: (Scalars['jsonb'] | null)}
+
+
+/** input type for updating data in table "round_highlights" */
+export interface round_highlights_set_input {created_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),kills?: (Scalars['Int'] | null),label?: (Scalars['String'] | null),match_id?: (Scalars['uuid'] | null),match_map_id?: (Scalars['uuid'] | null),metadata?: (Scalars['jsonb'] | null),player_name?: (Scalars['String'] | null),round_number?: (Scalars['Int'] | null),steam_id?: (Scalars['String'] | null),team?: (Scalars['String'] | null),weapon?: (Scalars['String'] | null)}
+
+
+/** aggregate stddev on columns */
+export interface round_highlights_stddev_fieldsGenqlSelection{
+    kills?: boolean | number
+    round_number?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate stddev_pop on columns */
+export interface round_highlights_stddev_pop_fieldsGenqlSelection{
+    kills?: boolean | number
+    round_number?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate stddev_samp on columns */
+export interface round_highlights_stddev_samp_fieldsGenqlSelection{
+    kills?: boolean | number
+    round_number?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** Streaming cursor of the table "round_highlights" */
+export interface round_highlights_stream_cursor_input {
+/** Stream column input with initial value */
+initial_value: round_highlights_stream_cursor_value_input,
+/** cursor ordering */
+ordering?: (cursor_ordering | null)}
+
+
+/** Initial value of the column from where the streaming should start */
+export interface round_highlights_stream_cursor_value_input {created_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),kills?: (Scalars['Int'] | null),label?: (Scalars['String'] | null),match_id?: (Scalars['uuid'] | null),match_map_id?: (Scalars['uuid'] | null),metadata?: (Scalars['jsonb'] | null),player_name?: (Scalars['String'] | null),round_number?: (Scalars['Int'] | null),steam_id?: (Scalars['String'] | null),team?: (Scalars['String'] | null),weapon?: (Scalars['String'] | null)}
+
+
+/** aggregate sum on columns */
+export interface round_highlights_sum_fieldsGenqlSelection{
+    kills?: boolean | number
+    round_number?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface round_highlights_updates {
+/** append existing jsonb value of filtered columns with new jsonb value */
+_append?: (round_highlights_append_input | null),
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+_delete_at_path?: (round_highlights_delete_at_path_input | null),
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+_delete_elem?: (round_highlights_delete_elem_input | null),
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+_delete_key?: (round_highlights_delete_key_input | null),
+/** increments the numeric columns with given value of the filtered values */
+_inc?: (round_highlights_inc_input | null),
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+_prepend?: (round_highlights_prepend_input | null),
+/** sets the columns of the filtered rows to the given values */
+_set?: (round_highlights_set_input | null),
+/** filter the rows which have to be updated */
+where: round_highlights_bool_exp}
+
+
+/** aggregate var_pop on columns */
+export interface round_highlights_var_pop_fieldsGenqlSelection{
+    kills?: boolean | number
+    round_number?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate var_samp on columns */
+export interface round_highlights_var_samp_fieldsGenqlSelection{
+    kills?: boolean | number
+    round_number?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate variance on columns */
+export interface round_highlights_variance_fieldsGenqlSelection{
+    kills?: boolean | number
+    round_number?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
 
 
 /** columns and relationships of "server_regions" */
@@ -40551,6 +41981,74 @@ export interface subscription_rootGenqlSelection{
     order_by?: (leaderboard_entries_order_by[] | null), 
     /** filter the rows returned */
     where?: (leaderboard_entries_bool_exp | null)} })
+    /** fetch data from the table: "huds" */
+    huds?: (hudsGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (huds_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (huds_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (huds_bool_exp | null)} })
+    /** fetch aggregated fields from the table: "huds" */
+    huds_aggregate?: (huds_aggregateGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (huds_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (huds_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (huds_bool_exp | null)} })
+    /** fetch data from the table: "huds" using primary key columns */
+    huds_by_pk?: (hudsGenqlSelection & { __args: {id: Scalars['uuid']} })
+    /** fetch data from the table in a streaming manner: "huds" */
+    huds_stream?: (hudsGenqlSelection & { __args: {
+    /** maximum number of rows returned in a single batch */
+    batch_size: Scalars['Int'], 
+    /** cursor to stream the results returned by the query */
+    cursor: (huds_stream_cursor_input | null)[], 
+    /** filter the rows returned */
+    where?: (huds_bool_exp | null)} })
+    /** fetch data from the table: "intros" */
+    intros?: (introsGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (intros_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (intros_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (intros_bool_exp | null)} })
+    /** fetch aggregated fields from the table: "intros" */
+    intros_aggregate?: (intros_aggregateGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (intros_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (intros_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (intros_bool_exp | null)} })
+    /** fetch data from the table: "intros" using primary key columns */
+    intros_by_pk?: (introsGenqlSelection & { __args: {id: Scalars['uuid']} })
+    /** fetch data from the table in a streaming manner: "intros" */
+    intros_stream?: (introsGenqlSelection & { __args: {
+    /** maximum number of rows returned in a single batch */
+    batch_size: Scalars['Int'], 
+    /** cursor to stream the results returned by the query */
+    cursor: (intros_stream_cursor_input | null)[], 
+    /** filter the rows returned */
+    where?: (intros_bool_exp | null)} })
     /** fetch data from the table: "leaderboard_entries" */
     leaderboard_entries?: (leaderboard_entriesGenqlSelection & { __args?: {
     /** distinct select on columns */
@@ -41737,6 +43235,40 @@ export interface subscription_rootGenqlSelection{
     cursor: (plugin_versions_stream_cursor_input | null)[], 
     /** filter the rows returned */
     where?: (plugin_versions_bool_exp | null)} })
+    /** fetch data from the table: "round_highlights" */
+    round_highlights?: (round_highlightsGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (round_highlights_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (round_highlights_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (round_highlights_bool_exp | null)} })
+    /** fetch aggregated fields from the table: "round_highlights" */
+    round_highlights_aggregate?: (round_highlights_aggregateGenqlSelection & { __args?: {
+    /** distinct select on columns */
+    distinct_on?: (round_highlights_select_column[] | null), 
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null), 
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null), 
+    /** sort the rows by one or more columns */
+    order_by?: (round_highlights_order_by[] | null), 
+    /** filter the rows returned */
+    where?: (round_highlights_bool_exp | null)} })
+    /** fetch data from the table: "round_highlights" using primary key columns */
+    round_highlights_by_pk?: (round_highlightsGenqlSelection & { __args: {id: Scalars['uuid']} })
+    /** fetch data from the table in a streaming manner: "round_highlights" */
+    round_highlights_stream?: (round_highlightsGenqlSelection & { __args: {
+    /** maximum number of rows returned in a single batch */
+    batch_size: Scalars['Int'], 
+    /** cursor to stream the results returned by the query */
+    cursor: (round_highlights_stream_cursor_input | null)[], 
+    /** filter the rows returned */
+    where?: (round_highlights_bool_exp | null)} })
     /** fetch data from the table: "server_regions" */
     server_regions?: (server_regionsGenqlSelection & { __args?: {
     /** distinct select on columns */
@@ -51840,6 +53372,230 @@ export type SubscriptionGenqlSelection = subscription_rootGenqlSelection
     
 
 
+    const huds_possibleTypes: string[] = ['huds']
+    export const ishuds = (obj?: { __typename?: any } | null): obj is huds => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds"')
+      return huds_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_aggregate_possibleTypes: string[] = ['huds_aggregate']
+    export const ishuds_aggregate = (obj?: { __typename?: any } | null): obj is huds_aggregate => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_aggregate"')
+      return huds_aggregate_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_aggregate_fields_possibleTypes: string[] = ['huds_aggregate_fields']
+    export const ishuds_aggregate_fields = (obj?: { __typename?: any } | null): obj is huds_aggregate_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_aggregate_fields"')
+      return huds_aggregate_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_avg_fields_possibleTypes: string[] = ['huds_avg_fields']
+    export const ishuds_avg_fields = (obj?: { __typename?: any } | null): obj is huds_avg_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_avg_fields"')
+      return huds_avg_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_max_fields_possibleTypes: string[] = ['huds_max_fields']
+    export const ishuds_max_fields = (obj?: { __typename?: any } | null): obj is huds_max_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_max_fields"')
+      return huds_max_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_min_fields_possibleTypes: string[] = ['huds_min_fields']
+    export const ishuds_min_fields = (obj?: { __typename?: any } | null): obj is huds_min_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_min_fields"')
+      return huds_min_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_mutation_response_possibleTypes: string[] = ['huds_mutation_response']
+    export const ishuds_mutation_response = (obj?: { __typename?: any } | null): obj is huds_mutation_response => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_mutation_response"')
+      return huds_mutation_response_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_stddev_fields_possibleTypes: string[] = ['huds_stddev_fields']
+    export const ishuds_stddev_fields = (obj?: { __typename?: any } | null): obj is huds_stddev_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_stddev_fields"')
+      return huds_stddev_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_stddev_pop_fields_possibleTypes: string[] = ['huds_stddev_pop_fields']
+    export const ishuds_stddev_pop_fields = (obj?: { __typename?: any } | null): obj is huds_stddev_pop_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_stddev_pop_fields"')
+      return huds_stddev_pop_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_stddev_samp_fields_possibleTypes: string[] = ['huds_stddev_samp_fields']
+    export const ishuds_stddev_samp_fields = (obj?: { __typename?: any } | null): obj is huds_stddev_samp_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_stddev_samp_fields"')
+      return huds_stddev_samp_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_sum_fields_possibleTypes: string[] = ['huds_sum_fields']
+    export const ishuds_sum_fields = (obj?: { __typename?: any } | null): obj is huds_sum_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_sum_fields"')
+      return huds_sum_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_var_pop_fields_possibleTypes: string[] = ['huds_var_pop_fields']
+    export const ishuds_var_pop_fields = (obj?: { __typename?: any } | null): obj is huds_var_pop_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_var_pop_fields"')
+      return huds_var_pop_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_var_samp_fields_possibleTypes: string[] = ['huds_var_samp_fields']
+    export const ishuds_var_samp_fields = (obj?: { __typename?: any } | null): obj is huds_var_samp_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_var_samp_fields"')
+      return huds_var_samp_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const huds_variance_fields_possibleTypes: string[] = ['huds_variance_fields']
+    export const ishuds_variance_fields = (obj?: { __typename?: any } | null): obj is huds_variance_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "ishuds_variance_fields"')
+      return huds_variance_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_possibleTypes: string[] = ['intros']
+    export const isintros = (obj?: { __typename?: any } | null): obj is intros => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros"')
+      return intros_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_aggregate_possibleTypes: string[] = ['intros_aggregate']
+    export const isintros_aggregate = (obj?: { __typename?: any } | null): obj is intros_aggregate => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_aggregate"')
+      return intros_aggregate_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_aggregate_fields_possibleTypes: string[] = ['intros_aggregate_fields']
+    export const isintros_aggregate_fields = (obj?: { __typename?: any } | null): obj is intros_aggregate_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_aggregate_fields"')
+      return intros_aggregate_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_avg_fields_possibleTypes: string[] = ['intros_avg_fields']
+    export const isintros_avg_fields = (obj?: { __typename?: any } | null): obj is intros_avg_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_avg_fields"')
+      return intros_avg_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_max_fields_possibleTypes: string[] = ['intros_max_fields']
+    export const isintros_max_fields = (obj?: { __typename?: any } | null): obj is intros_max_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_max_fields"')
+      return intros_max_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_min_fields_possibleTypes: string[] = ['intros_min_fields']
+    export const isintros_min_fields = (obj?: { __typename?: any } | null): obj is intros_min_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_min_fields"')
+      return intros_min_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_mutation_response_possibleTypes: string[] = ['intros_mutation_response']
+    export const isintros_mutation_response = (obj?: { __typename?: any } | null): obj is intros_mutation_response => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_mutation_response"')
+      return intros_mutation_response_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_stddev_fields_possibleTypes: string[] = ['intros_stddev_fields']
+    export const isintros_stddev_fields = (obj?: { __typename?: any } | null): obj is intros_stddev_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_stddev_fields"')
+      return intros_stddev_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_stddev_pop_fields_possibleTypes: string[] = ['intros_stddev_pop_fields']
+    export const isintros_stddev_pop_fields = (obj?: { __typename?: any } | null): obj is intros_stddev_pop_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_stddev_pop_fields"')
+      return intros_stddev_pop_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_stddev_samp_fields_possibleTypes: string[] = ['intros_stddev_samp_fields']
+    export const isintros_stddev_samp_fields = (obj?: { __typename?: any } | null): obj is intros_stddev_samp_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_stddev_samp_fields"')
+      return intros_stddev_samp_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_sum_fields_possibleTypes: string[] = ['intros_sum_fields']
+    export const isintros_sum_fields = (obj?: { __typename?: any } | null): obj is intros_sum_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_sum_fields"')
+      return intros_sum_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_var_pop_fields_possibleTypes: string[] = ['intros_var_pop_fields']
+    export const isintros_var_pop_fields = (obj?: { __typename?: any } | null): obj is intros_var_pop_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_var_pop_fields"')
+      return intros_var_pop_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_var_samp_fields_possibleTypes: string[] = ['intros_var_samp_fields']
+    export const isintros_var_samp_fields = (obj?: { __typename?: any } | null): obj is intros_var_samp_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_var_samp_fields"')
+      return intros_var_samp_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const intros_variance_fields_possibleTypes: string[] = ['intros_variance_fields']
+    export const isintros_variance_fields = (obj?: { __typename?: any } | null): obj is intros_variance_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isintros_variance_fields"')
+      return intros_variance_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
     const leaderboard_entries_possibleTypes: string[] = ['leaderboard_entries']
     export const isleaderboard_entries = (obj?: { __typename?: any } | null): obj is leaderboard_entries => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isleaderboard_entries"')
@@ -55324,6 +57080,118 @@ export type SubscriptionGenqlSelection = subscription_rootGenqlSelection
     export const isquery_root = (obj?: { __typename?: any } | null): obj is query_root => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isquery_root"')
       return query_root_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_possibleTypes: string[] = ['round_highlights']
+    export const isround_highlights = (obj?: { __typename?: any } | null): obj is round_highlights => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights"')
+      return round_highlights_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_aggregate_possibleTypes: string[] = ['round_highlights_aggregate']
+    export const isround_highlights_aggregate = (obj?: { __typename?: any } | null): obj is round_highlights_aggregate => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_aggregate"')
+      return round_highlights_aggregate_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_aggregate_fields_possibleTypes: string[] = ['round_highlights_aggregate_fields']
+    export const isround_highlights_aggregate_fields = (obj?: { __typename?: any } | null): obj is round_highlights_aggregate_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_aggregate_fields"')
+      return round_highlights_aggregate_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_avg_fields_possibleTypes: string[] = ['round_highlights_avg_fields']
+    export const isround_highlights_avg_fields = (obj?: { __typename?: any } | null): obj is round_highlights_avg_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_avg_fields"')
+      return round_highlights_avg_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_max_fields_possibleTypes: string[] = ['round_highlights_max_fields']
+    export const isround_highlights_max_fields = (obj?: { __typename?: any } | null): obj is round_highlights_max_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_max_fields"')
+      return round_highlights_max_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_min_fields_possibleTypes: string[] = ['round_highlights_min_fields']
+    export const isround_highlights_min_fields = (obj?: { __typename?: any } | null): obj is round_highlights_min_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_min_fields"')
+      return round_highlights_min_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_mutation_response_possibleTypes: string[] = ['round_highlights_mutation_response']
+    export const isround_highlights_mutation_response = (obj?: { __typename?: any } | null): obj is round_highlights_mutation_response => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_mutation_response"')
+      return round_highlights_mutation_response_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_stddev_fields_possibleTypes: string[] = ['round_highlights_stddev_fields']
+    export const isround_highlights_stddev_fields = (obj?: { __typename?: any } | null): obj is round_highlights_stddev_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_stddev_fields"')
+      return round_highlights_stddev_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_stddev_pop_fields_possibleTypes: string[] = ['round_highlights_stddev_pop_fields']
+    export const isround_highlights_stddev_pop_fields = (obj?: { __typename?: any } | null): obj is round_highlights_stddev_pop_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_stddev_pop_fields"')
+      return round_highlights_stddev_pop_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_stddev_samp_fields_possibleTypes: string[] = ['round_highlights_stddev_samp_fields']
+    export const isround_highlights_stddev_samp_fields = (obj?: { __typename?: any } | null): obj is round_highlights_stddev_samp_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_stddev_samp_fields"')
+      return round_highlights_stddev_samp_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_sum_fields_possibleTypes: string[] = ['round_highlights_sum_fields']
+    export const isround_highlights_sum_fields = (obj?: { __typename?: any } | null): obj is round_highlights_sum_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_sum_fields"')
+      return round_highlights_sum_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_var_pop_fields_possibleTypes: string[] = ['round_highlights_var_pop_fields']
+    export const isround_highlights_var_pop_fields = (obj?: { __typename?: any } | null): obj is round_highlights_var_pop_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_var_pop_fields"')
+      return round_highlights_var_pop_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_var_samp_fields_possibleTypes: string[] = ['round_highlights_var_samp_fields']
+    export const isround_highlights_var_samp_fields = (obj?: { __typename?: any } | null): obj is round_highlights_var_samp_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_var_samp_fields"')
+      return round_highlights_var_samp_fields_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const round_highlights_variance_fields_possibleTypes: string[] = ['round_highlights_variance_fields']
+    export const isround_highlights_variance_fields = (obj?: { __typename?: any } | null): obj is round_highlights_variance_fields => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isround_highlights_variance_fields"')
+      return round_highlights_variance_fields_possibleTypes.includes(obj.__typename)
     }
     
 
@@ -59056,6 +60924,71 @@ export const enumGameVersionsUpdateColumn = {
    version: 'version' as const
 }
 
+export const enumHudsConstraint = {
+   huds_only_one_default: 'huds_only_one_default' as const,
+   huds_pkey: 'huds_pkey' as const,
+   huds_slug_key: 'huds_slug_key' as const
+}
+
+export const enumHudsSelectColumn = {
+   created_at: 'created_at' as const,
+   description: 'description' as const,
+   extracted_dir: 'extracted_dir' as const,
+   id: 'id' as const,
+   is_default: 'is_default' as const,
+   is_public: 'is_public' as const,
+   name: 'name' as const,
+   size_bytes: 'size_bytes' as const,
+   slug: 'slug' as const,
+   updated_at: 'updated_at' as const,
+   uploader_steam_id: 'uploader_steam_id' as const,
+   version: 'version' as const
+}
+
+export const enumHudsUpdateColumn = {
+   created_at: 'created_at' as const,
+   description: 'description' as const,
+   extracted_dir: 'extracted_dir' as const,
+   id: 'id' as const,
+   is_default: 'is_default' as const,
+   is_public: 'is_public' as const,
+   name: 'name' as const,
+   size_bytes: 'size_bytes' as const,
+   slug: 'slug' as const,
+   updated_at: 'updated_at' as const,
+   uploader_steam_id: 'uploader_steam_id' as const,
+   version: 'version' as const
+}
+
+export const enumIntrosConstraint = {
+   intros_map_name_key: 'intros_map_name_key' as const,
+   intros_pkey: 'intros_pkey' as const
+}
+
+export const enumIntrosSelectColumn = {
+   created_at: 'created_at' as const,
+   display_name: 'display_name' as const,
+   duration_seconds: 'duration_seconds' as const,
+   id: 'id' as const,
+   map_name: 'map_name' as const,
+   s3_key: 's3_key' as const,
+   size_bytes: 'size_bytes' as const,
+   updated_at: 'updated_at' as const,
+   uploader_steam_id: 'uploader_steam_id' as const
+}
+
+export const enumIntrosUpdateColumn = {
+   created_at: 'created_at' as const,
+   display_name: 'display_name' as const,
+   duration_seconds: 'duration_seconds' as const,
+   id: 'id' as const,
+   map_name: 'map_name' as const,
+   s3_key: 's3_key' as const,
+   size_bytes: 'size_bytes' as const,
+   updated_at: 'updated_at' as const,
+   uploader_steam_id: 'uploader_steam_id' as const
+}
+
 export const enumLeaderboardEntriesSelectColumn = {
    matches_played: 'matches_played' as const,
    player_avatar_url: 'player_avatar_url' as const,
@@ -59625,6 +61558,7 @@ export const enumMatchesSelectColumn = {
    cancels_at: 'cancels_at' as const,
    created_at: 'created_at' as const,
    ended_at: 'ended_at' as const,
+   hud_id: 'hud_id' as const,
    id: 'id' as const,
    label: 'label' as const,
    lineup_1_id: 'lineup_1_id' as const,
@@ -59645,6 +61579,7 @@ export const enumMatchesUpdateColumn = {
    cancels_at: 'cancels_at' as const,
    created_at: 'created_at' as const,
    ended_at: 'ended_at' as const,
+   hud_id: 'hud_id' as const,
    id: 'id' as const,
    label: 'label' as const,
    lineup_1_id: 'lineup_1_id' as const,
@@ -60164,6 +62099,40 @@ export const enumPluginVersionsUpdateColumn = {
    min_game_build_id: 'min_game_build_id' as const,
    published_at: 'published_at' as const,
    version: 'version' as const
+}
+
+export const enumRoundHighlightsConstraint = {
+   round_highlights_pkey: 'round_highlights_pkey' as const
+}
+
+export const enumRoundHighlightsSelectColumn = {
+   created_at: 'created_at' as const,
+   id: 'id' as const,
+   kills: 'kills' as const,
+   label: 'label' as const,
+   match_id: 'match_id' as const,
+   match_map_id: 'match_map_id' as const,
+   metadata: 'metadata' as const,
+   player_name: 'player_name' as const,
+   round_number: 'round_number' as const,
+   steam_id: 'steam_id' as const,
+   team: 'team' as const,
+   weapon: 'weapon' as const
+}
+
+export const enumRoundHighlightsUpdateColumn = {
+   created_at: 'created_at' as const,
+   id: 'id' as const,
+   kills: 'kills' as const,
+   label: 'label' as const,
+   match_id: 'match_id' as const,
+   match_map_id: 'match_map_id' as const,
+   metadata: 'metadata' as const,
+   player_name: 'player_name' as const,
+   round_number: 'round_number' as const,
+   steam_id: 'steam_id' as const,
+   team: 'team' as const,
+   weapon: 'weapon' as const
 }
 
 export const enumServerRegionsConstraint = {

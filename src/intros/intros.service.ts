@@ -58,7 +58,7 @@ export class IntrosService {
   async listIntros(): Promise<IntroRow[]> {
     const { intros } = await this.hasura.query({
       intros: {
-        __args: { order_by: [{ map_name: () => "asc" }] },
+        __args: { order_by: [{ map_name: "asc" }] },
         ...this.introFields(),
       },
     });

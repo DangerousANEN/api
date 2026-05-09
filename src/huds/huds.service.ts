@@ -83,7 +83,7 @@ export class HudsService {
       huds: {
         __args: {
           where: includePrivate ? {} : { is_public: { _eq: true } },
-          order_by: [{ created_at: () => "desc" }],
+          order_by: [{ created_at: "desc" }],
         },
         ...this.hudFields(),
       },

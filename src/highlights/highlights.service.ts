@@ -81,8 +81,8 @@ export class HighlightsService {
         __args: {
           where: { match_id: { _eq: matchId } },
           order_by: [
-            { round_number: () => "desc" },
-            { kills: () => "desc" },
+            { round_number: "desc" },
+            { kills: "desc" },
           ],
         },
         id: true,

@@ -35,7 +35,7 @@ export interface Client {
 
 export const createClient = function (options?: ClientOptions): Client {
   return createClientOriginal({
-    url: 'http://localhost:18080/v1/graphql',
+    url: 'http://127.0.0.1:18080/v1/graphql',
 
     ...options,
     queryRoot: typeMap.Query!,

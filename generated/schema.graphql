@@ -9272,6 +9272,360 @@ input get_leaderboard_args {
   _window_days: Int
 }
 
+"""
+columns and relationships of "huds"
+"""
+type huds {
+  created_at: timestamptz!
+  description: String
+  extracted_dir: String!
+  id: uuid!
+  is_default: Boolean!
+  is_public: Boolean!
+  name: String!
+  size_bytes: bigint!
+  slug: String!
+  updated_at: timestamptz!
+  uploader_steam_id: String
+  version: String
+}
+
+"""
+aggregated selection of "huds"
+"""
+type huds_aggregate {
+  aggregate: huds_aggregate_fields
+  nodes: [huds!]!
+}
+
+"""
+aggregate fields of "huds"
+"""
+type huds_aggregate_fields {
+  avg: huds_avg_fields
+  count(columns: [huds_select_column!], distinct: Boolean): Int!
+  max: huds_max_fields
+  min: huds_min_fields
+  stddev: huds_stddev_fields
+  stddev_pop: huds_stddev_pop_fields
+  stddev_samp: huds_stddev_samp_fields
+  sum: huds_sum_fields
+  var_pop: huds_var_pop_fields
+  var_samp: huds_var_samp_fields
+  variance: huds_variance_fields
+}
+
+"""aggregate avg on columns"""
+type huds_avg_fields {
+  size_bytes: Float
+}
+
+"""
+Boolean expression to filter rows from the table "huds". All fields are combined with a logical 'AND'.
+"""
+input huds_bool_exp {
+  _and: [huds_bool_exp!]
+  _not: huds_bool_exp
+  _or: [huds_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  extracted_dir: String_comparison_exp
+  id: uuid_comparison_exp
+  is_default: Boolean_comparison_exp
+  is_public: Boolean_comparison_exp
+  name: String_comparison_exp
+  size_bytes: bigint_comparison_exp
+  slug: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  uploader_steam_id: String_comparison_exp
+  version: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "huds"
+"""
+enum huds_constraint {
+  """unique or primary key constraint on columns """
+  huds_only_one_default
+
+  """
+  unique or primary key constraint on columns "id"
+  """
+  huds_pkey
+
+  """
+  unique or primary key constraint on columns "slug"
+  """
+  huds_slug_key
+}
+
+"""
+input type for incrementing numeric columns in table "huds"
+"""
+input huds_inc_input {
+  size_bytes: bigint
+}
+
+"""
+input type for inserting data into table "huds"
+"""
+input huds_insert_input {
+  created_at: timestamptz
+  description: String
+  extracted_dir: String
+  id: uuid
+  is_default: Boolean
+  is_public: Boolean
+  name: String
+  size_bytes: bigint
+  slug: String
+  updated_at: timestamptz
+  uploader_steam_id: String
+  version: String
+}
+
+"""aggregate max on columns"""
+type huds_max_fields {
+  created_at: timestamptz
+  description: String
+  extracted_dir: String
+  id: uuid
+  name: String
+  size_bytes: bigint
+  slug: String
+  updated_at: timestamptz
+  uploader_steam_id: String
+  version: String
+}
+
+"""aggregate min on columns"""
+type huds_min_fields {
+  created_at: timestamptz
+  description: String
+  extracted_dir: String
+  id: uuid
+  name: String
+  size_bytes: bigint
+  slug: String
+  updated_at: timestamptz
+  uploader_steam_id: String
+  version: String
+}
+
+"""
+response of any mutation on the table "huds"
+"""
+type huds_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [huds!]!
+}
+
+"""
+on_conflict condition type for table "huds"
+"""
+input huds_on_conflict {
+  constraint: huds_constraint!
+  update_columns: [huds_update_column!]! = []
+  where: huds_bool_exp
+}
+
+"""Ordering options when selecting data from "huds"."""
+input huds_order_by {
+  created_at: order_by
+  description: order_by
+  extracted_dir: order_by
+  id: order_by
+  is_default: order_by
+  is_public: order_by
+  name: order_by
+  size_bytes: order_by
+  slug: order_by
+  updated_at: order_by
+  uploader_steam_id: order_by
+  version: order_by
+}
+
+"""primary key columns input for table: huds"""
+input huds_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "huds"
+"""
+enum huds_select_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  description
+
+  """column name"""
+  extracted_dir
+
+  """column name"""
+  id
+
+  """column name"""
+  is_default
+
+  """column name"""
+  is_public
+
+  """column name"""
+  name
+
+  """column name"""
+  size_bytes
+
+  """column name"""
+  slug
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  uploader_steam_id
+
+  """column name"""
+  version
+}
+
+"""
+input type for updating data in table "huds"
+"""
+input huds_set_input {
+  created_at: timestamptz
+  description: String
+  extracted_dir: String
+  id: uuid
+  is_default: Boolean
+  is_public: Boolean
+  name: String
+  size_bytes: bigint
+  slug: String
+  updated_at: timestamptz
+  uploader_steam_id: String
+  version: String
+}
+
+"""aggregate stddev on columns"""
+type huds_stddev_fields {
+  size_bytes: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type huds_stddev_pop_fields {
+  size_bytes: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type huds_stddev_samp_fields {
+  size_bytes: Float
+}
+
+"""
+Streaming cursor of the table "huds"
+"""
+input huds_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: huds_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input huds_stream_cursor_value_input {
+  created_at: timestamptz
+  description: String
+  extracted_dir: String
+  id: uuid
+  is_default: Boolean
+  is_public: Boolean
+  name: String
+  size_bytes: bigint
+  slug: String
+  updated_at: timestamptz
+  uploader_steam_id: String
+  version: String
+}
+
+"""aggregate sum on columns"""
+type huds_sum_fields {
+  size_bytes: bigint
+}
+
+"""
+update columns of table "huds"
+"""
+enum huds_update_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  description
+
+  """column name"""
+  extracted_dir
+
+  """column name"""
+  id
+
+  """column name"""
+  is_default
+
+  """column name"""
+  is_public
+
+  """column name"""
+  name
+
+  """column name"""
+  size_bytes
+
+  """column name"""
+  slug
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  uploader_steam_id
+
+  """column name"""
+  version
+}
+
+input huds_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: huds_inc_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: huds_set_input
+
+  """filter the rows which have to be updated"""
+  where: huds_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type huds_var_pop_fields {
+  size_bytes: Float
+}
+
+"""aggregate var_samp on columns"""
+type huds_var_samp_fields {
+  size_bytes: Float
+}
+
+"""aggregate variance on columns"""
+type huds_variance_fields {
+  size_bytes: Float
+}
+
 scalar inet
 
 """
@@ -9287,6 +9641,328 @@ input inet_comparison_exp {
   _lte: inet
   _neq: inet
   _nin: [inet!]
+}
+
+"""
+columns and relationships of "intros"
+"""
+type intros {
+  created_at: timestamptz!
+  display_name: String
+  duration_seconds: Int
+  id: uuid!
+  map_name: String!
+  s3_key: String!
+  size_bytes: bigint!
+  updated_at: timestamptz!
+  uploader_steam_id: String
+}
+
+"""
+aggregated selection of "intros"
+"""
+type intros_aggregate {
+  aggregate: intros_aggregate_fields
+  nodes: [intros!]!
+}
+
+"""
+aggregate fields of "intros"
+"""
+type intros_aggregate_fields {
+  avg: intros_avg_fields
+  count(columns: [intros_select_column!], distinct: Boolean): Int!
+  max: intros_max_fields
+  min: intros_min_fields
+  stddev: intros_stddev_fields
+  stddev_pop: intros_stddev_pop_fields
+  stddev_samp: intros_stddev_samp_fields
+  sum: intros_sum_fields
+  var_pop: intros_var_pop_fields
+  var_samp: intros_var_samp_fields
+  variance: intros_variance_fields
+}
+
+"""aggregate avg on columns"""
+type intros_avg_fields {
+  duration_seconds: Float
+  size_bytes: Float
+}
+
+"""
+Boolean expression to filter rows from the table "intros". All fields are combined with a logical 'AND'.
+"""
+input intros_bool_exp {
+  _and: [intros_bool_exp!]
+  _not: intros_bool_exp
+  _or: [intros_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  display_name: String_comparison_exp
+  duration_seconds: Int_comparison_exp
+  id: uuid_comparison_exp
+  map_name: String_comparison_exp
+  s3_key: String_comparison_exp
+  size_bytes: bigint_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  uploader_steam_id: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "intros"
+"""
+enum intros_constraint {
+  """
+  unique or primary key constraint on columns "map_name"
+  """
+  intros_map_name_key
+
+  """
+  unique or primary key constraint on columns "id"
+  """
+  intros_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "intros"
+"""
+input intros_inc_input {
+  duration_seconds: Int
+  size_bytes: bigint
+}
+
+"""
+input type for inserting data into table "intros"
+"""
+input intros_insert_input {
+  created_at: timestamptz
+  display_name: String
+  duration_seconds: Int
+  id: uuid
+  map_name: String
+  s3_key: String
+  size_bytes: bigint
+  updated_at: timestamptz
+  uploader_steam_id: String
+}
+
+"""aggregate max on columns"""
+type intros_max_fields {
+  created_at: timestamptz
+  display_name: String
+  duration_seconds: Int
+  id: uuid
+  map_name: String
+  s3_key: String
+  size_bytes: bigint
+  updated_at: timestamptz
+  uploader_steam_id: String
+}
+
+"""aggregate min on columns"""
+type intros_min_fields {
+  created_at: timestamptz
+  display_name: String
+  duration_seconds: Int
+  id: uuid
+  map_name: String
+  s3_key: String
+  size_bytes: bigint
+  updated_at: timestamptz
+  uploader_steam_id: String
+}
+
+"""
+response of any mutation on the table "intros"
+"""
+type intros_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [intros!]!
+}
+
+"""
+on_conflict condition type for table "intros"
+"""
+input intros_on_conflict {
+  constraint: intros_constraint!
+  update_columns: [intros_update_column!]! = []
+  where: intros_bool_exp
+}
+
+"""Ordering options when selecting data from "intros"."""
+input intros_order_by {
+  created_at: order_by
+  display_name: order_by
+  duration_seconds: order_by
+  id: order_by
+  map_name: order_by
+  s3_key: order_by
+  size_bytes: order_by
+  updated_at: order_by
+  uploader_steam_id: order_by
+}
+
+"""primary key columns input for table: intros"""
+input intros_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "intros"
+"""
+enum intros_select_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  display_name
+
+  """column name"""
+  duration_seconds
+
+  """column name"""
+  id
+
+  """column name"""
+  map_name
+
+  """column name"""
+  s3_key
+
+  """column name"""
+  size_bytes
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  uploader_steam_id
+}
+
+"""
+input type for updating data in table "intros"
+"""
+input intros_set_input {
+  created_at: timestamptz
+  display_name: String
+  duration_seconds: Int
+  id: uuid
+  map_name: String
+  s3_key: String
+  size_bytes: bigint
+  updated_at: timestamptz
+  uploader_steam_id: String
+}
+
+"""aggregate stddev on columns"""
+type intros_stddev_fields {
+  duration_seconds: Float
+  size_bytes: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type intros_stddev_pop_fields {
+  duration_seconds: Float
+  size_bytes: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type intros_stddev_samp_fields {
+  duration_seconds: Float
+  size_bytes: Float
+}
+
+"""
+Streaming cursor of the table "intros"
+"""
+input intros_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: intros_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input intros_stream_cursor_value_input {
+  created_at: timestamptz
+  display_name: String
+  duration_seconds: Int
+  id: uuid
+  map_name: String
+  s3_key: String
+  size_bytes: bigint
+  updated_at: timestamptz
+  uploader_steam_id: String
+}
+
+"""aggregate sum on columns"""
+type intros_sum_fields {
+  duration_seconds: Int
+  size_bytes: bigint
+}
+
+"""
+update columns of table "intros"
+"""
+enum intros_update_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  display_name
+
+  """column name"""
+  duration_seconds
+
+  """column name"""
+  id
+
+  """column name"""
+  map_name
+
+  """column name"""
+  s3_key
+
+  """column name"""
+  size_bytes
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  uploader_steam_id
+}
+
+input intros_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: intros_inc_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: intros_set_input
+
+  """filter the rows which have to be updated"""
+  where: intros_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type intros_var_pop_fields {
+  duration_seconds: Float
+  size_bytes: Float
+}
+
+"""aggregate var_samp on columns"""
+type intros_var_samp_fields {
+  duration_seconds: Float
+  size_bytes: Float
+}
+
+"""aggregate variance on columns"""
+type intros_variance_fields {
+  duration_seconds: Float
+  size_bytes: Float
 }
 
 scalar json
@@ -17895,6 +18571,7 @@ type matches {
     where: v_player_elo_bool_exp
   ): v_player_elo_aggregate!
   ended_at: timestamptz
+  hud_id: uuid
   id: uuid!
 
   """
@@ -18626,6 +19303,7 @@ input matches_bool_exp {
   elo_changes: v_player_elo_bool_exp
   elo_changes_aggregate: v_player_elo_aggregate_bool_exp
   ended_at: timestamptz_comparison_exp
+  hud_id: uuid_comparison_exp
   id: uuid_comparison_exp
   invite_code: String_comparison_exp
   invites: match_invites_bool_exp
@@ -18737,6 +19415,7 @@ input matches_insert_input {
   e_region: server_regions_obj_rel_insert_input
   elo_changes: v_player_elo_arr_rel_insert_input
   ended_at: timestamptz
+  hud_id: uuid
   id: uuid
   invites: match_invites_arr_rel_insert_input
   label: String
@@ -18792,6 +19471,7 @@ type matches_max_fields {
   """
   current_match_map_id: uuid
   ended_at: timestamptz
+  hud_id: uuid
   id: uuid
 
   """
@@ -18859,6 +19539,7 @@ input matches_max_order_by {
   cancels_at: order_by
   created_at: order_by
   ended_at: order_by
+  hud_id: order_by
   id: order_by
   label: order_by
   lineup_1_id: order_by
@@ -18894,6 +19575,7 @@ type matches_min_fields {
   """
   current_match_map_id: uuid
   ended_at: timestamptz
+  hud_id: uuid
   id: uuid
 
   """
@@ -18961,6 +19643,7 @@ input matches_min_order_by {
   cancels_at: order_by
   created_at: order_by
   ended_at: order_by
+  hud_id: order_by
   id: order_by
   label: order_by
   lineup_1_id: order_by
@@ -19026,6 +19709,7 @@ input matches_order_by {
   e_region: server_regions_order_by
   elo_changes_aggregate: v_player_elo_aggregate_order_by
   ended_at: order_by
+  hud_id: order_by
   id: order_by
   invite_code: order_by
   invites_aggregate: match_invites_aggregate_order_by
@@ -19100,6 +19784,9 @@ enum matches_select_column {
   ended_at
 
   """column name"""
+  hud_id
+
+  """column name"""
   id
 
   """column name"""
@@ -19149,6 +19836,7 @@ input matches_set_input {
   cancels_at: timestamptz
   created_at: timestamptz
   ended_at: timestamptz
+  hud_id: uuid
   id: uuid
   label: String
   lineup_1_id: uuid
@@ -19244,6 +19932,7 @@ input matches_stream_cursor_value_input {
   cancels_at: timestamptz
   created_at: timestamptz
   ended_at: timestamptz
+  hud_id: uuid
   id: uuid
   label: String
   lineup_1_id: uuid
@@ -19293,6 +19982,9 @@ enum matches_update_column {
 
   """column name"""
   ended_at
+
+  """column name"""
+  hud_id
 
   """column name"""
   id
@@ -20055,6 +20747,32 @@ type mutation_root {
   delete_game_versions_by_pk(build_id: Int!): game_versions
 
   """
+  delete data from the table: "huds"
+  """
+  delete_huds(
+    """filter the rows which have to be deleted"""
+    where: huds_bool_exp!
+  ): huds_mutation_response
+
+  """
+  delete single row from the table: "huds"
+  """
+  delete_huds_by_pk(id: uuid!): huds
+
+  """
+  delete data from the table: "intros"
+  """
+  delete_intros(
+    """filter the rows which have to be deleted"""
+    where: intros_bool_exp!
+  ): intros_mutation_response
+
+  """
+  delete single row from the table: "intros"
+  """
+  delete_intros_by_pk(id: uuid!): intros
+
+  """
   delete data from the table: "leaderboard_entries"
   """
   delete_leaderboard_entries(
@@ -20498,6 +21216,19 @@ type mutation_root {
   delete single row from the table: "plugin_versions"
   """
   delete_plugin_versions_by_pk(version: String!): plugin_versions
+
+  """
+  delete data from the table: "round_highlights"
+  """
+  delete_round_highlights(
+    """filter the rows which have to be deleted"""
+    where: round_highlights_bool_exp!
+  ): round_highlights_mutation_response
+
+  """
+  delete single row from the table: "round_highlights"
+  """
+  delete_round_highlights_by_pk(id: uuid!): round_highlights
 
   """
   delete data from the table: "server_regions"
@@ -21467,6 +22198,50 @@ type mutation_root {
   ): game_versions
 
   """
+  insert data into the table: "huds"
+  """
+  insert_huds(
+    """the rows to be inserted"""
+    objects: [huds_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: huds_on_conflict
+  ): huds_mutation_response
+
+  """
+  insert a single row into the table: "huds"
+  """
+  insert_huds_one(
+    """the row to be inserted"""
+    object: huds_insert_input!
+
+    """upsert condition"""
+    on_conflict: huds_on_conflict
+  ): huds
+
+  """
+  insert data into the table: "intros"
+  """
+  insert_intros(
+    """the rows to be inserted"""
+    objects: [intros_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: intros_on_conflict
+  ): intros_mutation_response
+
+  """
+  insert a single row into the table: "intros"
+  """
+  insert_intros_one(
+    """the row to be inserted"""
+    object: intros_insert_input!
+
+    """upsert condition"""
+    on_conflict: intros_on_conflict
+  ): intros
+
+  """
   insert data into the table: "leaderboard_entries"
   """
   insert_leaderboard_entries(
@@ -22223,6 +22998,28 @@ type mutation_root {
     """upsert condition"""
     on_conflict: plugin_versions_on_conflict
   ): plugin_versions
+
+  """
+  insert data into the table: "round_highlights"
+  """
+  insert_round_highlights(
+    """the rows to be inserted"""
+    objects: [round_highlights_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: round_highlights_on_conflict
+  ): round_highlights_mutation_response
+
+  """
+  insert a single row into the table: "round_highlights"
+  """
+  insert_round_highlights_one(
+    """the row to be inserted"""
+    object: round_highlights_insert_input!
+
+    """upsert condition"""
+    on_conflict: round_highlights_on_conflict
+  ): round_highlights
 
   """
   insert data into the table: "server_regions"
@@ -23789,6 +24586,74 @@ type mutation_root {
   ): [game_versions_mutation_response]
 
   """
+  update data of the table: "huds"
+  """
+  update_huds(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: huds_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: huds_set_input
+
+    """filter the rows which have to be updated"""
+    where: huds_bool_exp!
+  ): huds_mutation_response
+
+  """
+  update single row of the table: "huds"
+  """
+  update_huds_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: huds_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: huds_set_input
+    pk_columns: huds_pk_columns_input!
+  ): huds
+
+  """
+  update multiples rows of table: "huds"
+  """
+  update_huds_many(
+    """updates to execute, in order"""
+    updates: [huds_updates!]!
+  ): [huds_mutation_response]
+
+  """
+  update data of the table: "intros"
+  """
+  update_intros(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: intros_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: intros_set_input
+
+    """filter the rows which have to be updated"""
+    where: intros_bool_exp!
+  ): intros_mutation_response
+
+  """
+  update single row of the table: "intros"
+  """
+  update_intros_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: intros_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: intros_set_input
+    pk_columns: intros_pk_columns_input!
+  ): intros
+
+  """
+  update multiples rows of table: "intros"
+  """
+  update_intros_many(
+    """updates to execute, in order"""
+    updates: [intros_updates!]!
+  ): [intros_mutation_response]
+
+  """
   update data of the table: "leaderboard_entries"
   """
   update_leaderboard_entries(
@@ -25100,6 +25965,82 @@ type mutation_root {
     """updates to execute, in order"""
     updates: [plugin_versions_updates!]!
   ): [plugin_versions_mutation_response]
+
+  """
+  update data of the table: "round_highlights"
+  """
+  update_round_highlights(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: round_highlights_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: round_highlights_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: round_highlights_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: round_highlights_delete_key_input
+
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: round_highlights_inc_input
+
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: round_highlights_prepend_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: round_highlights_set_input
+
+    """filter the rows which have to be updated"""
+    where: round_highlights_bool_exp!
+  ): round_highlights_mutation_response
+
+  """
+  update single row of the table: "round_highlights"
+  """
+  update_round_highlights_by_pk(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: round_highlights_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: round_highlights_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: round_highlights_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: round_highlights_delete_key_input
+
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: round_highlights_inc_input
+
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: round_highlights_prepend_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: round_highlights_set_input
+    pk_columns: round_highlights_pk_columns_input!
+  ): round_highlights
+
+  """
+  update multiples rows of table: "round_highlights"
+  """
+  update_round_highlights_many(
+    """updates to execute, in order"""
+    updates: [round_highlights_updates!]!
+  ): [round_highlights_mutation_response]
 
   """
   update data of the table: "server_regions"
@@ -36217,6 +37158,92 @@ type query_root {
   ): leaderboard_entries_aggregate!
 
   """
+  fetch data from the table: "huds"
+  """
+  huds(
+    """distinct select on columns"""
+    distinct_on: [huds_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [huds_order_by!]
+
+    """filter the rows returned"""
+    where: huds_bool_exp
+  ): [huds!]!
+
+  """
+  fetch aggregated fields from the table: "huds"
+  """
+  huds_aggregate(
+    """distinct select on columns"""
+    distinct_on: [huds_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [huds_order_by!]
+
+    """filter the rows returned"""
+    where: huds_bool_exp
+  ): huds_aggregate!
+
+  """fetch data from the table: "huds" using primary key columns"""
+  huds_by_pk(id: uuid!): huds
+
+  """
+  fetch data from the table: "intros"
+  """
+  intros(
+    """distinct select on columns"""
+    distinct_on: [intros_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [intros_order_by!]
+
+    """filter the rows returned"""
+    where: intros_bool_exp
+  ): [intros!]!
+
+  """
+  fetch aggregated fields from the table: "intros"
+  """
+  intros_aggregate(
+    """distinct select on columns"""
+    distinct_on: [intros_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [intros_order_by!]
+
+    """filter the rows returned"""
+    where: intros_bool_exp
+  ): intros_aggregate!
+
+  """fetch data from the table: "intros" using primary key columns"""
+  intros_by_pk(id: uuid!): intros
+
+  """
   fetch data from the table: "leaderboard_entries"
   """
   leaderboard_entries(
@@ -37697,6 +38724,51 @@ type query_root {
   readServerFile(file_path: String!, node_id: String!, server_id: String): FileContentResponse!
 
   """
+  fetch data from the table: "round_highlights"
+  """
+  round_highlights(
+    """distinct select on columns"""
+    distinct_on: [round_highlights_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [round_highlights_order_by!]
+
+    """filter the rows returned"""
+    where: round_highlights_bool_exp
+  ): [round_highlights!]!
+
+  """
+  fetch aggregated fields from the table: "round_highlights"
+  """
+  round_highlights_aggregate(
+    """distinct select on columns"""
+    distinct_on: [round_highlights_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [round_highlights_order_by!]
+
+    """filter the rows returned"""
+    where: round_highlights_bool_exp
+  ): round_highlights_aggregate!
+
+  """
+  fetch data from the table: "round_highlights" using primary key columns
+  """
+  round_highlights_by_pk(id: uuid!): round_highlights
+
+  """
   fetch data from the table: "server_regions"
   """
   server_regions(
@@ -38849,6 +39921,430 @@ type query_root {
 
 input recalculate_tournament_trophies_args {
   _tournament_id: uuid
+}
+
+"""
+columns and relationships of "round_highlights"
+"""
+type round_highlights {
+  created_at: timestamptz!
+  id: uuid!
+  kills: Int!
+  label: String!
+
+  """An object relationship"""
+  match: matches!
+  match_id: uuid!
+
+  """An object relationship"""
+  match_map: match_maps
+  match_map_id: uuid
+  metadata(
+    """JSON select path"""
+    path: String
+  ): jsonb
+  player_name: String
+  round_number: Int!
+  steam_id: String!
+  team: String
+  weapon: String
+}
+
+"""
+aggregated selection of "round_highlights"
+"""
+type round_highlights_aggregate {
+  aggregate: round_highlights_aggregate_fields
+  nodes: [round_highlights!]!
+}
+
+"""
+aggregate fields of "round_highlights"
+"""
+type round_highlights_aggregate_fields {
+  avg: round_highlights_avg_fields
+  count(columns: [round_highlights_select_column!], distinct: Boolean): Int!
+  max: round_highlights_max_fields
+  min: round_highlights_min_fields
+  stddev: round_highlights_stddev_fields
+  stddev_pop: round_highlights_stddev_pop_fields
+  stddev_samp: round_highlights_stddev_samp_fields
+  sum: round_highlights_sum_fields
+  var_pop: round_highlights_var_pop_fields
+  var_samp: round_highlights_var_samp_fields
+  variance: round_highlights_variance_fields
+}
+
+"""append existing jsonb value of filtered columns with new jsonb value"""
+input round_highlights_append_input {
+  metadata: jsonb
+}
+
+"""aggregate avg on columns"""
+type round_highlights_avg_fields {
+  kills: Float
+  round_number: Float
+}
+
+"""
+Boolean expression to filter rows from the table "round_highlights". All fields are combined with a logical 'AND'.
+"""
+input round_highlights_bool_exp {
+  _and: [round_highlights_bool_exp!]
+  _not: round_highlights_bool_exp
+  _or: [round_highlights_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  kills: Int_comparison_exp
+  label: String_comparison_exp
+  match: matches_bool_exp
+  match_id: uuid_comparison_exp
+  match_map: match_maps_bool_exp
+  match_map_id: uuid_comparison_exp
+  metadata: jsonb_comparison_exp
+  player_name: String_comparison_exp
+  round_number: Int_comparison_exp
+  steam_id: String_comparison_exp
+  team: String_comparison_exp
+  weapon: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "round_highlights"
+"""
+enum round_highlights_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  round_highlights_pkey
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input round_highlights_delete_at_path_input {
+  metadata: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+"""
+input round_highlights_delete_elem_input {
+  metadata: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input round_highlights_delete_key_input {
+  metadata: String
+}
+
+"""
+input type for incrementing numeric columns in table "round_highlights"
+"""
+input round_highlights_inc_input {
+  kills: Int
+  round_number: Int
+}
+
+"""
+input type for inserting data into table "round_highlights"
+"""
+input round_highlights_insert_input {
+  created_at: timestamptz
+  id: uuid
+  kills: Int
+  label: String
+  match: matches_obj_rel_insert_input
+  match_id: uuid
+  match_map: match_maps_obj_rel_insert_input
+  match_map_id: uuid
+  metadata: jsonb
+  player_name: String
+  round_number: Int
+  steam_id: String
+  team: String
+  weapon: String
+}
+
+"""aggregate max on columns"""
+type round_highlights_max_fields {
+  created_at: timestamptz
+  id: uuid
+  kills: Int
+  label: String
+  match_id: uuid
+  match_map_id: uuid
+  player_name: String
+  round_number: Int
+  steam_id: String
+  team: String
+  weapon: String
+}
+
+"""aggregate min on columns"""
+type round_highlights_min_fields {
+  created_at: timestamptz
+  id: uuid
+  kills: Int
+  label: String
+  match_id: uuid
+  match_map_id: uuid
+  player_name: String
+  round_number: Int
+  steam_id: String
+  team: String
+  weapon: String
+}
+
+"""
+response of any mutation on the table "round_highlights"
+"""
+type round_highlights_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [round_highlights!]!
+}
+
+"""
+on_conflict condition type for table "round_highlights"
+"""
+input round_highlights_on_conflict {
+  constraint: round_highlights_constraint!
+  update_columns: [round_highlights_update_column!]! = []
+  where: round_highlights_bool_exp
+}
+
+"""Ordering options when selecting data from "round_highlights"."""
+input round_highlights_order_by {
+  created_at: order_by
+  id: order_by
+  kills: order_by
+  label: order_by
+  match: matches_order_by
+  match_id: order_by
+  match_map: match_maps_order_by
+  match_map_id: order_by
+  metadata: order_by
+  player_name: order_by
+  round_number: order_by
+  steam_id: order_by
+  team: order_by
+  weapon: order_by
+}
+
+"""primary key columns input for table: round_highlights"""
+input round_highlights_pk_columns_input {
+  id: uuid!
+}
+
+"""prepend existing jsonb value of filtered columns with new jsonb value"""
+input round_highlights_prepend_input {
+  metadata: jsonb
+}
+
+"""
+select columns of table "round_highlights"
+"""
+enum round_highlights_select_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  id
+
+  """column name"""
+  kills
+
+  """column name"""
+  label
+
+  """column name"""
+  match_id
+
+  """column name"""
+  match_map_id
+
+  """column name"""
+  metadata
+
+  """column name"""
+  player_name
+
+  """column name"""
+  round_number
+
+  """column name"""
+  steam_id
+
+  """column name"""
+  team
+
+  """column name"""
+  weapon
+}
+
+"""
+input type for updating data in table "round_highlights"
+"""
+input round_highlights_set_input {
+  created_at: timestamptz
+  id: uuid
+  kills: Int
+  label: String
+  match_id: uuid
+  match_map_id: uuid
+  metadata: jsonb
+  player_name: String
+  round_number: Int
+  steam_id: String
+  team: String
+  weapon: String
+}
+
+"""aggregate stddev on columns"""
+type round_highlights_stddev_fields {
+  kills: Float
+  round_number: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type round_highlights_stddev_pop_fields {
+  kills: Float
+  round_number: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type round_highlights_stddev_samp_fields {
+  kills: Float
+  round_number: Float
+}
+
+"""
+Streaming cursor of the table "round_highlights"
+"""
+input round_highlights_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: round_highlights_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input round_highlights_stream_cursor_value_input {
+  created_at: timestamptz
+  id: uuid
+  kills: Int
+  label: String
+  match_id: uuid
+  match_map_id: uuid
+  metadata: jsonb
+  player_name: String
+  round_number: Int
+  steam_id: String
+  team: String
+  weapon: String
+}
+
+"""aggregate sum on columns"""
+type round_highlights_sum_fields {
+  kills: Int
+  round_number: Int
+}
+
+"""
+update columns of table "round_highlights"
+"""
+enum round_highlights_update_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  id
+
+  """column name"""
+  kills
+
+  """column name"""
+  label
+
+  """column name"""
+  match_id
+
+  """column name"""
+  match_map_id
+
+  """column name"""
+  metadata
+
+  """column name"""
+  player_name
+
+  """column name"""
+  round_number
+
+  """column name"""
+  steam_id
+
+  """column name"""
+  team
+
+  """column name"""
+  weapon
+}
+
+input round_highlights_updates {
+  """append existing jsonb value of filtered columns with new jsonb value"""
+  _append: round_highlights_append_input
+
+  """
+  delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+  """
+  _delete_at_path: round_highlights_delete_at_path_input
+
+  """
+  delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+  """
+  _delete_elem: round_highlights_delete_elem_input
+
+  """
+  delete key/value pair or string element. key/value pairs are matched based on their key value
+  """
+  _delete_key: round_highlights_delete_key_input
+
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: round_highlights_inc_input
+
+  """prepend existing jsonb value of filtered columns with new jsonb value"""
+  _prepend: round_highlights_prepend_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: round_highlights_set_input
+
+  """filter the rows which have to be updated"""
+  where: round_highlights_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type round_highlights_var_pop_fields {
+  kills: Float
+  round_number: Float
+}
+
+"""aggregate var_samp on columns"""
+type round_highlights_var_samp_fields {
+  kills: Float
+  round_number: Float
+}
+
+"""aggregate variance on columns"""
+type round_highlights_variance_fields {
+  kills: Float
+  round_number: Float
 }
 
 """
@@ -42255,6 +43751,120 @@ type subscription_root {
   ): leaderboard_entries_aggregate!
 
   """
+  fetch data from the table: "huds"
+  """
+  huds(
+    """distinct select on columns"""
+    distinct_on: [huds_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [huds_order_by!]
+
+    """filter the rows returned"""
+    where: huds_bool_exp
+  ): [huds!]!
+
+  """
+  fetch aggregated fields from the table: "huds"
+  """
+  huds_aggregate(
+    """distinct select on columns"""
+    distinct_on: [huds_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [huds_order_by!]
+
+    """filter the rows returned"""
+    where: huds_bool_exp
+  ): huds_aggregate!
+
+  """fetch data from the table: "huds" using primary key columns"""
+  huds_by_pk(id: uuid!): huds
+
+  """
+  fetch data from the table in a streaming manner: "huds"
+  """
+  huds_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [huds_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: huds_bool_exp
+  ): [huds!]!
+
+  """
+  fetch data from the table: "intros"
+  """
+  intros(
+    """distinct select on columns"""
+    distinct_on: [intros_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [intros_order_by!]
+
+    """filter the rows returned"""
+    where: intros_bool_exp
+  ): [intros!]!
+
+  """
+  fetch aggregated fields from the table: "intros"
+  """
+  intros_aggregate(
+    """distinct select on columns"""
+    distinct_on: [intros_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [intros_order_by!]
+
+    """filter the rows returned"""
+    where: intros_bool_exp
+  ): intros_aggregate!
+
+  """fetch data from the table: "intros" using primary key columns"""
+  intros_by_pk(id: uuid!): intros
+
+  """
+  fetch data from the table in a streaming manner: "intros"
+  """
+  intros_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [intros_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: intros_bool_exp
+  ): [intros!]!
+
+  """
   fetch data from the table: "leaderboard_entries"
   """
   leaderboard_entries(
@@ -44214,6 +45824,65 @@ type subscription_root {
     """filter the rows returned"""
     where: plugin_versions_bool_exp
   ): [plugin_versions!]!
+
+  """
+  fetch data from the table: "round_highlights"
+  """
+  round_highlights(
+    """distinct select on columns"""
+    distinct_on: [round_highlights_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [round_highlights_order_by!]
+
+    """filter the rows returned"""
+    where: round_highlights_bool_exp
+  ): [round_highlights!]!
+
+  """
+  fetch aggregated fields from the table: "round_highlights"
+  """
+  round_highlights_aggregate(
+    """distinct select on columns"""
+    distinct_on: [round_highlights_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [round_highlights_order_by!]
+
+    """filter the rows returned"""
+    where: round_highlights_bool_exp
+  ): round_highlights_aggregate!
+
+  """
+  fetch data from the table: "round_highlights" using primary key columns
+  """
+  round_highlights_by_pk(id: uuid!): round_highlights
+
+  """
+  fetch data from the table in a streaming manner: "round_highlights"
+  """
+  round_highlights_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [round_highlights_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: round_highlights_bool_exp
+  ): [round_highlights!]!
 
   """
   fetch data from the table: "server_regions"
