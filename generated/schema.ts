@@ -3447,6 +3447,7 @@ export interface huds {
     created_at: Scalars['timestamptz']
     description: (Scalars['String'] | null)
     extracted_dir: Scalars['String']
+    format: Scalars['String']
     id: Scalars['uuid']
     is_default: Scalars['Boolean']
     is_public: Scalars['Boolean']
@@ -3539,7 +3540,7 @@ export interface huds_mutation_response {
 
 
 /** select columns of table "huds" */
-export type huds_select_column = 'created_at' | 'description' | 'extracted_dir' | 'id' | 'is_default' | 'is_public' | 'name' | 'size_bytes' | 'slug' | 'updated_at' | 'uploader_steam_id' | 'version'
+export type huds_select_column = 'created_at' | 'description' | 'extracted_dir' | 'format' | 'id' | 'is_default' | 'is_public' | 'name' | 'size_bytes' | 'slug' | 'updated_at' | 'uploader_steam_id' | 'version'
 
 
 /** aggregate stddev on columns */
@@ -3571,7 +3572,7 @@ export interface huds_sum_fields {
 
 
 /** update columns of table "huds" */
-export type huds_update_column = 'created_at' | 'description' | 'extracted_dir' | 'id' | 'is_default' | 'is_public' | 'name' | 'size_bytes' | 'slug' | 'updated_at' | 'uploader_steam_id' | 'version'
+export type huds_update_column = 'created_at' | 'description' | 'extracted_dir' | 'format' | 'id' | 'is_default' | 'is_public' | 'name' | 'size_bytes' | 'slug' | 'updated_at' | 'uploader_steam_id' | 'version'
 
 
 /** aggregate var_pop on columns */
@@ -23112,6 +23113,7 @@ export interface hudsGenqlSelection{
     created_at?: boolean | number
     description?: boolean | number
     extracted_dir?: boolean | number
+    format?: boolean | number
     id?: boolean | number
     is_default?: boolean | number
     is_public?: boolean | number
@@ -23162,7 +23164,7 @@ export interface huds_avg_fieldsGenqlSelection{
 
 
 /** Boolean expression to filter rows from the table "huds". All fields are combined with a logical 'AND'. */
-export interface huds_bool_exp {_and?: (huds_bool_exp[] | null),_not?: (huds_bool_exp | null),_or?: (huds_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),description?: (String_comparison_exp | null),extracted_dir?: (String_comparison_exp | null),id?: (uuid_comparison_exp | null),is_default?: (Boolean_comparison_exp | null),is_public?: (Boolean_comparison_exp | null),name?: (String_comparison_exp | null),size_bytes?: (bigint_comparison_exp | null),slug?: (String_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null),uploader_steam_id?: (String_comparison_exp | null),version?: (String_comparison_exp | null)}
+export interface huds_bool_exp {_and?: (huds_bool_exp[] | null),_not?: (huds_bool_exp | null),_or?: (huds_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),description?: (String_comparison_exp | null),extracted_dir?: (String_comparison_exp | null),format?: (String_comparison_exp | null),id?: (uuid_comparison_exp | null),is_default?: (Boolean_comparison_exp | null),is_public?: (Boolean_comparison_exp | null),name?: (String_comparison_exp | null),size_bytes?: (bigint_comparison_exp | null),slug?: (String_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null),uploader_steam_id?: (String_comparison_exp | null),version?: (String_comparison_exp | null)}
 
 
 /** input type for incrementing numeric columns in table "huds" */
@@ -23170,7 +23172,7 @@ export interface huds_inc_input {size_bytes?: (Scalars['bigint'] | null)}
 
 
 /** input type for inserting data into table "huds" */
-export interface huds_insert_input {created_at?: (Scalars['timestamptz'] | null),description?: (Scalars['String'] | null),extracted_dir?: (Scalars['String'] | null),id?: (Scalars['uuid'] | null),is_default?: (Scalars['Boolean'] | null),is_public?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),slug?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null),version?: (Scalars['String'] | null)}
+export interface huds_insert_input {created_at?: (Scalars['timestamptz'] | null),description?: (Scalars['String'] | null),extracted_dir?: (Scalars['String'] | null),format?: (Scalars['String'] | null),id?: (Scalars['uuid'] | null),is_default?: (Scalars['Boolean'] | null),is_public?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),slug?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null),version?: (Scalars['String'] | null)}
 
 
 /** aggregate max on columns */
@@ -23223,7 +23225,7 @@ export interface huds_on_conflict {constraint: huds_constraint,update_columns?: 
 
 
 /** Ordering options when selecting data from "huds". */
-export interface huds_order_by {created_at?: (order_by | null),description?: (order_by | null),extracted_dir?: (order_by | null),id?: (order_by | null),is_default?: (order_by | null),is_public?: (order_by | null),name?: (order_by | null),size_bytes?: (order_by | null),slug?: (order_by | null),updated_at?: (order_by | null),uploader_steam_id?: (order_by | null),version?: (order_by | null)}
+export interface huds_order_by {created_at?: (order_by | null),description?: (order_by | null),extracted_dir?: (order_by | null),format?: (order_by | null),id?: (order_by | null),is_default?: (order_by | null),is_public?: (order_by | null),name?: (order_by | null),size_bytes?: (order_by | null),slug?: (order_by | null),updated_at?: (order_by | null),uploader_steam_id?: (order_by | null),version?: (order_by | null)}
 
 
 /** primary key columns input for table: huds */
@@ -23231,7 +23233,7 @@ export interface huds_pk_columns_input {id: Scalars['uuid']}
 
 
 /** input type for updating data in table "huds" */
-export interface huds_set_input {created_at?: (Scalars['timestamptz'] | null),description?: (Scalars['String'] | null),extracted_dir?: (Scalars['String'] | null),id?: (Scalars['uuid'] | null),is_default?: (Scalars['Boolean'] | null),is_public?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),slug?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null),version?: (Scalars['String'] | null)}
+export interface huds_set_input {created_at?: (Scalars['timestamptz'] | null),description?: (Scalars['String'] | null),extracted_dir?: (Scalars['String'] | null),format?: (Scalars['String'] | null),id?: (Scalars['uuid'] | null),is_default?: (Scalars['Boolean'] | null),is_public?: (Scalars['Boolean'] | null),name?: (Scalars['String'] | null),size_bytes?: (Scalars['bigint'] | null),slug?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),uploader_steam_id?: (Scalars['String'] | null),version?: (Scalars['String'] | null)}
 
 
 /** aggregate stddev on columns */

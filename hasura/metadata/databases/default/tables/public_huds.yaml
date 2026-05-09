@@ -10,6 +10,7 @@ select_permissions:
         - slug
         - description
         - version
+        - format
         - uploader_steam_id
         - is_default
         - is_public
@@ -28,6 +29,7 @@ select_permissions:
         - slug
         - description
         - version
+        - format
         - uploader_steam_id
         - is_default
         - is_public
@@ -47,6 +49,7 @@ select_permissions:
         - slug
         - description
         - version
+        - format
         - uploader_steam_id
         - is_default
         - is_public
@@ -66,6 +69,7 @@ select_permissions:
         - slug
         - description
         - version
+        - format
         - is_default
         - is_public
         - size_bytes
@@ -83,6 +87,7 @@ select_permissions:
         - slug
         - description
         - version
+        - format
         - is_default
         - is_public
         - created_at
@@ -98,6 +103,7 @@ select_permissions:
         - slug
         - description
         - version
+        - format
         - is_default
         - is_public
         - created_at

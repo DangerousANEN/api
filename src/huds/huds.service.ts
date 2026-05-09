@@ -52,12 +52,15 @@ function mimeFor(path: string): string {
   return MIME_BY_EXT[path.slice(dot).toLowerCase()] ?? "application/octet-stream";
 }
 
+export type HudFormat = "openhud" | "lexogrine";
+
 export interface HudRow {
   id: string;
   name: string;
   slug: string;
   description: string | null;
   version: string | null;
+  format: HudFormat;
   uploader_steam_id: string | null;
   is_default: boolean;
   is_public: boolean;
@@ -173,8 +176,21 @@ export class HudsService {
       );
     }
 
+    // Pre-scan to (a) sanity-check entry sizes/paths and (b) detect
+    // which HUD format the zip ships in. Two formats supported:
+    //   - openhud   : <hudname>/build/index.html (file-tree wrapped
+    //                 under "build/", electron-loaded by the streamer
+    //                 pod's OpenHud overlay)
+    //   - lexogrine : root index.html + root package.json (Lexogrine
+    //                 HUD Manager pack — designed for OBS Browser
+    //                 Source). We accept these for the OBS-overlay
+    //                 flow; the streamer pod's OpenHud loader
+    //                 won't render Lexogrine packs (they need a
+    //                 socket.io GSI bridge, see TODO below).
     let totalBytes = 0;
-    let buildRoot: string | null = null;
+    let openHudBuildRoot: string | null = null;
+    let lexogrineHasIndex = false;
+    let lexogrinePackageJsonPath: string | null = null;
     for (const file of directory.files) {
       if (file.type !== "File") continue;
       const path = file.path.replace(/^\/+/, "");
@@ -195,21 +211,41 @@ export class HudsService {
       // OpenHud HUD packs are wrapped in <hudname>/build/. Detect the
       // first build/index.html and treat its parent as the root.
       if (
-        buildRoot === null &&
+        openHudBuildRoot === null &&
         (path.endsWith("/build/index.html") || path === "build/index.html")
       ) {
-        buildRoot = path.slice(0, -"index.html".length);
+        openHudBuildRoot = path.slice(0, -"index.html".length);
+      }
+      // Lexogrine HUD packs land flat: index.html + package.json at
+      // root (or sometimes wrapped one level — Lexogrine HUD Manager
+      // exports as `<slug>/index.html` + `<slug>/package.json`).
+      if (path === "index.html" || /^[^/]+\/index\.html$/.test(path)) {
+        lexogrineHasIndex = true;
+      }
+      if (path === "package.json" || /^[^/]+\/package\.json$/.test(path)) {
+        lexogrinePackageJsonPath = path;
       }
     }
 
-    if (!buildRoot) {
+    let format: HudFormat;
+    let buildRoot: string;
+    if (openHudBuildRoot) {
+      format = "openhud";
+      buildRoot = openHudBuildRoot;
+    } else if (lexogrineHasIndex && lexogrinePackageJsonPath) {
+      format = "lexogrine";
+      // Lexogrine packs may or may not be wrapped one level. Take the
+      // dirname of package.json as the build root.
+      const slash = lexogrinePackageJsonPath.lastIndexOf("/");
+      buildRoot = slash === -1 ? "" : lexogrinePackageJsonPath.slice(0, slash + 1);
+    } else {
       throw new BadRequestException(
-        "zip must contain build/index.html (OpenHud HUD package format)",
+        "zip must be an OpenHud pack (build/index.html) or a Lexogrine pack (index.html + package.json)",
       );
     }
 
     this.logger.log(
-      `extracting HUD "${slug}" build="${buildRoot}" entries=${directory.files.length} bytes=${totalBytes}`,
+      `extracting HUD "${slug}" format=${format} buildRoot="${buildRoot}" entries=${directory.files.length} bytes=${totalBytes}`,
     );
 
     const extractedDir = `${HUD_PREFIX}/${slug}/`;
@@ -217,17 +253,18 @@ export class HudsService {
     for (const file of directory.files) {
       if (file.type !== "File") continue;
       const raw = file.path.replace(/^\/+/, "");
-      if (!raw.startsWith(buildRoot)) continue;
-      const rel = raw.slice(buildRoot.length);
+      if (buildRoot && !raw.startsWith(buildRoot)) continue;
+      const rel = buildRoot ? raw.slice(buildRoot.length) : raw;
       if (!rel) continue;
       const buf = await file.buffer();
       await this.s3.put(`${extractedDir}${rel}`, buf);
       manifest.files.push({ path: rel, size: buf.length });
     }
-    // Save a manifest the streamer pod can walk to mirror the HUD.
+    // Save a manifest the streamer pod / OBS Browser Source can walk
+    // to mirror the HUD.
     await this.s3.put(
       `${extractedDir}.manifest.json`,
-      Buffer.from(JSON.stringify(manifest)),
+      Buffer.from(JSON.stringify({ format, files: manifest.files })),
     );
 
     const id = crypto.randomUUID();
@@ -240,6 +277,7 @@ export class HudsService {
             slug,
             description,
             version,
+            format,
             uploader_steam_id: user.steam_id,
             is_default: false,
             is_public: isPublic,
@@ -411,6 +449,7 @@ export class HudsService {
       slug: true,
       description: true,
       version: true,
+      format: true,
       uploader_steam_id: true,
       is_default: true,
       is_public: true,
