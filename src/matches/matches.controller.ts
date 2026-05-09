@@ -1176,6 +1176,38 @@ export class MatchesController {
     };
   }
 
+  @HasuraAction()
+  public async fillMatchBots(data: { user: User; match_id: string }) {
+    const { match_id, user } = data;
+
+    if (!(await this.matchAssistant.isOrganizer(match_id, user))) {
+      throw Error("you are not a match organizer");
+    }
+
+    const { matches_by_pk: match } = await this.hasura.query({
+      matches_by_pk: {
+        __args: {
+          id: match_id,
+        },
+        status: true,
+      },
+    });
+
+    if (!match) {
+      throw Error("match not found");
+    }
+
+    if (MatchesController.TERMINAL_STATUSES.includes(match.status)) {
+      throw Error("cannot add bots to a match that has already ended");
+    }
+
+    await this.matchAssistant.fillBots(match_id);
+
+    return {
+      success: true,
+    };
+  }
+
   /**
    * TODO - does not need to be a action
    */

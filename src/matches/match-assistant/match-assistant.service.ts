@@ -100,6 +100,60 @@ export class MatchAssistantService {
     }
   }
 
+  /**
+   * Total expected players for a match, mirroring the cs2 plugin's
+   * MatchManager.GetExpectedPlayerCount() so the api and game-server
+   * stay in sync on roster math (Wingman 2v2, Duel 1v1, default 5v5).
+   */
+  public async getExpectedPlayerCount(matchId: string): Promise<number> {
+    const { matches_by_pk } = await this.hasura.query({
+      matches_by_pk: {
+        __args: {
+          id: matchId,
+        },
+        options: {
+          type: true,
+        },
+      },
+    });
+
+    const type = matches_by_pk?.options?.type;
+    if (type === "Wingman") {
+      return 4;
+    }
+    if (type === "Duel") {
+      return 2;
+    }
+    return 10;
+  }
+
+  /**
+   * Fill empty roster slots with cs2 bots so a single user can solo-test
+   * the dedicated server, spectator flythroughs, and HUDs without a
+   * second human. Uses `bot_quota_mode fill` so bots auto-respawn after
+   * round restarts (and survive `bot_kick` from MatchManager.KickBots
+   * when ALLOW_BOTS is unset on the pod).
+   */
+  public async fillBots(matchId: string): Promise<void> {
+    const expected = await this.getExpectedPlayerCount(matchId);
+
+    const commands: Array<string> = [
+      "bot_quota_mode fill",
+      `bot_quota ${expected}`,
+      "bot_difficulty 2",
+      "bot_join_after_player 0",
+      "bot_join_team any",
+      "mp_autoteambalance 1",
+      "bot_add ct",
+      "bot_add t",
+    ];
+
+    const result = await this.command(matchId, commands);
+    if (result === undefined) {
+      throw Error("unable to send bot fill commands to match server");
+    }
+  }
+
   public async getMatchLineups(matchId: string) {
     const { matches_by_pk } = await this.hasura.query({
       matches_by_pk: {

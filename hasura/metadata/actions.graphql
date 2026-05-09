@@ -133,6 +133,12 @@ type Mutation {
 }
 
 type Mutation {
+  fillMatchBots(
+    match_id: uuid!
+  ): SuccessOutput
+}
+
+type Mutation {
   forfeitMatch(
     match_id: uuid!
     winning_lineup_id: uuid!
