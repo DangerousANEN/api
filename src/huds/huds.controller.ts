@@ -37,6 +37,15 @@ export class HudsController {
     return hud;
   }
 
+  // Returns the *override* HUD bound to matches.hud_id, NOT the effective
+  // (which would mix in the global default). Used by MatchHudPicker so the
+  // dropdown can distinguish "I picked Lexogrine for this match" from "I
+  // inherit the global default". A null body means: no per-match override.
+  @Get("match/:matchId")
+  async getMatchOverride(@Param("matchId") matchId: string) {
+    return { hud: await this.huds.getOverrideForMatch(matchId) };
+  }
+
   @Get(":idOrSlug")
   async get(@Param("idOrSlug") idOrSlug: string) {
     const hud = await this.huds.getHud(idOrSlug);

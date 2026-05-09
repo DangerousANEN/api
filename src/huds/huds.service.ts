@@ -105,6 +105,20 @@ export class HudsService {
     return ((huds ?? [])[0] ?? null) as HudRow | null;
   }
 
+  // Returns ONLY the per-match override (matches.hud_id → HudRow) without
+  // falling through to the global default. Used by MatchHudPicker so the
+  // UI can distinguish an explicit pick from an inherited default.
+  async getOverrideForMatch(matchId: string): Promise<HudRow | null> {
+    const { matches_by_pk } = await this.hasura.query({
+      matches_by_pk: {
+        __args: { id: matchId },
+        hud_id: true,
+      },
+    });
+    if (!matches_by_pk?.hud_id) return null;
+    return await this.getHud(matches_by_pk.hud_id as string);
+  }
+
   // Resolves the effective HUD for a match: per-match override → global
   // default → null. The streamer pod calls this on launch.
   async getActiveForMatch(matchId: string): Promise<HudRow | null> {
