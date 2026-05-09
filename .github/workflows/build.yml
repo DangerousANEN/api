@@ -32,11 +32,11 @@ jobs:
           file: ./Dockerfile
           push: true
           platforms: linux/amd64
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/api:buildcache-amd64
-          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/api:buildcache-amd64,mode=max
+          cache-from: type=registry,ref=ghcr.io/dangerousanen/api:buildcache-amd64
+          cache-to: type=registry,ref=ghcr.io/dangerousanen/api:buildcache-amd64,mode=max
           tags: |
-            ghcr.io/${{ github.repository_owner }}/api:latest-amd64
-            ghcr.io/${{ github.repository_owner }}/api:${{ github.sha }}-amd64
+            ghcr.io/dangerousanen/api:latest-amd64
+            ghcr.io/dangerousanen/api:${{ github.sha }}-amd64
   build-arm64:
     runs-on: ubuntu-24.04-arm
     steps:
@@ -57,11 +57,11 @@ jobs:
           file: ./Dockerfile
           push: true
           platforms: linux/arm64
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/api:buildcache-arm64
-          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/api:buildcache-arm64,mode=max
+          cache-from: type=registry,ref=ghcr.io/dangerousanen/api:buildcache-arm64
+          cache-to: type=registry,ref=ghcr.io/dangerousanen/api:buildcache-arm64,mode=max
           tags: |
-            ghcr.io/${{ github.repository_owner }}/api:latest-arm64
-            ghcr.io/${{ github.repository_owner }}/api:${{ github.sha }}-arm64
+            ghcr.io/dangerousanen/api:latest-arm64
+            ghcr.io/dangerousanen/api:${{ github.sha }}-arm64
   merge:
     needs: [build-amd64, build-arm64]
     runs-on: ubuntu-latest
@@ -74,12 +74,12 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Create manifest list and push
         run: |
-          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/api:latest \
-            ghcr.io/${{ github.repository_owner }}/api:latest-amd64 \
-            ghcr.io/${{ github.repository_owner }}/api:latest-arm64
-          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/api:${{ github.sha }} \
-            ghcr.io/${{ github.repository_owner }}/api:${{ github.sha }}-amd64 \
-            ghcr.io/${{ github.repository_owner }}/api:${{ github.sha }}-arm64
+          docker buildx imagetools create -t ghcr.io/dangerousanen/api:latest \
+            ghcr.io/dangerousanen/api:latest-amd64 \
+            ghcr.io/dangerousanen/api:latest-arm64
+          docker buildx imagetools create -t ghcr.io/dangerousanen/api:${{ github.sha }} \
+            ghcr.io/dangerousanen/api:${{ github.sha }}-amd64 \
+            ghcr.io/dangerousanen/api:${{ github.sha }}-arm64
       - name: Delete Package Versions
         uses: actions/delete-package-versions@v5
         with:
