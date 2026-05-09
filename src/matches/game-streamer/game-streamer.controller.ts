@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Logger,
   Param,
   Post,
@@ -17,6 +18,16 @@ export class GameStreamerController {
     private readonly logger: Logger,
     private readonly gameStreamer: GameStreamerService,
   ) {}
+
+  // Streamer pod (flythrough.sh) calls this on launch to learn which
+  // map the match is currently on so it can pick the right intro mp4.
+  // Public, no-auth: only returns the map name (already in match
+  // metadata that anyone can read), no sensitive fields.
+  @Get("current-map")
+  public async getCurrentMap(@Param("matchId") matchId: string) {
+    const map = await this.gameStreamer.getCurrentMapName(matchId);
+    return { map };
+  }
 
   @Post("status")
   public async reportStatus(

@@ -91,6 +91,46 @@ export class GameStreamerService {
     return `gs-live-${matchId}`;
   }
 
+  // Returns the map name for the match's currently-in-progress map, or
+  // its first scheduled map if none is in progress yet (typical case
+  // when the streamer pod boots — match status is "Live" but the
+  // server hasn't pushed an explicit "current_match_map_id" yet).
+  // Used by F4 (flythroughs): the streamer pod hits this from
+  // flythrough.sh to pick the right intro mp4 before cs2 connects.
+  public async getCurrentMapName(matchId: string): Promise<string | null> {
+    const { matches_by_pk } = await this.hasura.query({
+      matches_by_pk: {
+        __args: { id: matchId },
+        current_match_map_id: true,
+        match_maps: {
+          __args: { order_by: [{ order: () => "asc" }] },
+          id: true,
+          status: true,
+          map: { name: true },
+        },
+      },
+    });
+    if (!matches_by_pk) return null;
+    const all = (matches_by_pk.match_maps ?? []) as Array<{
+      id: string;
+      status: string;
+      map: { name: string } | null;
+    }>;
+    if (all.length === 0) return null;
+
+    const currentId = matches_by_pk.current_match_map_id as string | null;
+    if (currentId) {
+      const cur = all.find((m) => m.id === currentId);
+      if (cur?.map?.name) return cur.map.name;
+    }
+    // Fall back to the first not-yet-finished map. Streamer boots before
+    // current_match_map_id is set, but match_maps[0] is always the
+    // first map in the BO ordering — the one cs2 will load first.
+    const inFlight = all.find((m) => m.status !== "Finished");
+    if (inFlight?.map?.name) return inFlight.map.name;
+    return all[0].map?.name ?? null;
+  }
+
   public static GetLiveServiceName(matchId: string) {
     return `gs-live-${matchId}`;
   }
@@ -1753,6 +1793,14 @@ export class GameStreamerService {
                   { name: "DISPLAY_SIZEW", value: "1920" },
                   { name: "DISPLAY_SIZEH", value: "1080" },
                   { name: "OPENHUD_AUTO_OVERLAY", value: "1" },
+                  // F1/F4: streamer uses STATUS_API_BASE for HUD manifest
+                  // mirroring (lib/match-hud.sh) and current-map lookup
+                  // (lib/flythrough.sh). Already injected for batch mode at
+                  // dispatchBatchHighlights; live/demo also need it now.
+                  {
+                    name: "STATUS_API_BASE",
+                    value: resolveInClusterApiBase(),
+                  },
                   // Forward the configured public HLS host so the streamer
                   // can log/print correct watch URLs (otherwise the scripts
                   // fall back to a hardcoded hls.5stack.gg).
@@ -1803,6 +1851,24 @@ export class GameStreamerService {
                   { name: "dshm", mountPath: "/dev/shm" },
                   // Keep Steam on one mount; a second subPath mount caused EXDEV.
                   { name: "cache", mountPath: "/mnt/game-streamer" },
+                  // F4: optional local cache of map flythrough mp4s.
+                  // flythrough.sh checks here first, falls back to api.
+                  // Read-only because the pod has no business writing
+                  // operator-curated content.
+                  {
+                    name: "intros",
+                    mountPath: "/opt/5stack/intros",
+                    readOnly: true,
+                  },
+                  // F1: optional local cache of pre-extracted HUD packs.
+                  // match-hud.sh prefers the api manifest path, but a
+                  // hostPath bind here lets operators drop a HUD on the
+                  // node and have it picked up without re-uploading.
+                  {
+                    name: "openhud-huds",
+                    mountPath: "/opt/5stack/openhud-huds",
+                    readOnly: true,
+                  },
                 ],
               },
             ],
@@ -1815,6 +1881,20 @@ export class GameStreamerService {
                 name: "cache",
                 hostPath: {
                   path: "/opt/5stack/game-streamer",
+                  type: "DirectoryOrCreate",
+                },
+              },
+              {
+                name: "intros",
+                hostPath: {
+                  path: "/opt/5stack/intros",
+                  type: "DirectoryOrCreate",
+                },
+              },
+              {
+                name: "openhud-huds",
+                hostPath: {
+                  path: "/opt/5stack/openhud-huds",
                   type: "DirectoryOrCreate",
                 },
               },

@@ -1,0 +1,79 @@
+table:
+  name: intros
+  schema: public
+select_permissions:
+  - role: administrator
+    permission:
+      columns:
+        - id
+        - map_name
+        - display_name
+        - uploader_steam_id
+        - size_bytes
+        - s3_key
+        - duration_seconds
+        - created_at
+        - updated_at
+      filter: {}
+      allow_aggregations: true
+    comment: ""
+  - role: match_organizer
+    permission:
+      columns:
+        - id
+        - map_name
+        - display_name
+        - uploader_steam_id
+        - size_bytes
+        - s3_key
+        - duration_seconds
+        - created_at
+        - updated_at
+      filter: {}
+    comment: ""
+  - role: tournament_organizer
+    permission:
+      columns:
+        - id
+        - map_name
+        - display_name
+        - uploader_steam_id
+        - size_bytes
+        - s3_key
+        - duration_seconds
+        - created_at
+        - updated_at
+      filter: {}
+    comment: ""
+  - role: streamer
+    permission:
+      columns:
+        - id
+        - map_name
+        - display_name
+        - size_bytes
+        - s3_key
+        - duration_seconds
+        - created_at
+      filter: {}
+    comment: ""
+  - role: user
+    permission:
+      columns:
+        - id
+        - map_name
+        - display_name
+        - duration_seconds
+        - created_at
+      filter: {}
+    comment: ""
+  - role: guest
+    permission:
+      columns:
+        - id
+        - map_name
+        - display_name
+        - duration_seconds
+        - created_at
+      filter: {}
+    comment: ""
