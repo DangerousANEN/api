@@ -46,6 +46,7 @@ import { AvatarsModule } from "./avatars/avatars.module";
 import { HudsModule } from "./huds/huds.module";
 import { IntrosModule } from "./intros/intros.module";
 import { HudStreamModule } from "./hud-stream/hud-stream.module";
+import { HighlightsModule } from "./highlights/highlights.module";
 import { TrophiesModule } from "./trophies/trophies.module";
 import { FixturesModule } from "./fixtures/fixtures.module";
 import { TournamentsModule } from "./tournaments/tournaments.module";
@@ -135,6 +136,7 @@ import { TournamentsModule } from "./tournaments/tournaments.module";
     HudsModule,
     IntrosModule,
     HudStreamModule,
+    HighlightsModule,
     TrophiesModule,
     FixturesModule,
     TournamentsModule,
