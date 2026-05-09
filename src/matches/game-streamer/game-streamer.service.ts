@@ -270,10 +270,41 @@ export class GameStreamerService {
         alive: boolean;
         health: number;
       }>;
+      // Enriched per-player snapshot for OBS operator-view HUD
+      // (money / equip / weapons / match stats). Optional — older
+      // streamer pods that haven't been upgraded yet still respond
+      // with just `spec_slots`, so consumers must defensively
+      // fall back when this is null/undefined.
+      spec_players_ext?: Array<{
+        slot: number;
+        steam_id: string;
+        name: string | null;
+        team: "T" | "CT" | null;
+        alive: boolean;
+        health: number;
+        armor: number;
+        helmet: boolean;
+        money: number;
+        equip_value: number;
+        round_kills: number;
+        round_killhs: number;
+        kills: number;
+        assists: number;
+        deaths: number;
+        mvps: number;
+        score: number;
+        weapons: Array<{ name: string; type: string | null }>;
+        active_weapon: string | null;
+        defusekit: boolean;
+      }>;
       team_ct_name: string | null;
       team_t_name: string | null;
       team_ct_score: number;
       team_t_score: number;
+      phase?: string | null;
+      phase_ends_in_s?: number | null;
+      bomb_state?: string | null;
+      bomb_countdown_s?: number | null;
     } | null;
   }> {
     const svc = GameStreamerService.GetLiveServiceName(matchId);
