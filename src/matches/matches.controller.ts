@@ -1208,6 +1208,111 @@ export class MatchesController {
     };
   }
 
+  // OBS overlay HUD slots are written via Hasura Actions (not direct
+  // table mutations) so we can centrally enforce two invariants:
+  //   1) the user is the match organizer, and
+  //   2) `slot_key` is normalized + validated (lowercase, alnum + dash
+  //      + underscore only) before it gets baked into URLs that are
+  //      copy-pasted into OBS.
+  //
+  // The slot table is brand new and doesn't have generated genql types
+  // here yet, so we use raw SQL through PostgresService for the
+  // upsert/delete pair.
+  @HasuraAction()
+  public async upsertMatchOverlayHud(data: {
+    user: User;
+    match_id: string;
+    slot_key: string;
+    label?: string | null;
+    hud_id?: string | null;
+    display_order?: number | null;
+  }) {
+    const { match_id, user, slot_key, label, hud_id, display_order } = data;
+
+    if (!(await this.matchAssistant.isOrganizer(match_id, user))) {
+      throw Error("you are not a match organizer");
+    }
+
+    const normalized = (slot_key || "").trim().toLowerCase();
+    if (!/^[a-z0-9][a-z0-9_-]{0,63}$/.test(normalized)) {
+      throw Error(
+        "slot_key must be 1-64 chars, start with a letter or digit, " +
+          "and contain only lowercase letters, digits, '-' or '_'",
+      );
+    }
+
+    const { matches_by_pk: match } = await this.hasura.query({
+      matches_by_pk: {
+        __args: { id: match_id },
+        match_options_id: true,
+      },
+    });
+    if (!match || !match.match_options_id) {
+      throw Error("match or match_options not found");
+    }
+
+    const rows = await this.postgres.query<{
+      id: string;
+      slot_key: string;
+      label: string | null;
+      hud_id: string | null;
+      display_order: number;
+    }[]>(
+      `insert into public.match_overlay_huds
+         (match_options_id, slot_key, label, hud_id, display_order)
+       values ($1, $2, $3, $4, $5)
+       on conflict (match_options_id, slot_key)
+       do update set
+         label = excluded.label,
+         hud_id = excluded.hud_id,
+         display_order = excluded.display_order,
+         updated_at = now()
+       returning id, slot_key, label, hud_id, display_order`,
+      [
+        match.match_options_id,
+        normalized,
+        label ?? null,
+        hud_id ?? null,
+        display_order ?? 0,
+      ],
+    );
+
+    const row = rows[0];
+    if (!row) throw Error("failed to upsert overlay slot");
+    return row;
+  }
+
+  @HasuraAction()
+  public async deleteMatchOverlayHud(data: {
+    user: User;
+    match_id: string;
+    slot_key: string;
+  }) {
+    const { match_id, user, slot_key } = data;
+
+    if (!(await this.matchAssistant.isOrganizer(match_id, user))) {
+      throw Error("you are not a match organizer");
+    }
+
+    const { matches_by_pk: match } = await this.hasura.query({
+      matches_by_pk: {
+        __args: { id: match_id },
+        match_options_id: true,
+      },
+    });
+    if (!match || !match.match_options_id) {
+      throw Error("match or match_options not found");
+    }
+
+    await this.postgres.query(
+      `delete from public.match_overlay_huds
+        where match_options_id = $1 and slot_key = $2`,
+      [match.match_options_id, slot_key],
+    );
+
+    return { success: true };
+  }
+
   /**
    * TODO - does not need to be a action
    */

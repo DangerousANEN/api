@@ -988,6 +988,9 @@ export class GameStreamerService {
           port: true,
           tv_port: true,
         },
+        options: {
+          raw_hud_overlay: true,
+        },
       },
     });
 
@@ -1014,6 +1017,17 @@ export class GameStreamerService {
     const reporterEnv: V1EnvVar[] = [
       { name: "MATCH_PASSWORD", value: match.password },
     ];
+
+    // Per-match override for the in-game OpenHud overlay. When the
+    // operator turns "raw HUD" on in match settings, the streamer pod
+    // is launched with OPENHUD_DISABLED=1 so cs2 renders without an
+    // overlay; the operator's OBS then composes the HUD from web
+    // Browser Sources (`/overlay/hud/<id>?slot=...`). The global
+    // STREAMER_OPENHUD_DISABLED env on the api pod still works as a
+    // cluster-wide default for installations that always run raw.
+    if (match.options?.raw_hud_overlay) {
+      reporterEnv.push({ name: "OPENHUD_DISABLED", value: "1" });
+    }
 
     const jobName = GameStreamerService.GetLiveJobId(matchId);
 

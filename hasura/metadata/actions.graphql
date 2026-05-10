@@ -139,6 +139,23 @@ type Mutation {
 }
 
 type Mutation {
+  upsertMatchOverlayHud(
+    match_id: uuid!
+    slot_key: String!
+    label: String
+    hud_id: uuid
+    display_order: Int
+  ): MatchOverlayHud!
+}
+
+type Mutation {
+  deleteMatchOverlayHud(
+    match_id: uuid!
+    slot_key: String!
+  ): SuccessOutput
+}
+
+type Mutation {
   forfeitMatch(
     match_id: uuid!
     winning_lineup_id: uuid!
@@ -594,6 +611,14 @@ type MeResponse {
 
 type SuccessOutput {
   success: Boolean!
+}
+
+type MatchOverlayHud {
+  id: uuid!
+  slot_key: String!
+  label: String
+  hud_id: uuid
+  display_order: Int!
 }
 
 type WatchDemoOutput {

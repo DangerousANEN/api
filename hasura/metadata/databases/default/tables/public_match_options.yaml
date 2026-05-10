@@ -38,6 +38,13 @@ array_relationships:
         table:
           name: matches
           schema: public
+  - name: overlay_huds
+    using:
+      foreign_key_constraint_on:
+        column: match_options_id
+        table:
+          name: match_overlay_huds
+          schema: public
 computed_fields:
   - name: has_active_matches
     definition:
@@ -62,6 +69,7 @@ insert_permissions:
         - number_of_substitutes
         - overtime
         - prefer_dedicated_server
+        - raw_hud_overlay
         - ready_setting
         - region_veto
         - regions
@@ -114,6 +122,7 @@ select_permissions:
         - number_of_substitutes
         - overtime
         - prefer_dedicated_server
+        - raw_hud_overlay
         - ready_setting
         - region_veto
         - regions
@@ -143,6 +152,7 @@ update_permissions:
         - number_of_substitutes
         - overtime
         - prefer_dedicated_server
+        - raw_hud_overlay
         - ready_setting
         - region_veto
         - regions

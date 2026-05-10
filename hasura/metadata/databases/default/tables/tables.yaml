@@ -50,6 +50,7 @@
 - "!include public_match_map_veto_picks.yaml"
 - "!include public_match_maps.yaml"
 - "!include public_match_options.yaml"
+- "!include public_match_overlay_huds.yaml"
 - "!include public_match_region_veto_picks.yaml"
 - "!include public_match_streams.yaml"
 - "!include public_match_type_cfgs.yaml"
