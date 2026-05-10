@@ -1,3 +1,4 @@
+// build-cache-buster: 2026-05-10 (force docker layer rebuild for fillBots)
 import { Injectable, Logger } from "@nestjs/common";
 import { HasuraService } from "../../hasura/hasura.service";
 import {
