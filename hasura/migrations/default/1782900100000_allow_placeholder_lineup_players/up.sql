@@ -1,3 +1,10 @@
+-- Allow placeholder rows (e.g. solo-test BOT slots) to bypass the
+-- "steam_id or discord_id is required" guard. The table-level
+-- constraint `chk_null_steam_id_place_holder_name` already enforces
+-- that a row must have either a real player (steam_id) OR a
+-- placeholder_name; the existing function predates the bots feature
+-- and rejected placeholder-only rows on insert.
+
 CREATE OR REPLACE FUNCTION public.check_match_lineup_players(match_lineup_player match_lineup_players) RETURNS VOID
     LANGUAGE plpgsql
     AS $$
