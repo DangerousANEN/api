@@ -1662,12 +1662,140 @@ export class MatchesController {
 
   @HasuraAction()
   public async leaveLineup(data: { user: User; match_id: string }) {
+    const { matches_by_pk } = await this.hasura.query({
+      matches_by_pk: {
+        __args: {
+          id: data.match_id,
+        },
+        status: true,
+        is_tournament_match: true,
+      },
+    });
+
+    if (!matches_by_pk) {
+      throw Error("match not found");
+    }
+
+    if (matches_by_pk.is_tournament_match) {
+      throw Error(
+        "cannot leave a tournament match; ask the organizer to remove you",
+      );
+    }
+
+    const status = matches_by_pk.status as string;
+    if (
+      status === "Live" ||
+      MatchesController.TERMINAL_STATUSES.includes(status)
+    ) {
+      throw Error("cannot leave once the match has started");
+    }
+
+    const { match_lineup_players } = await this.hasura.query({
+      match_lineup_players: {
+        __args: {
+          where: {
+            steam_id: { _eq: data.user.steam_id },
+            lineup: {
+              v_match_lineup: {
+                match_id: { _eq: data.match_id },
+              },
+            },
+          },
+        },
+        id: true,
+        checked_in: true,
+      },
+    });
+
+    if (match_lineup_players.length === 0) {
+      return { success: false };
+    }
+
+    if (match_lineup_players.some((p) => p.checked_in)) {
+      throw Error("cannot leave after checking in");
+    }
+
     const { delete_match_lineup_players } = await this.hasura.mutation({
       delete_match_lineup_players: {
         __args: {
           where: {
             steam_id: {
               _eq: data.user.steam_id,
+            },
+            lineup: {
+              v_match_lineup: {
+                match_id: {
+                  _eq: data.match_id,
+                },
+              },
+            },
+          },
+        },
+        returning: {
+          id: true,
+        },
+      },
+    });
+
+    return {
+      success: delete_match_lineup_players.returning.length > 0,
+    };
+  }
+
+  @HasuraAction()
+  public async kickMatchPlayer(data: {
+    user: User;
+    match_id: string;
+    steam_id: string;
+  }) {
+    if (!data.steam_id) {
+      throw Error("steam_id is required");
+    }
+
+    const { matches_by_pk } = await this.hasura.query(
+      {
+        matches_by_pk: {
+          __args: {
+            id: data.match_id,
+          },
+          status: true,
+          is_organizer: true,
+        },
+      },
+      data.user.steam_id,
+    );
+
+    if (!matches_by_pk) {
+      throw Error("match not found");
+    }
+
+    const allowedRoles = [
+      "administrator",
+      "match_organizer",
+      "tournament_organizer",
+    ];
+
+    if (
+      !matches_by_pk.is_organizer &&
+      !allowedRoles.includes(data.user.role)
+    ) {
+      throw Error("only organizers / admins can kick players");
+    }
+
+    const status = matches_by_pk.status as string;
+    if (
+      status === "Live" ||
+      MatchesController.TERMINAL_STATUSES.includes(status)
+    ) {
+      throw Error("cannot kick once the match has started");
+    }
+
+    const { delete_match_lineup_players } = await this.hasura.mutation({
+      delete_match_lineup_players: {
+        __args: {
+          where: {
+            steam_id: {
+              _eq: data.steam_id,
             },
             lineup: {
               v_match_lineup: {
