@@ -130,28 +130,129 @@ export class MatchAssistantService {
   /**
    * Fill empty roster slots with cs2 bots so a single user can solo-test
    * the dedicated server, spectator flythroughs, and HUDs without a
-   * second human. Uses `bot_quota_mode fill` so bots auto-respawn after
-   * round restarts (and survive `bot_kick` from MatchManager.KickBots
-   * when ALLOW_BOTS is unset on the pod).
+   * second human. Two complementary phases:
+   *
+   *   1) `fillBotLineups()` always runs — it inserts placeholder rows
+   *      into `match_lineup_players` so the panel sees a populated
+   *      lobby and `check_match_has_min_players()` is satisfied. This
+   *      lets the organizer hit Start Match without waiting for real
+   *      players to join.
+   *
+   *   2) Rcon `bot_quota_mode fill` etc. only fires if the match
+   *      server is already up. When the match is launched later, the
+   *      cs2 plugin pod runs the same commands during warmup so the
+   *      bots actually spawn ingame; that path lives in the streamer
+   *      pod's match-assistant config.
+   *
+   * The rcon side uses `bot_quota_mode fill` so bots auto-respawn
+   * across round restarts (survives `bot_kick` from
+   * MatchManager.KickBots when `ALLOW_BOTS` is unset on the pod).
    */
-  public async fillBots(matchId: string): Promise<void> {
-    const expected = await this.getExpectedPlayerCount(matchId);
+  public async fillBots(matchId: string): Promise<{ added: number }> {
+    // Phase 1 — populate the panel lineups with bot placeholders.
+    // This is what unblocks "Start Match" for solo HUD testing.
+    const added = await this.fillBotLineups(matchId);
 
-    const commands: Array<string> = [
-      "bot_quota_mode fill",
-      `bot_quota ${expected}`,
-      "bot_difficulty 2",
-      "bot_join_after_player 0",
-      "bot_join_team any",
-      "mp_autoteambalance 1",
-      "bot_add ct",
-      "bot_add t",
-    ];
-
-    const result = await this.command(matchId, commands);
-    if (result === undefined) {
-      throw Error("unable to send bot fill commands to match server");
+    // Phase 2 — best-effort rcon if the server is already live.
+    // Failure here is non-fatal: when the match goes Live later the
+    // streamer pod's plugin will issue the same bot_add commands.
+    try {
+      const expected = await this.getExpectedPlayerCount(matchId);
+      const commands: Array<string> = [
+        "bot_quota_mode fill",
+        `bot_quota ${expected}`,
+        "bot_difficulty 2",
+        "bot_join_after_player 0",
+        "bot_join_team any",
+        "mp_autoteambalance 1",
+        "bot_add ct",
+        "bot_add t",
+      ];
+      await this.command(matchId, commands);
+    } catch {
+      // Ignore — rcon path is optional. The lineup rows above are
+      // what actually let the user start the match.
     }
+
+    return { added };
+  }
+
+  /**
+   * Insert `placeholder_name='BOT N'` rows into both lineups until
+   * each side has at least `min_players_per_lineup`. Existing
+   * placeholder rows count toward the quota; existing real players
+   * also count, so calling this from a partially-filled lobby just
+   * tops it up. Each inserted row is `checked_in=true` so
+   * `is_match_lineup_ready()` doesn't block the start.
+   *
+   * The check constraint
+   * `chk_null_steam_id_place_holder_name` requires exactly one of
+   * `steam_id` or `placeholder_name` to be set, so we leave
+   * `steam_id`/`discord_id` NULL on bot rows.
+   */
+  public async fillBotLineups(matchId: string): Promise<number> {
+    const match = await this.getMatchLineups(matchId);
+    if (!match) {
+      throw Error("match not found");
+    }
+
+    const expectedTotal = await this.getExpectedPlayerCount(matchId);
+    const perLineup = Math.max(1, Math.floor(expectedTotal / 2));
+
+    type LineupShape = {
+      id: string;
+      lineup_players: Array<{
+        steam_id?: number | string | null;
+        placeholder_name?: string | null;
+      }>;
+    };
+    const lineups: LineupShape[] = [
+      match.lineup_1 as LineupShape,
+      match.lineup_2 as LineupShape,
+    ].filter((l): l is LineupShape => !!l && !!l.id);
+
+    let totalAdded = 0;
+    for (const lineup of lineups) {
+      const existingPlaceholders = new Set(
+        lineup.lineup_players
+          .map((p) => p.placeholder_name)
+          .filter((n): n is string => !!n),
+      );
+      const currentCount = lineup.lineup_players.length;
+      const needed = Math.max(0, perLineup - currentCount);
+      if (needed === 0) continue;
+
+      const objects: Array<{
+        match_lineup_id: string;
+        placeholder_name: string;
+        checked_in: boolean;
+      }> = [];
+      let n = 1;
+      for (let i = 0; i < needed; i++) {
+        let name = `BOT ${n}`;
+        while (existingPlaceholders.has(name)) {
+          n++;
+          name = `BOT ${n}`;
+        }
+        existingPlaceholders.add(name);
+        objects.push({
+          match_lineup_id: lineup.id,
+          placeholder_name: name,
+          checked_in: true,
+        });
+        n++;
+      }
+
+      await this.hasura.mutation({
+        insert_match_lineup_players: {
+          __args: { objects },
+          affected_rows: true,
+        },
+      });
+      totalAdded += objects.length;
+    }
+
+    return totalAdded;
   }
 
   public async getMatchLineups(matchId: string) {

@@ -1201,10 +1201,11 @@ export class MatchesController {
       throw Error("cannot add bots to a match that has already ended");
     }
 
-    await this.matchAssistant.fillBots(match_id);
+    const { added } = await this.matchAssistant.fillBots(match_id);
 
     return {
       success: true,
+      added,
     };
   }
 
