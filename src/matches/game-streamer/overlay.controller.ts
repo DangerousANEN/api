@@ -8,10 +8,13 @@ interface OverlayHudSlotRow {
   slot_key: string;
   label: string | null;
   hud_id: string | null;
+  layout_id: string | null;
   display_order: number;
   hud_slug: string | null;
   hud_name: string | null;
   hud_format: string | null;
+  layout_slug: string | null;
+  layout_name: string | null;
 }
 
 // Public, no-auth surface for OBS Browser Source HUD overlays. The
@@ -91,13 +94,17 @@ export class OverlayController {
                   s.slot_key,
                   s.label,
                   s.hud_id,
+                  s.layout_id,
                   s.display_order,
                   h.slug   as hud_slug,
                   h.name   as hud_name,
-                  h.format as hud_format
+                  h.format as hud_format,
+                  l.slug   as layout_slug,
+                  l.name   as layout_name
              from public.match_overlay_huds s
              join public.matches m on m.match_options_id = s.match_options_id
              left join public.huds h on h.id = s.hud_id
+             left join public.hud_layouts l on l.id = s.layout_id
             where m.id = $1
             order by s.display_order asc, s.slot_key asc`,
           [matchId],
@@ -127,6 +134,7 @@ export class OverlayController {
         slot_key: row.slot_key,
         label: row.label,
         hud_id: row.hud_id,
+        layout_id: row.layout_id,
         display_order: row.display_order,
         hud: row.hud_id
           ? {
@@ -134,6 +142,13 @@ export class OverlayController {
               slug: row.hud_slug,
               name: row.hud_name,
               format: row.hud_format,
+            }
+          : null,
+        layout: row.layout_id
+          ? {
+              id: row.layout_id,
+              slug: row.layout_slug,
+              name: row.layout_name,
             }
           : null,
       })),
