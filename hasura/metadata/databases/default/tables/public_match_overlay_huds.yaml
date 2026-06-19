@@ -2,6 +2,9 @@ table:
   name: match_overlay_huds
   schema: public
 object_relationships:
+  - name: layout
+    using:
+      foreign_key_constraint_on: layout_id
   - name: match_option
     using:
       foreign_key_constraint_on: match_options_id
@@ -30,6 +33,7 @@ insert_permissions:
                     is_organizer:
                       _eq: true
       columns:
+        - layout_id
         - match_options_id
         - slot_key
         - label
@@ -40,6 +44,7 @@ select_permissions:
   - role: guest
     permission:
       columns:
+        - layout_id
         - id
         - match_options_id
         - slot_key
@@ -53,6 +58,7 @@ select_permissions:
   - role: match_organizer
     permission:
       columns:
+        - layout_id
         - id
         - match_options_id
         - slot_key
@@ -66,6 +72,7 @@ select_permissions:
   - role: user
     permission:
       columns:
+        - layout_id
         - id
         - match_options_id
         - slot_key
@@ -80,6 +87,7 @@ update_permissions:
   - role: match_organizer
     permission:
       columns:
+        - layout_id
         - slot_key
         - label
         - hud_id

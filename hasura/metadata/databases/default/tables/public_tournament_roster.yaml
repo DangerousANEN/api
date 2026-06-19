@@ -29,6 +29,7 @@ insert_permissions:
                 _eq: X-Hasura-User-Id
       columns:
         - player_steam_id
+        - payment_status
         - tournament_id
         - tournament_team_id
     comment: ""
@@ -38,6 +39,7 @@ select_permissions:
       columns:
         - id
         - player_steam_id
+        - payment_status
         - role
         - tournament_id
         - tournament_team_id

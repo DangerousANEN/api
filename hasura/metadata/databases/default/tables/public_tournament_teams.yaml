@@ -47,19 +47,12 @@ computed_fields:
       session_argument: hasura_session
 insert_permissions:
   - role: tournament_organizer
-    permission:
-      check:
-        _and:
-          - tournament:
-              status:
-                _nin:
-                  - Cancelled
-                  - CancelledMinTeams
-                  - Finished
       columns:
+        - payment_status
         - captain_steam_id
         - name
         - owner_steam_id
+        - payment_status
         - seed
         - team_id
         - tournament_id
@@ -113,6 +106,7 @@ select_permissions:
         - id
         - name
         - owner_steam_id
+        - payment_status
         - seed
         - team_id
         - tournament_id
@@ -123,8 +117,8 @@ select_permissions:
     comment: ""
 update_permissions:
   - role: tournament_organizer
-    permission:
       columns:
+        - payment_status
         - captain_steam_id
         - name
         - seed
@@ -173,39 +167,3 @@ update_permissions:
     comment: ""
 delete_permissions:
   - role: tournament_organizer
-    permission:
-      filter:
-        _and:
-          - tournament:
-              status:
-                _nin:
-                  - Cancelled
-                  - CancelledMinTeams
-                  - Finished
-    comment: ""
-  - role: user
-    permission:
-      filter:
-        _or:
-          - team:
-              roster:
-                _and:
-                  - role:
-                      _eq: Admin
-                  - player_steam_id:
-                      _eq: X-Hasura-User-Id
-          - _and:
-              - team_id:
-                  _is_null: true
-              - owner_steam_id:
-                  _eq: X-Hasura-User-Id
-          - tournament:
-              is_organizer:
-                _eq: true
-          - tournament:
-              status:
-                _in:
-                  - Setup
-                  - RegistrationOpen
-                  - RegistrationClosed
-    comment: ""

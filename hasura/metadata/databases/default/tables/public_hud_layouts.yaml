@@ -1,0 +1,65 @@
+table:
+  name: hud_layouts
+  schema: public
+select_permissions:
+  - role: guest
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - category
+        - config
+        - is_public
+        - created_by_steam_id
+        - created_at
+        - updated_at
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - category
+        - config
+        - is_public
+        - created_by_steam_id
+        - created_at
+        - updated_at
+      filter: {}
+insert_permissions:
+  - role: administrator
+    permission:
+      columns: '*'
+      check: {}
+  - role: match_organizer
+    permission:
+      columns: '*'
+      check: {}
+      set:
+        created_by_steam_id: x-hasura-user-id
+update_permissions:
+  - role: administrator
+    permission:
+      columns: '*'
+      filter: {}
+      check: {}
+  - role: match_organizer
+    permission:
+      columns: '*'
+      filter:
+        created_by_steam_id:
+          _eq: X-Hasura-User-Id
+      check:
+        created_by_steam_id:
+          _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: administrator
+    permission:
+      filter: {}
+  - role: match_organizer
+    permission:
+      filter:
+        created_by_steam_id:
+          _eq: X-Hasura-User-Id

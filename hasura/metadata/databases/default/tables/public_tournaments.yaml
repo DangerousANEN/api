@@ -156,6 +156,8 @@ insert_permissions:
         organizer_steam_id: x-hasura-user-id
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - description
         - discord_guild_id
         - discord_notifications_enabled
@@ -208,6 +210,8 @@ insert_permissions:
         organizer_steam_id: x-hasura-user-id
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - description
         - match_options_id
         - name
@@ -242,6 +246,8 @@ insert_permissions:
         organizer_steam_id: x-hasura-user-id
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - description
         - match_options_id
         - name
@@ -278,6 +284,8 @@ insert_permissions:
         organizer_steam_id: x-hasura-user-id
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - description
         - discord_guild_id
         - discord_notifications_enabled
@@ -327,6 +335,8 @@ insert_permissions:
         organizer_steam_id: x-hasura-user-id
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - description
         - match_options_id
         - name
@@ -360,6 +370,8 @@ insert_permissions:
         organizer_steam_id: x-hasura-user-id
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - description
         - match_options_id
         - name
@@ -370,6 +382,8 @@ select_permissions:
     permission:
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - created_at
         - description
         - id
@@ -402,6 +416,8 @@ select_permissions:
     permission:
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - created_at
         - description
         - discord_guild_id
@@ -454,6 +470,8 @@ select_permissions:
     permission:
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - created_at
         - description
         - id
@@ -490,6 +508,8 @@ update_permissions:
     permission:
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - description
         - discord_guild_id
         - discord_notifications_enabled
@@ -523,6 +543,8 @@ update_permissions:
     permission:
       columns:
         - auto_start
+        - is_paid
+        - payment_details
         - description
         - name
         - start
