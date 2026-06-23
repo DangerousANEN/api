@@ -99,5 +99,5 @@
 - "!include public_v_team_stage_results.yaml"
 - "!include public_v_team_tournament_results.yaml"
 - "!include public_v_tournament_player_stats.yaml"
-  - "!include public_e_payment_status.yaml"
-  - "!include public_hud_layouts.yaml"
+- "!include public_e_payment_status.yaml"
+- "!include public_hud_layouts.yaml"
